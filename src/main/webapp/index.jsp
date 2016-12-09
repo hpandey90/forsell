@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="c:/Users/HPO/Documents/workspace-sts-3.8.2.RELEASE/sell/src/main/webapp/css/auto-complete.css">
+<link rel="stylesheet" href="css\auto-complete.css">
 <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0">
-<script src="c:/Users/HPO/Documents/workspace-sts-3.8.2.RELEASE/sell/src/main/webapp/scripts/auto-complete.js"></script>
+<script src="scripts\auto-complete.js"></script>
  <script>
         var demo1 = new autoComplete({
             selector: '#hero-demo',
