@@ -5,12 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Post your ad here</title>
-<script type="text/javascript">
-var upload = function() {
-    var photo = document.getElementById("photo");
-    return false;
-};
-</script>
 </head>
 <body>
 <form action="addad.jsp" method="post" onsubmit="return upload();">
@@ -40,7 +34,7 @@ var upload = function() {
 </td>
 </tr>
 <tr>
-<td>
+<!-- <td>
 <div>Upload some cool pics: </div>
 </td>
 <td>
@@ -48,6 +42,7 @@ var upload = function() {
     <input type="file" name="photo" id="photo">
 </div>
 </td>
+ -->
 </tr>
 <tr>
 <td>
