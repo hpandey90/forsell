@@ -1,4 +1,6 @@
+<%@ page import="java.io.*,java.util.*" %>
 <link rel="stylesheet" href="css/auto-complete.css">
+<form action="search.jsp" method="get">
 <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0">
 <script src="scripts/auto-complete.js"></script>
  <script>
@@ -15,3 +17,5 @@
             }
         });
 </script>
+<input type="submit" value="GO">
+</form>
