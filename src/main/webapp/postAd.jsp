@@ -26,7 +26,7 @@
 							<div class='container-fluid'>Give it a Name: </div>
 						</td>
 						<td>
-							<div class='container-fluid'><input id="adTitle" name="adTitle"type="text" width="100" required></div>
+							<div class='container-fluid'><input id="adTitle" name="adTitle" type="text" width="100" required></div>
 						</td>
 					</tr>
 					<tr>
