@@ -91,5 +91,3 @@
 				<h1>ForSale</h1>
 			</div>
 		</header>	
-	</body>
-</html>

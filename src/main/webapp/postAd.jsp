@@ -47,9 +47,6 @@
 	}
 	
 	</style>
-	<title>Post your ad here</title>
-	</head>
-	<body>
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
 			<form action="addad.jsp" method="post" style = ''onsubmit="return upload();">
 				<div id="itemInputDiv">
