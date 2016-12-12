@@ -20,7 +20,7 @@
 			left: 0;
 			width: 100%;
 			height: 80px; 
-			overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
+			//overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
 			background: #222233;
 		}
 		
