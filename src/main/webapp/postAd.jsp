@@ -63,7 +63,7 @@
 	<title>Post your ad here</title>
 	</head>
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
-			<form action="addad.jsp" method="post" style = ''onsubmit="return upload();">
+			<form action="file_upload.jsp" enctype="multipart/form-data" method="post" style = ''onsubmit="return upload();">
 				<div id="itemInputDiv">
 					<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
 						<h3 style='text-align:center;'>Item 1</h3>
@@ -91,7 +91,7 @@
 								<td>
 									<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
 									<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
-									<input type="button" id="upload" onclick="loadFile();">
+									<input type="button" id="upload">
 								</td>
 							</tr>
 						</table>
