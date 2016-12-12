@@ -21,3 +21,8 @@
 .postAd{
 	position:relative;
 }
+.jumbotron{
+	position: absolute;
+    margin-left: 32%;
+    margin-right: 32%;	
+}

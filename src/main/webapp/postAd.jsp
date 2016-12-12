@@ -70,17 +70,6 @@
 							<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
 						</td>
 					</tr>
-					<tr>
-						<!-- <td>
-						<div class='container'>Upload some cool pics: </div>
-						</td>
-						<td>
-						<div class='container'>
-						    <input type="file" name="photo" id="photo">
-						</div>
-						</td>
-						 -->
-					</tr>
 				</table>
 			</div>
 				<table>
