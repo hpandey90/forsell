@@ -91,7 +91,6 @@
 								<td>
 									<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
 									<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
-									<input type="button" id="upload">
 								</td>
 							</tr>
 						</table>
