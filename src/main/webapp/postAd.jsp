@@ -18,20 +18,33 @@
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	count++;
-	    	var string = "<div style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item"+ count+"</h3><table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table></div>";
+	    	var string = "<div id='itemDiv"+count+"' style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item"+ count+"</h3><table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table></div>";
 	    	$("#itemInputDiv").append(string);
-	    	current = "#adTable"+count;
+	    	current = "#itemDiv"+count;
 	    	enableRemove();
 	    });
 	    $("#removeForm").click(function(){
 	    	if(count > 1){
 	    		$(current).remove();
 	    		count--;
-	    		current = "#adTable"+count;
+	    		current = "#itemDiv"+count;
 	    		enableRemove();
 	    	}
 	    });
 	});
+	function loadFile() {
+		if(document.getElementById("productImages").value)
+			var filename= document.getElementById("productImages").value;
+			console.log(filename);
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		    // document.getElementById("demo").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "file_upload.jsp?file="+filename, true);
+		  xhttp.send();
+		}
 	</script>
 	<style>
 	.bd {
@@ -50,9 +63,9 @@
 	<title>Post your ad here</title>
 	</head>
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
-			<form action="addad.jsp" method="post" style = ''onsubmit="return upload();">
+			<form action="file_upload.jsp" enctype="multipart/form-data" method="post" style = ''onsubmit="return upload();">
 				<div id="itemInputDiv">
-					<div style='margin: 5px; padding:5px; border-radius:10px;'>
+					<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
 						<h3 style='text-align:center;'>Item 1</h3>
 						<table id="adTable" align="center">
 							<tr>
