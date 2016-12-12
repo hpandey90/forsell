@@ -51,7 +51,7 @@
 	</head>
 	<body>
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
-			<form action="addad.jsp" method="post" style = 'overflow-y:scroll;'onsubmit="return upload();">
+			<form action="addad.jsp" method="post" style = ''onsubmit="return upload();">
 				<div id="itemInputDiv">
 					<div style='margin: 5px; padding:5px; border-radius:10px;'>
 						<h3 style='text-align:center;'>Item 1</h3>
