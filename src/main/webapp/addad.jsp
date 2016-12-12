@@ -11,25 +11,25 @@
 </head>
 <body>
 <%
-String db = request.getParameter("db");
-String user = "BGM-PC";
+String db = "forsale";
+String user = "ashish";
 String Title,Category,Desc,Pics,UName,UPhone;
 Title = request.getParameter("adTitle");
 Category = request.getParameter("adCategory");
 Desc = request.getParameter("adDesc");
-String query = "INSERT INTO postads (prod_id,prod_title,prod_cat,prod_desc) VALUES ("+Title+","+Category+","+Desc+");";
+String query = "INSERT INTO postads (prod_title,prod_cat,prod_desc) VALUES ('"+Title+"','"+Category+"','"+Desc+"');";
 try {
   java.sql.Connection con;
  Class.forName("com.mysql.jdbc.Driver");
   con = DriverManager.getConnection("jdbc:mysql://192.168.0.16/"+db, user, "mypass");
   out.println (db + " database successfully opened.");
   Statement stmt = con.createStatement();
- // stmt.executeUpdate(query);
+  stmt.executeUpdate(query);
   out.println ("Query Executed");
 }
 catch(Exception e) {
   out.println("SQLException caught: " +e.getMessage());
-  //out.println(e.printStackTrace());
+  // out.println(e.printStackTrace());
 }
 
 %>
