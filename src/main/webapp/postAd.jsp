@@ -49,8 +49,8 @@
 	</style>
 	<title>Post your ad here</title>
 	</head>
-	<body>
-		<div style='position: relative; margin-left:28%; margin-right:28%;'>
+	<body style='overflow-y:scroll'>
+		<div style='position: relative; margin-top:80px; margin-left:28%; margin-right:28%;'>
 			<form action="addad.jsp" method="post" style = ''onsubmit="return upload();">
 				<div id="itemInputDiv">
 					<div style='margin: 5px; padding:5px; border-radius:10px;'>
