@@ -5,7 +5,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>HomePage</title>
 		<style type="text/css">
-		
 		body {
 			margin: 0;
 			padding: 0;
@@ -17,18 +16,17 @@
 		}
 		
 		#header {
-			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 100px; 
-			overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
-			background: #76323f;
+			height: 80px; 
+			//overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
+			background: #222233;
 		}
 		
 		#logo {
 			padding:10px;
-			color:#d7cec7;
+			color:#AACCFF;
 		}
 		
 		
@@ -86,14 +84,9 @@
         });
 </script>
 	<link rel="stylesheet" href="css/auto-complete.css">
-	</head>
-	
-	<body>		
-
+	<body style='overflow-y:auto;'>		
 		<header id="header">
 			<div id="logo">
-				<h1>ForSale</h1> <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0">
+				<h1>ForSale</h1>
 			</div>
 		</header>	
-	</body>
-</html>
