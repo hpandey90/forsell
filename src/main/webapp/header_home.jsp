@@ -16,7 +16,6 @@
 		}
 		
 		#header {
-			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -91,5 +90,3 @@
 				<h1>ForSale</h1>
 			</div>
 		</header>	
-	</body>
-</html>
