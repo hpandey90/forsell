@@ -29,7 +29,7 @@ try {
 }
 catch(Exception e) {
   out.println("SQLException caught: " +e.getMessage());
-  //out.println(e.printStackTrace());
+  // out.println(e.printStackTrace());
 }
 
 %>
