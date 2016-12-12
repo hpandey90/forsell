@@ -42,7 +42,7 @@
 		    // document.getElementById("demo").innerHTML = this.responseText;
 		    }
 		  };
-		  xhttp.open("GET", "file_upload.jsp", true);
+		  xhttp.open("GET", "file_upload.jsp?loc="+filename, true);
 		  xhttp.send();
 		}
 	</script>
