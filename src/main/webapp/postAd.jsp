@@ -24,7 +24,7 @@
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	count++;
-	    	var string = "<table id='adTable"+count+"'><tr><td><div class='container-fluid'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table>";
+	    	var string = "<table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table>";
 	    	$("#itemInputDiv").append(string);
 	    	current = "#adTable"+count;
 	    	enableRemove();
@@ -33,6 +33,7 @@
 	    	if(count > 1){
 	    		$(current).remove();
 	    		count--;
+	    		current = "#adTable"+count;
 	    		enableRemove();
 	    	}
 	    });
@@ -57,6 +58,7 @@
 	<body>
 		<div class='jumbotron'>
 			<form action="addad.jsp" method="post" onsubmit="return upload();">
+				<div id="itemInputDiv">
 				<table id="adTable" align="center">
 					<tr>
 						<td>
@@ -84,6 +86,7 @@
 						</td>
 					</tr>
 				</table>
+				</div>
 
 				
 				<table align="center">
