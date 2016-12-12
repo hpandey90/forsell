@@ -86,8 +86,9 @@
 </script>
 	<link rel="stylesheet" href="css/auto-complete.css">
 	<body>		
-		<header id="header">
+	<!--<header id="header">  -->
+		
 			<div id="logo">
 				<h1>ForSale</h1>
 			</div>
-		</header>	
+		<!-- </header> -->	
