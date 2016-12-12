@@ -15,8 +15,7 @@
 			line-height: 1.5em;
 		}
 		
-		.header {
-			position: absolute;
+		#header {
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -86,9 +85,8 @@
 </script>
 	<link rel="stylesheet" href="css/auto-complete.css">
 	<body>		
-	<!--<header id="header">  -->
-		
-			<div class="header" id="logo">
+		<header id="header">
+			<div id="logo">
 				<h1>ForSale</h1>
 			</div>
-		<!-- </header> -->	
+		</header>	
