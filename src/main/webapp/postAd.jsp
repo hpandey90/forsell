@@ -57,7 +57,7 @@
 	</head>
 	<body>
 		<div class='jumbotron'>
-			<form action="addad.jsp" method="post" onsubmit="return upload();">
+			<form action="./AddAd" method="post" enctype="multipart/form-data">
 				<div id="itemInputDiv">
 				<table id="adTable" align="center">
 					<tr>
