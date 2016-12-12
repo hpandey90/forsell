@@ -24,7 +24,7 @@
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	count++;
-	    	var string = "<table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table>";
+	    	var string = "<div style='margin: 5px; padding:5px; border-radius:10px; background-color: grey;'><h3 style='text-align:center;'>Item+" count"+</h3><table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table></div>";
 	    	$("#itemInputDiv").append(string);
 	    	current = "#adTable"+count;
 	    	enableRemove();
@@ -56,36 +56,39 @@
 	<title>Post your ad here</title>
 	</head>
 	<body>
-		<div class='jumbotron'>
-			<form action="addad.jsp" method="post" onsubmit="return upload();">
+		<div style='position: relative; margin-left:28%; margin-right:28%; background-color:#58FA82;'>
+			<form action="addad.jsp" method="post" style = 'overflow-y:scroll;'onsubmit="return upload();">
 				<div id="itemInputDiv">
-				<table id="adTable" align="center">
-					<tr>
-						<td>
-							<div class='container-fluid lh'>Give it a Name: </div>
-						</td>
-						<td>
-							<div class='container-fluid'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class='container-fluid lh'>Specify it: </div>
-						</td>
-						<td>
-							<div class='container-fluid '><input class="bd" id="adCategory" name="adCategory" type="text" required></div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class='container-fluid lh'>Describe it: </div>
-						</td>
-						<td>
-							<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
-							<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
-						</td>
-					</tr>
-				</table>
+					<div style='margin: 5px; padding:5px; border-radius:10px; background-color: grey;'>
+						<h3 style='text-align:center;'>Item 1</h3>
+						<table id="adTable" align="center">
+							<tr>
+								<td>
+									<div class='container-fluid lh'>Give it a Name: </div>
+								</td>
+								<td>
+									<div class='container-fluid'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class='container-fluid lh'>Specify it: </div>
+								</td>
+								<td>
+									<div class='container-fluid '><input class="bd" id="adCategory" name="adCategory" type="text" required></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class='container-fluid lh'>Describe it: </div>
+								</td>
+								<td>
+									<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
+									<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 
 				
