@@ -15,7 +15,7 @@
 			line-height: 1.5em;
 		}
 		
-		#header {
+		.header {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -88,7 +88,7 @@
 	<body>		
 	<!--<header id="header">  -->
 		
-			<div id="logo">
+			<div class="header" id="logo">
 				<h1>ForSale</h1>
 			</div>
 		<!-- </header> -->	
