@@ -84,7 +84,7 @@
         });
 </script>
 	<link rel="stylesheet" href="css/auto-complete.css">
-	<body>		
+	<body style='overflow-y:auto;'>		
 		<header id="header">
 			<div id="logo">
 				<h1>ForSale</h1>
