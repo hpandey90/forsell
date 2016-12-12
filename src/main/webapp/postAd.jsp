@@ -32,6 +32,19 @@
 	    	}
 	    });
 	});
+	function loadFile() {
+		if(document.getElementById("productImages").value)
+			var filename= document.getElementById("productImages").value;
+			console.log(filename);
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		    // document.getElementById("demo").innerHTML = this.responseText;
+		    }
+		  };
+		  xhttp.open("GET", "file_upload.jsp", true);
+		  xhttp.send();
+		}
 	</script>
 	<style>
 	.bd {
@@ -78,6 +91,7 @@
 								<td>
 									<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
 									<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
+									<input type="button" id="upload" onclick="loadFile();">
 								</td>
 							</tr>
 						</table>
