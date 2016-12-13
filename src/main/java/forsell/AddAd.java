@@ -24,10 +24,8 @@ public class AddAd extends HttpServlet{
 		        int i = 0;
 		        for (FileItem item : items) {
 		            if (item.isFormField()) {
-		                // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
 		            	fieldName[i] = item.getFieldName();
 		                fieldValue[i] = item.getString();
-		                // ... (do your job here)
 		            } else {
 		                fieldName[i] = item.getFieldName();
 		                String fileName = FilenameUtils.getName(item.getName());
@@ -39,7 +37,6 @@ public class AddAd extends HttpServlet{
 		                File uploadedFile = new File(path + "/" + fileName);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
-		                // ... (do your job here)
 		            }
 		            i++;
 		        }
