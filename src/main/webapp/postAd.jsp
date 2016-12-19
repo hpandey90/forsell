@@ -18,7 +18,8 @@
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	count++;
-	    	var string = "<div id='itemDiv"+count+"' style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item"+ count+"</h3><table id='adTable"+count+"' align='center'><tr><td><div class='container-fluid lh'>Give it a Name: </div></td><td><div class='container-fluid'><input id='adTitle"+count+"' class='bd' name='adTitle"+count+"' type='text' width='100' required></div></td></tr><tr><td><div class='container-fluid lh'>Specify it: </div></td><td><div class='container-fluid'><input id='adCategory"+count+"' class='bd' name='adCategory"+count+"' type='text' required></div></td></tr><tr><td><div class='container-fluid'>Describe it: </div></td><td><div class='container-fluid'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></td></tr><tr></tr></table></div>";
+	    	
+	    	var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class='container-fluid lh half'>Give it a Name: </div><div class='container-fluid half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class='container-fluid lh half'>Specify it: </div><div class='container-fluid half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text' required></div></div><div class='full'><div class='container-fluid lh half'>Describe it: </div><div class='container-fluid half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:300px;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='container-fluid full'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"' required></input></div></div></div>";
 	    	$("#itemInputDiv").append(string);
 	    	current = "#itemDiv"+count;
 	    	enableRemove();
@@ -37,13 +38,26 @@
 	.bd {
 		    box-shadow: 0 0 3px #e81212;
     		border: black;
-    		width:300px
+    		width:300px;
+    		margin-top:10px;
 	}
 	.lh{
 	line-height:3;
 	}
 	td,th{
 		width:180px;
+	}
+	.half{
+		width:50%;
+		float: left;
+	}
+	.third{
+		width:33%;
+		float: left;
+	}
+	.full{
+		width:100%;
+		float:left;
 	}
 	
 	</style>
@@ -54,78 +68,42 @@
 				<div id="itemInputDiv">
 					<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
 						<h3 style='text-align:center;'>Item 1</h3>
-						<table id="adTable" align="center">
-							<tr>
-								<td>
-									<div class='container-fluid lh'>Give it a Name: </div>
-								</td>
-								<td>
-									<div class='container-fluid'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class='container-fluid lh'>Specify it: </div>
-								</td>
-								<td>
-									<div class='container-fluid '><input class="bd" id="adCategory" name="adCategory" type="text" required></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class='container-fluid lh'>Describe it: </div>
-								</td>
-								<td>
-									<div class='container-fluid'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
-									<div class='container-fluid'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>
-								</td>
-							</tr>
-						</table>
-						
+						<div class='full'>
+							<div class='container-fluid lh half'>Give it a Name: </div>							
+							<div class='container-fluid half'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
+						</div>
+						<div class='full'>
+							<div class='container-fluid lh half'>Specify it: </div>
+							<div class='container-fluid half'><input class="bd" id="adCategory" name="adCategory" type="text" required></div>
+						</div>
+						<div class='full'>
+							<div class='container-fluid lh half'>Describe it: </div>	
+							<div class='container-fluid half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:300px;box-shadow: 0 0 3px #e81212;"  required></textarea></div>
+							<div class='container-fluid full'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages" required></input></div>		
+						</div>	
 					</div>
 				</div>
 
 				
-				<table align="center">
-					<tr>
-						<td>
-							<div class='container-fluid lh'>
-							Make yourself known:
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class='container-fluid lh'>Name: </div>
-						</td>
-						<td>
-							<div class='container-fluid'><input class="bd" id="adUName" name="adUName" type="text" required></div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class='container-fluid lh'>Phone No: </div>
-						</td>
-						<td>
-							<div class='container-fluid'><input class="bd" id="adUPhone" name="adUPhone" type="text" min="10" max="10" required></div>
-						</td>
-					</tr>
-				</table>
+				<div class='full'>
+					<div class='container-fluid lh full'>
+						Make yourself known:
+					</div>
+					<div class='full'>
+						<div class='container-fluid lh half'>Name: </div>
+						<div class='container-fluid half'><input class="bd" id="adUName" name="adUName" type="text" required></div>
+					</div>
+					<div class='full'>
+						<div class='container-fluid lh half'>Phone No: </div>
+						<div class='container-fluid half'><input class="bd" id="adUPhone" name="adUPhone" type="text" min="10" max="10" required></div>
+					</div>
+				</div>
 				
-				<table align="center">
-					<tr>
-						<td>
-							<div class='container-fluid'><input id="newForm" value="Add Item" type="button"></div>
-						</td>
-						<td>
-							<div class='container-fluid'><input id="removeForm" value="Remove Item" type="button"></div>
-						</td>
-						<td>
-							<div class='container-fluid'><input id="submit" value="Submit" type="submit"></div>
-						</td>
-					</tr>
-				</table>
-				
+				<div class='full'>
+					<div class='container-fluid third'><input id="newForm" value="Add Item" type="button"></div>
+					<div class='container-fluid third'><input id="removeForm" value="Remove Item" type="button"></div>
+					<div class='container-fluid third'><input id="submit" value="Submit" type="submit"></div>
+				</div>
 			</form>
 		</div>
 	</body>
