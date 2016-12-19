@@ -1,9 +1,15 @@
 <%@ page import="java.io.*"%>
 <%
-      String saveFile = "";
+	
+	String saveFile = "";
+
       String contentType = request.getContentType();
       if ((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0)) {
-            DataInputStream in = new DataInputStream(request.getInputStream());
+    	 // DataInputStream in = new DataInputStream(request.getInputStream());
+    	 DataInputStream in;
+    	 int i=0;
+    	  while((in = new DataInputStream(request.getInputStream())) !=null && i<3)
+    	  {
             int formDataLength = request.getContentLength();
             byte dataBytes[] = new byte[formDataLength];
             int byteRead = 0;
@@ -12,10 +18,12 @@
                   byteRead = in.read(dataBytes, totalBytesRead, formDataLength);
                   totalBytesRead += byteRead;
             }
+            //String loc = request.getParameter("loc");
             String file = new String(dataBytes);
             saveFile = file.substring(file.indexOf("filename=\"") + 10);
             saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
             saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1, saveFile.indexOf("\""));
+           // out.println(file);
             int lastIndex = contentType.lastIndexOf("=");
             String boundary = contentType.substring(lastIndex + 1, contentType.length());
             int pos;
@@ -39,6 +47,8 @@
             <%
                   out.println(saveFile);
                   }
+    	  i++;
+      }
             %>
             </td>
       </tr>
