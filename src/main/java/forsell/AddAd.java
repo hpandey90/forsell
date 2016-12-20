@@ -21,13 +21,21 @@ public class AddAd extends HttpServlet{
 		        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 		        String[] fieldName = new String[20];
 		        String[] fieldValue = new String[20];
-		        int i = 0;
+		        String[] fTitle = new String[5];
+		        String[] fCat = new String[5];
+		        String[] fDesc = new String[5];
+		        String[] query = new String[5];
+		        int i = 0,tCount = 0,cCount = 0,dCount = 0;
 		        for (FileItem item : items) {
 		            if (item.isFormField()) {
-		                // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
 		            	fieldName[i] = item.getFieldName();
 		                fieldValue[i] = item.getString();
-		                // ... (do your job here)
+		                if (fieldName[i].contains("adTitle"))
+		                	fTitle[tCount++] = fieldValue[i]; 		                		                
+		                else if (fieldName[i].contains("adCategory"))
+		                	fCat[cCount++] = fieldValue[i];		                			                
+		                else if (fieldName[i].contains("adDesc"))
+		                	fDesc[dCount++] = fieldValue[i];		                			                
 		            } else {
 		                fieldName[i] = item.getFieldName();
 		                String fileName = FilenameUtils.getName(item.getName());
@@ -43,7 +51,10 @@ public class AddAd extends HttpServlet{
 		            }
 		            i++;
 		        }
-		        String query = "INSERT INTO postads (prod_title,prod_cat,prod_desc) values ('"+fieldValue[0]+"','"+fieldValue[1]+"','"+fieldValue[2]+"');";
+		        for(int j=0;j<tCount;j++){
+		           query[j] = "INSERT INTO postads (prod_title,prod_cat,prod_desc) values ('"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"');";		       
+		           System.out.println (query[j]);
+		        }
 		        String db = "forsale";
 				String user = "ashish";
 				java.sql.Connection con;
@@ -51,7 +62,8 @@ public class AddAd extends HttpServlet{
 			    con = DriverManager.getConnection("jdbc:mysql://192.168.0.16/"+db, user, "mypass");
 			    System.out.println (db + " database successfully opened.");
 			    Statement stmt = con.createStatement();
-			    stmt.executeUpdate(query);
+			    for(int j=0;j<tCount;j++)
+  				    	stmt.executeUpdate(query[j]);			       
 			    System.out.println ("Query Executed");
 			    response.sendRedirect("index.jsp");
 	            }
