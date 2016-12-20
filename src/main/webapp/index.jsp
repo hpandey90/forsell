@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="css/auto-complete.css">
 <form action="search.jsp" method="get">
-<input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0">
+<!-- <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0"> -->
 <script src="scripts/auto-complete.js"></script>
  <script>
         var demo1 = new autoComplete({
@@ -19,5 +19,6 @@
             }
         });
 </script>
-<input type="submit" value="GO">
+<!-- <input type="submit" value="GO"> -->
+<jsp:include page="side_nav.jsp"/>
 </form>
