@@ -156,9 +156,9 @@
           </div>
       </div>
     </div>
-    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="../jquery.menu-aim.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.menu-aim.js" type="text/javascript"></script>
+    <script src="scripts/bootstrap.min.js" type="text/javascript"></script>
     <script>
 
         var $menu = $(".dropdown-menu");
