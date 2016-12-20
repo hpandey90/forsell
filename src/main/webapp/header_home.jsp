@@ -87,6 +87,6 @@
 	<body style='overflow-y:auto;'>		
 		<header id="header">
 			<div id="logo">
-				<h1>ForSale</h1>
+				<h1>Trader's Bay!</h1>
 			</div>
 		</header>	
