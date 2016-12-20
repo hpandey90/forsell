@@ -10,6 +10,7 @@ import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.*;
+import java.util.UUID;
 
 public class AddAd extends HttpServlet{
 
@@ -25,8 +26,12 @@ public class AddAd extends HttpServlet{
 		        String[] fCat = new String[5];
 		        String[] fDesc = new String[5];
 		        String[] query = new String[5];
-		        int i = 0,tCount = 0,cCount = 0,dCount = 0;
-		        for (FileItem item : items) {
+		        String[] prodID = new String[5];
+		        String check = null;
+		        int flag = 1;
+		        int counter = 1;
+		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0;
+		        for (FileItem item : items) {		        	
 		            if (item.isFormField()) {
 		            	fieldName[i] = item.getFieldName();
 		                fieldValue[i] = item.getString();
@@ -35,24 +40,30 @@ public class AddAd extends HttpServlet{
 		                else if (fieldName[i].contains("adCategory"))
 		                	fCat[cCount++] = fieldValue[i];		                			                
 		                else if (fieldName[i].contains("adDesc"))
-		                	fDesc[dCount++] = fieldValue[i];		                			                
+		                	fDesc[dCount++] = fieldValue[i];		 
+		                flag = 1;
 		            } else {
-		                fieldName[i] = item.getFieldName();
+		            	if((tCount == cCount) && (cCount == dCount) && (flag == 1)){		        		
+			        		prodID[pCount++] = UUID.randomUUID().toString();
+			        		flag=0;
+			        		counter = 1;
+		            	}
+		                fieldName[i] = item.getFieldName();		      
 		                String fileName = FilenameUtils.getName(item.getName());
+		                String[] ext = fileName.split("\\.");
 		                String root = getServletContext().getRealPath("/");
-		                File path = new File(root + "/uploads");
+		                File path = new File(root + "/uploads/" + prodID[pCount-1]);
 		                if (!path.exists()) {
 		                    boolean status = path.mkdirs();
 		                }
-		                File uploadedFile = new File(path + "/" + fileName);
+		                File uploadedFile = new File(path + "/" + (counter++) + "." + ext[ext.length-1]);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
-		                // ... (do your job here)
 		            }
 		            i++;
 		        }
-		        for(int j=0;j<tCount;j++){
-		           query[j] = "INSERT INTO postads (prod_title,prod_cat,prod_desc) values ('"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"');";		       
+		        for(int j=0;j<tCount;j++){		           
+		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_cat,prod_desc) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"');";		       
 		           System.out.println (query[j]);
 		        }
 		        String db = "forsale";
