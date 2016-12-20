@@ -44,30 +44,30 @@
 	</div>
 	<div style="float:right">
 		<div class="card" style="width:25%;float:left;margin-left:15px;">
-		  <img src="images/patas.png" alt="Avatar" style="width:100%">
+		  <img src="images/monk.png" alt="Avatar" style="width:100%">
 		  <div class="card_container">
-		    <h4><b>John Doe</b></h4> 
+		    <h4><b>Ashish Katiyar</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
 		<div class="card" style="width:25%;float:left;margin-left:15px;" >
 		  <img src="images/patas.png" alt="Avatar" style="width:100%">
 		  <div class="card_container">
-		    <h4><b>John Doe</b></h4> 
+		    <h4><b>Braja Gopal</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
 		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		  <img src="images/duoc-langur.png" alt="Avatar" style="width:100%">
 		  <div class="card_container">
-		    <h4><b>John Doe</b></h4> 
+		    <h4><b>Karan Goel</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
 		<div class="card" style="width:25%;float:left;margin-left:15px;">
-		  <img src="images/snub-nosed.png" alt="Avatar" style="width:100%">
+		  <img src="images/pygmy.png" alt="Avatar" style="width:100%">
 		  <div class="card_container">
-		    <h4><b>John Doe</b></h4> 
+		    <h4><b>Siddhesh Muley</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
