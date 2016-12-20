@@ -1,10 +1,5 @@
 
     <link href="css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- 
@@ -144,6 +139,70 @@
                         </div>
                     </li>
                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                     <li data-submenu-id="submenu-king-colobus">
+                        <a href="#">King Colobus</a>
+                        <div id="submenu-king-colobus" class="popover">
+                            <h3 class="popover-title">King Colobus</h3>
+                            <div class="popover-content"><img src="images/colobus.png"></div>
+                        </div>
+                    </li>
+                    
+                     <li data-submenu-id="submenu-king-colobus">
                         <a href="#">King Colobus</a>
                         <div id="submenu-king-colobus" class="popover">
                             <h3 class="popover-title">King Colobus</h3>
