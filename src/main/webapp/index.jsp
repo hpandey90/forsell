@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="css/auto-complete.css">
 <form action="search.jsp" method="get">
 <!-- <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0"> -->
+</form>
 <script src="scripts/auto-complete.js"></script>
  <script>
         var demo1 = new autoComplete({
@@ -32,7 +33,7 @@
 }
 
 /* Add some padding inside the card container */
-.container {
+.card_container {
     padding: 2px 16px;
 }
 </style>
@@ -42,34 +43,34 @@
 	<jsp:include page="side_nav.jsp"/>
 	</div>
 	<div style="float:right">
-		<div class="card" style="width:20%;float:left;margin-left:15px;">
+		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		  <img src="images/patas.png" alt="Avatar" style="width:100%">
-		  <div class="container">
+		  <div class="card_container">
 		    <h4><b>John Doe</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
-		<div class="card" style="width:20%;float:left;margin-left:15px;" >
+		<div class="card" style="width:25%;float:left;margin-left:15px;" >
 		  <img src="images/patas.png" alt="Avatar" style="width:100%">
-		  <div class="container">
+		  <div class="card_container">
 		    <h4><b>John Doe</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
-		<div class="card" style="width:20%;float:left;margin-left:15px;">
+		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		  <img src="images/duoc-langur.png" alt="Avatar" style="width:100%">
-		  <div class="container">
+		  <div class="card_container">
 		    <h4><b>John Doe</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
-		<div class="card" style="width:20%;float:left;margin-left:15px;margin-top:20px;">
+		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		  <img src="images/snub-nosed.png" alt="Avatar" style="width:100%">
-		  <div class="container">
+		  <div class="card_container">
 		    <h4><b>John Doe</b></h4> 
 		    <p>Architect & Engineer</p> 
 		  </div>
 		</div>
 	</div>
 </div>
-</form>
+
