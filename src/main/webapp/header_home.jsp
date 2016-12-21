@@ -55,8 +55,34 @@
 			width: 100%; 
 		}
 		
-		</style>
+		.headDiv{
+			display: inline-block;
+    		width: 100%;
+		}
+		.commonDiv{
+			display: inline-block;
+    		width: auto;
+		}
+		.searchDiv{
+			width:70%;
+			display: inline-block;
+			padding-top:0%;
+			text-align:center;
+			
+		}
+		.advertDiv{
+		    width: auto;
+		    display: inline-block;
+		    background: orange;
+		    float: right;
+		    margin: 2%;
+		    margin-top:2.5%;
+		    font-size:larger;
+		}
 		
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!--  --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script type="text/javascript">
 			/* =============================
 			This script generates sample text for the body content. 
@@ -86,7 +112,16 @@
 	<link rel="stylesheet" href="css/auto-complete.css">
 	<body style='overflow-y:auto;'>		
 		<header id="header">
-			<div id="logo">
-				<h1>Trader's Bay!</h1>
+			<div class="headDiv">
+				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%;">
+					<h1><a href="index.jsp">Trader's Bay!</a></h1>
+				</div>
+				<div class="searchDiv">
+					<input type="search" name="goodssearch" style="width:70%;">
+		  			<input type="submit">
+				</div>
+				<div class="advertDiv">
+					<div  id="placeAD" style="width:100%; display:inline-block;"><a href = "postAd.jsp">Place an AD</a></div>
+				</div>
 			</div>
 		</header>	
