@@ -116,7 +116,8 @@
 					<h1><a href="index.jsp">Trader's Bay!</a></h1>
 				</div>
 				<div class="searchDiv">
-					<input type="search" name="goodssearch" style="width:70%;">
+					<!-- <input type="search" name="goodssearch" style="width:70%;"> -->
+					<input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0">
 		  			<input type="submit">
 				</div>
 				<div class="advertDiv">
