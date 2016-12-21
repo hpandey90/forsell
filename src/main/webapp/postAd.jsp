@@ -20,12 +20,14 @@
 		}
 		enableRemove();
 	    $("#newForm").click(function(){
-	    	count++;
-	    	var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='full'><div class='lh half'>Upload Pictures:</div><div class=' half'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div><div class='full'><div class='lh half'>Price:</div><div class=' half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div></div></div>";
-	    	//var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;'></textarea></div><div class=' full'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div>";
-	    	$("#itemInputDiv").append(string);
-	    	current = "#itemDiv"+count;
-	    	enableRemove();
+	    	if(count<6){
+	    		count++;
+		    	var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='full'><div class='lh half'>Price:</div><div class=' half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>Upload Pictures:</div><div class=' half'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div></div>";
+		    	//var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;'></textarea></div><div class=' full'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div>";
+		    	$("#itemInputDiv").append(string);
+		    	current = "#itemDiv"+count;
+		    	enableRemove();
+	    	}
 	    });
 	    $("#removeForm").click(function(){
 	    	if(count > 1){
@@ -93,12 +95,12 @@
 							<div class=' half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:100%;box-shadow: 0 0 3px #e81212;" required></textarea></div>		
 						</div>	
 						<div class='full'>
-							<div class='lh half'>Upload Pictures:</div>
-							<div class=' half'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages"></input></div>
-						</div>
-						<div class='full'>
 							<div class='lh half'>Price:</div>
 							<div class=' half'><input class="bd" id="adPrice" name="productPrice" type="text" required><label hidden style="color:red;" required>price invalid !!!</label></div>
+						</div>
+						<div class='full'>
+							<div class='lh half'>Upload Pictures:</div>
+							<div class=' half'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages"></input></div>
 						</div>
 					</div>
 				</div>
