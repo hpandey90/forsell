@@ -19,7 +19,7 @@
     out.println (db + " database successfully opened.");
     Statement stmt = con.createStatement();
    // stmt.executeUpdate(query);
-    out.println ("Query Executed");
+    //out.println ("Query Executed");
   }
   catch(Exception e) {
     out.println("SQLException caught: " +e.getMessage());
