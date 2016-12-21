@@ -15,8 +15,16 @@
 	<servlet-name>AddAd</servlet-name>
 	<servlet-class>forsell.AddAd</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>DbConnect</servlet-name>
+	<servlet-class>forsell.DbConnect</servlet-class>
+</servlet>
 <servlet-mapping>
 	<servlet-name>AddAd</servlet-name>
 	<url-pattern>/AddAd</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>DbConnect</servlet-name>
+	<url-pattern>/DbConnect</url-pattern>
 </servlet-mapping>
 </web-app>

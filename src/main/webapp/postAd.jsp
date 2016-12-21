@@ -78,8 +78,6 @@
 	</style>
 	<title>Post your ad here</title>
 	</head>
-	<%
-	%>
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
 			<form action="./AddAd" method="post" style = ''onsubmit="return upload();" enctype="multipart/form-data">
 				<div id="itemInputDiv">
