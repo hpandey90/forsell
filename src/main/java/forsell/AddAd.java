@@ -27,10 +27,13 @@ public class AddAd extends HttpServlet{
 		        String[] fDesc = new String[5];
 		        String[] query = new String[5];
 		        String[] prodID = new String[5];
-		        String check = null;
+		        String[] price = new String[5];
+		        String phone;
+		        String street;
+		        String pin;
 		        int flag = 1;
 		        int counter = 1;
-		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0;
+		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0,priceCount=0;
 		        for (FileItem item : items) {		        	
 		            if (item.isFormField()) {
 		            	fieldName[i] = item.getFieldName();
