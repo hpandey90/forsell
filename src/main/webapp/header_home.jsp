@@ -120,7 +120,9 @@
 				<a href="index.jsp"><img src="images/Logo_mod.jpg" alt="Smiley face" width="80px"></a>
 				</div>
 				<div class="searchDiv">
+
 					<input id="hero-demo" autofocus type="search" name="q" placeholder="Programming languages ..." style="width:65%; outline:0">
+
 		  			<input type="submit">
 				</div>
 				<div class="advertDiv">
