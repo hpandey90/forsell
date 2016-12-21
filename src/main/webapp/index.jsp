@@ -41,7 +41,7 @@
 <% 
 DbConnect db_ob = new DbConnect();
 Statement stmt = db_ob.conn();
-String sql = "select * from postads order by entry_date desc";
+String sql = "select * from postads order by entry_date desc limit 2";
 ResultSet rs = stmt.executeQuery(sql);
 if(!rs.isBeforeFirst()){
 out.println("NO RESULTS FOUND");
