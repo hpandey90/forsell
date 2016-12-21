@@ -1,6 +1,6 @@
 
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+ 
 
     <!-- 
       jQuery-menu-aim: the following styles are used to customize bootstrap's

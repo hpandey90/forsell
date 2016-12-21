@@ -58,13 +58,18 @@
 		.headDiv{
 			display: inline-block;
     		width: 100%;
+    		height: inherit;
 		}
 		.commonDiv{
+			height: inherit;
+			float: left;
 			display: inline-block;
     		width: auto;
 		}
 		.searchDiv{
-			width:70%;
+			width:65%;
+			height: inherit;
+			float: left;
 			display: inline-block;
 			padding-top:0%;
 			text-align:center;
@@ -72,11 +77,10 @@
 		}
 		.advertDiv{
 		    width: auto;
+		    height: inherit;
 		    display: inline-block;
 		    background: orange;
-		    float: right;
-		    margin: 2%;
-		    margin-top:2.5%;
+		    float: left;
 		    font-size:larger;
 		}
 		
@@ -96,7 +100,7 @@
 		<script src="scripts/auto-complete.js"></script>
  <script>
         var demo1 = new autoComplete({
-            selector: '#hero-demo',
+            selector: '#goodssearch',
             minChars: 1,
             source: function(term, suggest){
                 term = term.toLowerCase();
@@ -113,10 +117,12 @@
 		<header id="header">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%;">
-					<h1><a href="index.jsp">Trader's Bay!</a></h1>
+				<a href="index.jsp"><img src="images/Logo_mod.jpg" alt="Smiley face" width="80px"></a>
 				</div>
 				<div class="searchDiv">
-					<input type="search" name="goodssearch" style="width:70%;">
+
+					<input id="hero-demo" autofocus type="search" name="q" placeholder="Programming languages ..." style="width:65%; outline:0">
+
 		  			<input type="submit">
 				</div>
 				<div class="advertDiv">
