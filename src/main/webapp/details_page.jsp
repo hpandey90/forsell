@@ -200,6 +200,7 @@ img {
 	<jsp:include page="side_nav.jsp"/>
 	</div>
 	<div class="container" style="float:right">
+	
 		<div class="card">
 			<div class="container-fliud">
 				<div class="wrapper row">
@@ -247,11 +248,28 @@ img {
 						</h5>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+							<div id="fb-root"></div>
+								<script>(function(d, s, id) {
+								  var js, fjs = d.getElementsByTagName(s)[0];
+								  if (d.getElementById(id)) return;
+								  js = d.createElement(s); js.id = id;
+								  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+								  fjs.parentNode.insertBefore(js, fjs);
+								}(document, 'script', 'facebook-jssdk'));</script>
+								<div class="fb-like" data-href="http://localhost:8080/sell/details_page.jsp" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		<div class="fb-comments" data-width="550px" data-href="http://localhost:8080/sell/details_page.jsp" data-numposts="4"></div>
+	</div>	
 </div>
