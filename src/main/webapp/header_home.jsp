@@ -63,14 +63,16 @@
 		.commonDiv{
 			height: inherit;
 			float: left;
-			display: inline-block;
+			display: table;
     		width: auto;
+    		margin-left:2%;
+    		margin-right:2%;
 		}
 		.searchDiv{
-			width:65%;
+			width:75%;
 			height: inherit;
 			float: left;
-			display: inline-block;
+			display: table;
 			padding-top:0%;
 			text-align:center;
 			
@@ -78,10 +80,14 @@
 		.advertDiv{
 		    width: auto;
 		    height: inherit;
-		    display: inline-block;
-		    background: orange;
-		    float: left;
+		    display: table;
+		    float: right;
 		    font-size:larger;
+       		margin-left:2%;
+    		margin-right:2%;
+		}
+		.innerTag{
+			width:100%; display:table-cell; vertical-align: middle;
 		}
 		
 		</style>
@@ -116,17 +122,17 @@
 	<body style='overflow-y:auto;'>		
 		<header id="header">
 			<div class="headDiv">
-				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%;">
-				<a href="index.jsp"><img src="images/Logo_mod.jpg" alt="Smiley face" width="80px"></a>
+				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">
+				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod3.png" alt="Smiley face" width="80px"></a></div>
 				</div>
 				<div class="searchDiv">
-					<form action='listings.jsp'>
-						<input id="hero-demo" autofocus type="search" name="q" placeholder="Programming languages ..." style="width:65%; outline:0">
-			  			<input type="submit">
+					<form action='listings.jsp' class='innerTag'>
+						<input id="hero-demo" autofocus type="search" name="q" placeholder="Programming languages ..." style="width:65%; outline:0; border-radius: 4px;border: none; height: 25px;">
+			  			<input type="submit" style>
 					</form>
 				</div>
 				<div class="advertDiv">
-					<div  id="placeAD" style="width:100%; display:inline-block;"><a href = "postAd.jsp">Place an AD</a></div>
+					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'>Place an AD</a></div>
 				</div>
 			</div>
 		</header>	
