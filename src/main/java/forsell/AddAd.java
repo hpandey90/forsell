@@ -27,26 +27,35 @@ public class AddAd extends HttpServlet{
 		        String[] fDesc = new String[5];
 		        String[] query = new String[5];
 		        String[] prodID = new String[5];
-		        String[] price = new String[5];
-		        String phone;
-		        String street;
-		        String pin;
+		        String[] pricee = new String[5];
+		        String phone = null;
+		        String sstreet = null;
+		        String pin = null;
 		        int flag = 1;
 		        int counter = 1;
 		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0,priceCount=0;
+		        
 		        for (FileItem item : items) {		        	
 		            if (item.isFormField()) {
 		            	fieldName[i] = item.getFieldName();
 		                fieldValue[i] = item.getString();
 		                if (fieldName[i].contains("adTitle"))
 		                	fTitle[tCount++] = fieldValue[i]; 		                		                
-		                else if (fieldName[i].contains("adCategory"))
+		                else if (fieldName[i].contains("adSubCategory"))
 		                	fCat[cCount++] = fieldValue[i];		                			                
 		                else if (fieldName[i].contains("adDesc"))
-		                	fDesc[dCount++] = fieldValue[i];		 
+		                	fDesc[dCount++] = fieldValue[i];	
+		                else if (fieldName[i].contains("productPrice"))
+		                	pricee[priceCount++] = fieldValue[i];
+		                else if (fieldName[i].contains("adUPhone"))
+		                	phone = fieldValue[i];
+		                else if (fieldName[i].contains("adUPin"))
+		                	pin = fieldValue[i];
+		                else if (fieldName[i].contains("adUAddress"))
+		                	sstreet = fieldValue[i]; 
 		                flag = 1;
 		            } else {
-		            	if((tCount == cCount) && (cCount == dCount) && (flag == 1)){		        		
+		            	if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount) && (flag == 1)){		        		
 			        		prodID[pCount++] = UUID.randomUUID().toString();
 			        		flag=0;
 			        		counter = 1;
@@ -54,8 +63,8 @@ public class AddAd extends HttpServlet{
 		                fieldName[i] = item.getFieldName();		      
 		                String fileName = FilenameUtils.getName(item.getName());
 		                String[] ext = fileName.split("\\.");
-		                String root = getServletContext().getRealPath("/");
-		                File path = new File(root + "/uploads/" + prodID[pCount-1]);
+		                String root = "\\\\192.168.0.19/uploads/"+prodID[pCount-1];
+		                File path = new File(root);
 		                if (!path.exists()) {
 		                    boolean status = path.mkdirs();
 		                }
@@ -65,8 +74,9 @@ public class AddAd extends HttpServlet{
 		            }
 		            i++;
 		        }
+		       
 		        for(int j=0;j<tCount;j++){		           
-		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_cat,prod_desc) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"');";		       
+		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,zip_code,street,phone_number) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+pin+"','"+sstreet+"','"+phone+"');";		       
 		           System.out.println (query[j]);
 		        }
 		        String db = "forsale";
@@ -82,6 +92,7 @@ public class AddAd extends HttpServlet{
 			    response.sendRedirect("index.jsp");
 	            }
 		 } catch(Exception e) {
+			 
 			    System.out.println(e.getMessage());
 			    //out.println(e.printStackTrace());
 			    
