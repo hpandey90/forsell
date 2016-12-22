@@ -1,3 +1,4 @@
+<jsp:include page="header_home.jsp"/>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*" %>
@@ -12,9 +13,9 @@
 <body>
 <% 
 String listing;
-listing = request.getParameter("goodssearch");
+listing = request.getParameter("q");
 String query;
-query = "SELECT prod_id FROM postads WHERE prod_sub_cat = '"+listing+"'";
+query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 String db = "forsale";
 String user = "ashish";
 try {
@@ -32,12 +33,15 @@ out.println("NO RESULTS FOUND");
 <%
 }
 else{
-	while(rs.next()){%>
+	while(rs.next()){
+			//out.println(rs.getString("prod_id"));%>
 		<div>
-		<img alt="Image" src="<%="uploads\\" + rs.getString("prod_id") + "\\1.jpg" %>" width="160" height="160">
-		<% 
-		
-		out.println(rs.getString("prod_id")); %>
+		<img alt="Image" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
+		</div>
+		<div>
+		<% 	
+		//rs.beforeFirst();
+		out.println(rs.getString("prod_title")); %>
 		</div>
 		<%
 	}

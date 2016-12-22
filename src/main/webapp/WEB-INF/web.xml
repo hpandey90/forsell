@@ -11,12 +11,21 @@
 	</param-value> 
     <description>Location to store uploaded file</description>    
 </context-param>
+
 <servlet>
 	<servlet-name>AddAd</servlet-name>
 	<servlet-class>forsell.AddAd</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>FileServlet</servlet-name>
+	<servlet-class>forsell.FileServlet</servlet-class>
+</servlet>
 <servlet-mapping>
 	<servlet-name>AddAd</servlet-name>
 	<url-pattern>/AddAd</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>FileServlet</servlet-name>
+	<url-pattern>/FileServlet/*</url-pattern>
 </servlet-mapping>
 </web-app>
