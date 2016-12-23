@@ -76,7 +76,7 @@ else{
 		
 		<div style="float:left; width:100%;">
 		<div class="card" style="width:96%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
-		<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
+		<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="160" height="160">
 		 <div class="card_container" style="float:left; width:70%; word-break:break-all;">
 		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
 		    <p><%out.println(rs.getString("prod_desc")); %></p> 
