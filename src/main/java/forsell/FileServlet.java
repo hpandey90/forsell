@@ -31,8 +31,7 @@ public class FileServlet extends HttpServlet{
 		 if (!file.exists()) {
 			 response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	            return;
-		 }
-		 System.out.println("here" + file.toString());
+		 }		
 		 String contentType = getServletContext().getMimeType(file.getName());
 		 if (contentType == null) {
 	            contentType = "application/octet-stream";
