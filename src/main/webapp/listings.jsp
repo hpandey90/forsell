@@ -1,3 +1,4 @@
+<jsp:include page="header_home.jsp"/>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*" %>
@@ -8,13 +9,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.card_container {
+    padding: 2px 16px;
+}
+</style>
 </head>
 <body>
 <% 
 String listing;
-listing = request.getParameter("goodssearch");
+listing = request.getParameter("q");
 String query;
-query = "SELECT prod_id FROM postads WHERE prod_sub_cat = '"+listing+"'";
+query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 String db = "forsale";
 String user = "ashish";
 try {
@@ -31,14 +49,26 @@ out.println("NO RESULTS FOUND");
 </div>
 <%
 }
-else{
-	while(rs.next()){%>
-		<div>
-		<img alt="Image" src="<%="uploads\\" + rs.getString("prod_id") + "\\1.jpg" %>" width="160" height="160">
-		<% 
-		
-		out.println(rs.getString("prod_id")); %>
-		</div>
+else{%>
+<div>		
+		<div style="float:left">
+	    <jsp:include page="side_nav.jsp"/>
+	    </div>
+<%
+	while(rs.next()){
+			%>
+	
+		<div style="float:right">
+		<div class="card" style="width:25%;float:left;margin-left:15px;">
+		<img alt="Image" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
+		 </div>
+		 	<div class="card_container" style="float:right">
+		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
+		    <p><%out.println(rs.getString("prod_desc")); %></p> 
+		    <b><%out.println(rs.getString("price")); %></b>
+		  </div>
+		 </div>
+	</div>	
 		<%
 	}
 }

@@ -89,7 +89,7 @@
 						</div>
 						<div class='full'>
 							<div class=' lh half'>Specify it: </div>
-							<div class=' half'><input class="bd" id="adCategory" name="adCategory" type="text" required></div>
+							<div class=' half'><input class="bd" id="adSubCategory" name="adSubCategory" type="text" required></div>
 						</div>
 						<div class='full'>
 							<div class=' lh half'>Describe it: </div>	

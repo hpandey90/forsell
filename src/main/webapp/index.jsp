@@ -38,26 +38,6 @@
 }
 </style>
 <!-- <input type="submit" value="GO"> -->
-<% 
-DbConnect db_ob = new DbConnect();
-Statement stmt = db_ob.conn();
-String sql = "select * from postads order by entry_date desc limit 2";
-ResultSet rs = stmt.executeQuery(sql);
-if(!rs.isBeforeFirst()){
-out.println("NO RESULTS FOUND");
-}
-else{
-	while(rs.next()){%>
-		<div>
-		<img alt="Image" src="<%="uploads\\" + rs.getString("prod_id") + "\\1.jpg" %>" width="160" height="160">
-		<% 
-		out.println(rs.getString("prod_id")); %>
-		</div>
-		<%
-	}
-}
-%>
-
 
 <div>
 	<div style="float:left">
