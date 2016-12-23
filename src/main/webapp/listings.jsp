@@ -9,6 +9,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.card_container {
+    padding: 2px 16px;
+}
+</style>
 </head>
 <body>
 <% 
@@ -35,14 +52,21 @@ out.println("NO RESULTS FOUND");
 else{
 	while(rs.next()){
 			//out.println(rs.getString("prod_id"));%>
-		<div>
+	<div>		
+		<div style="float:left">
+	    <jsp:include page="side_nav.jsp"/>
+	    </div>
+		<div style="float:right">
+		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		<img alt="Image" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
-		</div>
-		<div>
-		<% 	
-		//rs.beforeFirst();
-		out.println(rs.getString("prod_title")); %>
-		</div>
+		 </div>
+		 	<div class="card_container" style="float:right">
+		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
+		    <p><%out.println(rs.getString("prod_desc")); %></p> 
+		    <b><%out.println(rs.getString("price")); %></b>
+		  </div>
+		 </div>
+	</div>	
 		<%
 	}
 }

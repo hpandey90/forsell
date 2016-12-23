@@ -17,13 +17,12 @@ public class FileServlet extends HttpServlet{
 	private static final int DEFAULT_BUFFER_SIZE = 10240;
 	private String filePath;
 	public void init() throws ServletException {
-		this.filePath = "/uploads/";
+		this.filePath = "\\\\192.168.0.19/uploads/";
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException
 	    {
 		String requestedFile = request.getPathInfo();
-		System.out.println(requestedFile);
 		if (requestedFile == null) {
 			 response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	         return;
@@ -33,6 +32,7 @@ public class FileServlet extends HttpServlet{
 			 response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	            return;
 		 }
+		 System.out.println("here" + file.toString());
 		 String contentType = getServletContext().getMimeType(file.getName());
 		 if (contentType == null) {
 	            contentType = "application/octet-stream";
