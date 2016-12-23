@@ -49,13 +49,15 @@ out.println("NO RESULTS FOUND");
 </div>
 <%
 }
-else{
-	while(rs.next()){
-			//out.println(rs.getString("prod_id"));%>
-	<div>		
+else{%>
+<div>		
 		<div style="float:left">
 	    <jsp:include page="side_nav.jsp"/>
 	    </div>
+<%
+	while(rs.next()){
+			%>
+	
 		<div style="float:right">
 		<div class="card" style="width:25%;float:left;margin-left:15px;">
 		<img alt="Image" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
