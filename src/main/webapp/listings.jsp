@@ -12,7 +12,7 @@
 <style>
 .card {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
     transition: 0.3s;
 }
 
@@ -51,26 +51,26 @@ out.println("NO RESULTS FOUND");
 }
 else{%>
 <div>		
-		<div style="float:left">
+		<div style="float:left; width:21.5%;">
 	    <jsp:include page="side_nav.jsp"/>
 	    </div>
+	    <div style='float:left; width:78.5%;'>
 <%
 	while(rs.next()){
 			%>
 	
-		<div style="float:right">
-		<div class="card" style="width:25%;float:left;margin-left:15px;">
-		<img alt="Image" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
-		 </div>
-		 	<div class="card_container" style="float:right">
+		<div style="float:left; width:100%;">
+		<div class="card" style="width:67.5%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
+		<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.jpg" width="160" height="160">
+		 <div class="card_container" style="float:left; width:70%; word-break:break-all;">
 		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
 		    <p><%out.println(rs.getString("prod_desc")); %></p> 
 		    <b><%out.println(rs.getString("price")); %></b>
 		  </div>
 		 </div>
-	</div>	
+		 </div>	
 		<%
-	}
+	}%></div></div><%
 }
 }
 catch(Exception e) {
