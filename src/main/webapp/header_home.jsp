@@ -202,7 +202,7 @@
 		<header id="header">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">
-				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="80px"></a></div>
+				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="115px"></a></div>
 				</div>
 				<div class="searchDiv">
 					<form action='listings.jsp' class='innerTag'>
