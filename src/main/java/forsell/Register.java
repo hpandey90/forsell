@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Register extends HttpServlet{
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException	{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException	{
 		String name = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
