@@ -205,26 +205,53 @@ img {
 		<div class="card">
 			<div class="container-fliud">
 				<div class="wrapper row">
+					
+<%
+    String detail,query,val;
+	int i,imgCount=0;
+	detail = request.getParameter("id");
+	query = "SELECT * FROM postads WHERE prod_id = '"+ detail + "'";
+	System.out.println(query);
+	try {
+		DbConnect db = new DbConnect();
+		Statement stmt = db.conn();
+		ResultSet rs = stmt.executeQuery(query);
+		rs.next();
+		for(i=1;i<=5;i++)			
+			if(!(rs.getString("img_ext"+i)).equals(""))
+				imgCount++; 
+		%>
 					<div class="preview col-md-6">
+		<%
+		i=1;
+           %>			
+           				<div class="preview-pic tab-content" style="float:left">
+						  <div class="tab-pane active" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px" /></div>
+		<% while(i<=imgCount){ %>
+						  <div class="tab-pane" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px"/></div>
+						  <!--<div class="tab-pane" id="pic-3"><img src="images/duoc-langur.png" alt="Avatar" style="width:400px;height:400px"/></div>
+						  <div class="tab-pane" id="pic-4"><img src="images/snub-nosed.png" alt="Avatar" style="width:400px;height:400px"/></div> -->
 						
-						<div class="preview-pic tab-content" style="float:left">
-						  <div class="tab-pane active" id="pic-1"><img src="images/red-leaf.png" alt="Avatar" style="width:400px;height:400px" /></div>
-						  <div class="tab-pane" id="pic-2"><img src="images/patas.png" alt="Avatar" style="width:400px;height:400px"/></div>
-						  <div class="tab-pane" id="pic-3"><img src="images/duoc-langur.png" alt="Avatar" style="width:400px;height:400px"/></div>
-						  <div class="tab-pane" id="pic-4"><img src="images/snub-nosed.png" alt="Avatar" style="width:400px;height:400px"/></div>
-						</div>
+	<%					}
+		i=1;
+		
+		%>				</div>
 						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="images/red-leaf.png" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="images/patas.png" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="images/duoc-langur.png" /></a></li>
-						  <li><a data-target="#pic-4" data-toggle="tab"><img src="images/snub-nosed.png" /></a></li>
-						</ul>
+						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
+	<% while(i<=imgCount){ %>				
+						  <li><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
+						  <!--<li><a data-target="#pic-3" data-toggle="tab"><img src="images/duoc-langur.png" /></a></li>
+						  <li><a data-target="#pic-4" data-toggle="tab"><img src="images/snub-nosed.png" /></a></li> -->
 						
+				<%
+			}
+		%>		
+						</ul>
 					</div>
 					<div class="details col-md-6">
-						<h3 class="product-title">Product Title</h3>
-						<p class="product-description">Description Goes here</p>
-						<h4 class="price">current price: <span>$180</span></h4>
+						<h3 class="product-title"><%=rs.getString("prod_title") %></h3>
+						<p class="product-description"><%=rs.getString("prod_desc") %></p>
+						<h4 class="price">current price: <span><%=rs.getString("price") %></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
@@ -237,6 +264,11 @@ img {
 							<span class="color green"></span>
 							<span class="color blue"></span>
 						</h5>
+<%  }
+	catch(Exception e){
+		 out.println("SQLException caught: " +e.getMessage());
+	}
+	%>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
 							<div id="fb-root"></div>

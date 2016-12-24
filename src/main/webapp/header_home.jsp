@@ -218,6 +218,28 @@
 						<script type="text/javascript" src="scripts/jquery.leanModal.min.js"></script>
 						<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 						<link type="text/css" rel="stylesheet" href="css/login_style.css" />
+						<%
+						if(session.getAttribute("user") == null){
+							response.sendRedirect("login.html");
+						}
+							String userName = null;
+							String sessionID = null;
+							Cookie[] cookies = request.getCookies();
+							
+							if(cookies !=null){
+								for(Cookie cookie : cookies){
+									if(cookie.getName().equals("user")) userName = cookie.getValue();
+								}
+								%><a href="./Logout">
+								<div class="container">Logout</div>
+								</a>
+								<%
+								//$(".container").hide();
+							}
+							else
+							{
+								%>
+						
 						<div class="container">
 							<a id="modal_trigger" href="#modal" class="btn">Login/register</a>
 							<div id="modal" class="popupContainer" style="display:none;">
@@ -285,7 +307,7 @@
 
 			<!-- Username & Password Login form -->
 			<div class="user_login">
-				<form action="./Login">
+				<form action="./Login" method="post">
 					<label>Email / Username</label>
 					<input type="text" name="user"/>
 					<br />
@@ -310,7 +332,7 @@
 
 			<!-- Register Form -->
 			<div class="user_register">
-				<form action="./Register">
+				<form action="./Register" method="post">
 					<label>Full Name</label>
 					<input type="text" id="fullname" name="fullname"/>
 					<br />
@@ -337,6 +359,8 @@
 		</section>
 							</div>
 						</div>
+						<%	}
+						%>
 						<script type="text/javascript">
 							$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
 						
@@ -365,6 +389,7 @@
 									return false;
 								});
 						
+							
 							})
 						</script>
 					</div>

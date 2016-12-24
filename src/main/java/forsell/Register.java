@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Register extends HttpServlet{
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException	{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException	{
 		String name = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
 		try{
 				DbConnect db = new DbConnect();
 				Statement stmt=db.conn();
-				String query = "INSERT INTO user (full_user_name,user_name,pass,registration_date) VALUES ('"+name+"','"+email+"','"+pass+"',now());";
+				String query = "INSERT INTO user (full_user_name,user_name,pass,registration_date) VALUES ('"+name+"','"+email+"','md5("+pass+")',now());";
 				System.out.println(query);
 				stmt.executeUpdate(query);
 		}
