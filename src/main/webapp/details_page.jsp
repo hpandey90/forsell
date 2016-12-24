@@ -209,7 +209,7 @@ img {
 <%
     String detail,query,val;
 	int i,imgCount=0;
-	detail = request.getParameter("showAll");
+	detail = request.getParameter("id");
 	query = "SELECT * FROM postads WHERE prod_id = '"+ detail + "'";
 	try {
 		DbConnect db = new DbConnect();
