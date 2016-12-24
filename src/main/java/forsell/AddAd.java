@@ -31,10 +31,10 @@ public class AddAd extends HttpServlet{
 		        String[][] imgExt = new String[5][5];
 		        for(int ii=0;ii<5;ii++)
 		        	for(int jj=0;jj<5;jj++)
-		        		imgExt[ii][jj] = null;
-		        String phone = null;
-		        String sstreet = null;
-		        String pin = null;
+		        		imgExt[ii][jj] = "";
+		        String phone = "";
+		        String sstreet = "";
+		        String pin = "";
 		        int flag = 1;
 		        int counter = 1;
 		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0,priceCount=0;
