@@ -251,7 +251,7 @@ img {
 					<div class="details col-md-6">
 						<h3 class="product-title"><%=rs.getString("prod_title") %></h3>
 						<p class="product-description"><%=rs.getString("prod_desc") %></p>
-						<h4 class="price">current price: <span><%=rs.getString("price") %></span></h4>
+						<h4 class="price">current price: <span>$<%=rs.getString("price") %></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
