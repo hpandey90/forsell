@@ -224,14 +224,14 @@ img {
 					<div class="preview col-md-6">
 		<%
 		i=1;
-		if(imgCount>1){
+		if(imgCount>=1){
            %>			
            				<div class="preview-pic tab-content" style="float:left">
 						  <div class="tab-pane active" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px" /></div>
 		<%}
 		else {%>
 						<div class="preview-pic tab-content" style="float:left">
-						  <div class="tab-pane active" id="pic-<%=i%>"><img src="./FileServlet/default\\images.jpg" alt="Avatar" style="width:400px;height:400px" /></div>
+						  <div class="tab-pane active" id="pic-<%=i%>"><img src="images/Logo_BW.png" alt="Avatar" style="width:400px;height:400px" /></div>
 		<% }
 		while(i<=imgCount){ %>
 						  <div class="tab-pane" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px"/></div>
@@ -240,7 +240,7 @@ img {
 						
 	<%					}
 		i=1;
-		if(imgCount>1){
+		if(imgCount>=1){
 		%>				</div>
 						<ul class="preview-thumbnail nav nav-tabs">
 						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
@@ -248,7 +248,7 @@ img {
 		else{%>
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src=src="./FileServlet/default\\images.jpg" /></a></li>
+						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="images/Logo_BW.png" /></a></li>
 	    <% }
 		while(i<=imgCount){ %>				
 						  <li><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
