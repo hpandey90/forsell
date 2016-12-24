@@ -211,13 +211,14 @@ img {
 	int i,imgCount=0;
 	detail = request.getParameter("id");
 	query = "SELECT * FROM postads WHERE prod_id = '"+ detail + "'";
+	System.out.println(query);
 	try {
 		DbConnect db = new DbConnect();
 		Statement stmt = db.conn();
 		ResultSet rs = stmt.executeQuery(query);
 		rs.next();
 		for(i=1;i<=5;i++)			
-			if(!(rs.getString("img_ext"+i)).equals("null"))
+			if(!(rs.getString("img_ext"+i)).equals(""))
 				imgCount++; 
 		%>
 					<div class="preview col-md-6">
