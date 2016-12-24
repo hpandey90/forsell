@@ -1,6 +1,8 @@
 <jsp:include page="header_home.jsp"/>
 <%@ page import="java.io.*,java.util.*" %>
-
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="forsell.*"%>
 <link rel="stylesheet" href="css/auto-complete.css">
 <form action="search.jsp" method="get">
 <!-- <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0"> -->
@@ -198,7 +200,7 @@ img {
 	<div style="float:left">
 	<jsp:include page="side_nav.jsp"/>
 	</div>
-	<div class="container" style="float:right">
+	<div class="container" style="float:right;width:85%">
 	
 		<div class="card">
 			<div class="container-fliud">
