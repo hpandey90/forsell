@@ -1,5 +1,4 @@
 <jsp:include page="header_home.jsp"/>
-<jsp:include page="database_sample.jsp"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
