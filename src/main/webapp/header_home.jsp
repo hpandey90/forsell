@@ -72,7 +72,7 @@
     		margin-right:2%;
 		}
 		.searchDiv{
-			width:50%;
+			width:65%;
 			height: inherit;
 			float: left;
 			display: table;
@@ -96,7 +96,7 @@
 		    float: right;
 		    font-size:larger;
        		margin-left:2%;
-    		margin-right:0%;
+    		margin-right:.5%;
 		}
 		.innerTag{
 			width:100%; display:table-cell; vertical-align: middle;
