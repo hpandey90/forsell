@@ -36,6 +36,7 @@ function submitForm(){
 <body>
 <% 
 String listing,order=null;
+int noResult=0; 
 listing = request.getParameter("q");
 order = request.getParameter("sortBy");
 if(order!=null){
@@ -65,6 +66,7 @@ if(!rs.isBeforeFirst()){%>
 <div style='float:left; width:50%;'>
 <%
 out.println("SORRY MATE!! NOBODY SELL THE ITEMS YOU WANT YET....");
+noResult = 1;
 %>
 </div>
 <%
@@ -87,6 +89,7 @@ else{
 		<%
 	}%></div>
 <% } %></div>
+<%if(noResult == 0){ %>
 <div style='float:left; width:28.5%;'>
 <form name="sort" action="listings.jsp">
   <select name="sortBy" onchange="submitForm()">
@@ -99,6 +102,7 @@ else{
 </form>
 </div>
 <%
+}
 }
 catch(Exception e) {
   out.println("SQLException caught: " +e.getMessage());
