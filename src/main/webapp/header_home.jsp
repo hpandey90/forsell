@@ -357,7 +357,7 @@
 							%>
 							<div style=color:white >Hi <%=user%>,</div>
 							<a href="./Logout">
-							<div class="container">Not You ?</div>
+							<div class="container">Not You ?(SignOut)</div>
 							</a>
 							<%
 						}
