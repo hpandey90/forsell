@@ -57,7 +57,7 @@ img {
   
 
 .card {
-  margin-top: 50px;
+  margin-top: 0.3%;
   background: #eee;
   padding: 3em;
   line-height: 1.5em; }
