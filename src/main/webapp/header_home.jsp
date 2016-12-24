@@ -220,26 +220,8 @@
 						<link type="text/css" rel="stylesheet" href="css/login_style.css" />
 						<%
 						if(session.getAttribute("user") == null){
-							response.sendRedirect("login.html");
-						}
-							String userName = null;
-							String sessionID = null;
-							Cookie[] cookies = request.getCookies();
-							
-							if(cookies !=null){
-								for(Cookie cookie : cookies){
-									if(cookie.getName().equals("user")) userName = cookie.getValue();
-								}
-								%><a href="./Logout">
-								<div class="container">Logout</div>
-								</a>
-								<%
-								//$(".container").hide();
-							}
-							else
-							{
 								%>
-						
+
 						<div class="container">
 							<a id="modal_trigger" href="#modal" class="btn">Login/register</a>
 							<div id="modal" class="popupContainer" style="display:none;">
@@ -360,6 +342,12 @@
 							</div>
 						</div>
 						<%	}
+						else{
+							%><a href="./Logout">
+							<div class="container">Logout</div>
+							</a>
+							<%
+						}
 						%>
 						<script type="text/javascript">
 							$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
