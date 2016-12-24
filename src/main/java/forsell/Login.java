@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.security.MessageDigest;
 
 
 
@@ -23,7 +24,7 @@ public class Login extends HttpServlet{
 		// get request parameters for userID and password
 				String user = request.getParameter("user");
 				String pwd = request.getParameter("password");
-				String password,name;
+				String password,plainText,name;
 				try{
 					DbConnect db = new DbConnect();
 					Statement stmt=db.conn();
@@ -38,8 +39,26 @@ public class Login extends HttpServlet{
 					{
 						rs.next();
 						password= rs.getString("pass");
+						plainText = pwd;
 						name=rs.getString("full_user_name");
-						if(password.equals(pwd))
+						MessageDigest mdAlgorithm = MessageDigest.getInstance("MD5");
+						mdAlgorithm.update(plainText.getBytes());
+
+						byte[] digest = mdAlgorithm.digest();
+						StringBuffer hexString = new StringBuffer();
+
+						for (int i = 0; i < digest.length; i++) {
+						    plainText = Integer.toHexString(0xFF & digest[i]);
+
+						    if (plainText.length() < 2) {
+						        plainText = "0" + plainText;
+						    }
+
+						    hexString.append(plainText);
+						}
+
+						System.out.print(hexString.toString());
+						if(password.equals(hexString.toString()))
 						{
 							HttpSession session = request.getSession();
 							session.setAttribute("user", name);
