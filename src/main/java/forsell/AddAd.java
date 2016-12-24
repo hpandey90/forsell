@@ -20,8 +20,8 @@ public class AddAd extends HttpServlet{
 			    if (isMultipart) 
 	            {  
 		        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-		        String[] fieldName = new String[20];
-		        String[] fieldValue = new String[20];
+		        String[] fieldName = new String[100];
+		        String[] fieldValue = new String[100];
 		        String[] fTitle = new String[5];
 		        String[] fCat = new String[5];
 		        String[] fDesc = new String[5];
@@ -57,16 +57,18 @@ public class AddAd extends HttpServlet{
 		                	pin = fieldValue[i];
 		                else if (fieldName[i].contains("adUAddress"))
 		                	sstreet = fieldValue[i]; 
-		                if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount)){		        		
+		                flag = 1;
+		            } else {
+		            	if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount) && flag == 1){	
+		            		flag = 0;
 			        		prodID[pCount++] = UUID.randomUUID().toString();
 			        		counter = 1;
 			        		k++;
 			        		l=0;
 		            	}
-		            } else {
-		            	
 		                fieldName[i] = item.getFieldName();		      
 		                String fileName = FilenameUtils.getName(item.getName());
+		                if(fileName != ""){
 		                String[] ext = fileName.split("\\.");
 		                String root = "\\\\192.168.0.19/uploads/"+prodID[pCount-1];
 		                File path = new File(root);
@@ -77,6 +79,7 @@ public class AddAd extends HttpServlet{
 		                File uploadedFile = new File(path + "/" + (counter++) + "." + ext[ext.length-1]);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
+		                }
 		            }
 		            i++;
 		        }

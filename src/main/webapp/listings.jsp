@@ -113,7 +113,12 @@ else{
 		<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
 		<div class="card" style="width:96%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
 		<div style='width:30%;'>
+		<%if(!(rs.getString("img_ext1")).equals("")){%>
 			<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="160" height="160">
+		<%}
+		else{%>
+			<img alt="Image" style='float:left;' src="images/Logo_BW.png" width="160" height="160">
+		<%} %>	
 		</div>
 		 <div class="card_container" style="float:left; width:68%; word-break:break-all;">
 		  <div style='width:70%; float:left; '>  <b ><h3 style='margin-top:3%;'><%out.println(rs.getString("prod_title")); %></h3></b> </div>
