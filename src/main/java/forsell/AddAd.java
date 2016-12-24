@@ -57,16 +57,14 @@ public class AddAd extends HttpServlet{
 		                	pin = fieldValue[i];
 		                else if (fieldName[i].contains("adUAddress"))
 		                	sstreet = fieldValue[i]; 
-		                flag = 1;
-		            } else {
-		            	if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount) && (flag == 1)){		        		
+		                if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount)){		        		
 			        		prodID[pCount++] = UUID.randomUUID().toString();
-			        		flag=0;
 			        		counter = 1;
 			        		k++;
 			        		l=0;
-			        		System.out.println("here");
 		            	}
+		            } else {
+		            	
 		                fieldName[i] = item.getFieldName();		      
 		                String fileName = FilenameUtils.getName(item.getName());
 		                String[] ext = fileName.split("\\.");
