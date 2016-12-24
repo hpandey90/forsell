@@ -5,6 +5,8 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="forsell.*"%>
+<%@ page import="java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -115,6 +117,14 @@ else{
 		</div>
 		 <div class="card_container" style="float:left; width:65%; word-break:break-all;">
 		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
+		    <p>Posted on: <%
+		    String[] post = (rs.getString("entry_date")).split("\\.");
+		    String dateStr = post[0];
+		    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		    Date result = formater.parse(dateStr);
+		    SimpleDateFormat AppDateFormat = new SimpleDateFormat("MMM-dd-yyyy");
+		    out.println(AppDateFormat.format(result));
+		    %></p> 
 		    <p><%out.println(rs.getString("prod_desc")); %></p> 
 		    <b>$<%out.println(rs.getString("price")); %></b>
 		  </div>

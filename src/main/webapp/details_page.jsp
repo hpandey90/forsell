@@ -3,6 +3,8 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="forsell.*"%>
+<%@ page import="java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <link rel="stylesheet" href="css/auto-complete.css">
 <form action="search.jsp" method="get">
 <!-- <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0"> -->
@@ -267,18 +269,15 @@ word-break: break-all;
 						<h2 class="product-title"><%=rs.getString("prod_title") %></h2>
 						<p class="product-description"><%=rs.getString("prod_desc") %></p>
 						<h4 class="price">Price: <span>$<%=rs.getString("price") %></span></h4>
-						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-						<h5 class="sizes">sizes:
-							<span class="size" data-toggle="tooltip" title="small">s</span>
-							<span class="size" data-toggle="tooltip" title="medium">m</span>
-							<span class="size" data-toggle="tooltip" title="large">l</span>
-							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-						</h5>
-						<h5 class="colors">colors:
-							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
-						</h5>
+						<p class="vote">Posted on: <%
+		    String[] post = (rs.getString("entry_date")).split("\\.");
+		    String dateStr = post[0];
+		    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		    Date result = formater.parse(dateStr);
+		    SimpleDateFormat AppDateFormat = new SimpleDateFormat("MMM-dd-yyyy");
+		    out.println(AppDateFormat.format(result));
+		    %></p>
+						
 <%  }
 	catch(Exception e){
 		 out.println("SQLException caught: " +e.getMessage());
