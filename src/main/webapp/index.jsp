@@ -58,7 +58,7 @@
 			}
 			else
 			{
-				while(rs.next() && times<=5)
+				while(rs.next() && times<=4)
 				{
 					for(i=1;i<=5;i++)			
 						if(!(rs.getString("img_ext"+i)).equals(""))
@@ -66,13 +66,15 @@
 					%>
 					<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
 						<div class="card" style="width:25%;float:left;margin-left:15px;">
-						<%if(imgCount<=0)
+						<%if(imgCount==0)
 						{
-							%><img src="images/Logo_BW.png" alt="Avatar" style="width:100%" /><%
+							%><img src="images/Logo_BW.png" alt="Avatar" style="width:100%;height:300px;" /><%
 							}
 							else{%>
-						  <img alt="Avatar" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="100%">
-						  <%} %>
+						  <img alt="Avatar" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" style="width:100%;height:300px;">
+						  <%} 
+						  imgCount=0;
+						  %>
 						  <div class="card_container">
 						    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
 						    <p>Posted on: <%
@@ -98,6 +100,6 @@
 			  //return false;
 		}
 	%>
-	
+	</div>
 </div>
 
