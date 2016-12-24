@@ -343,8 +343,21 @@
 						</div>
 						<%	}
 						else{
-							%><a href="./Logout">
-							<div class="container">Logout</div>
+							String user = null;
+							if(session.getAttribute("user") == null){
+								response.sendRedirect("index.jsp");
+							}else user = (String) session.getAttribute("user");
+							String userName = null;
+							Cookie[] cookies = request.getCookies();
+							if(cookies !=null){
+							for(Cookie cookie : cookies){
+								if(cookie.getName().equals("user")) userName = cookie.getValue();
+							}
+							}
+							%>
+							<div style=color:white >Hi <%=user%>,</div>
+							<a href="./Logout">
+							<div class="container">Not You ?</div>
 							</a>
 							<%
 						}
