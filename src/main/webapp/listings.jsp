@@ -116,7 +116,7 @@ else{
 		 <div class="card_container" style="float:left; width:65%; word-break:break-all;">
 		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
 		    <p><%out.println(rs.getString("prod_desc")); %></p> 
-		    <b><%out.println(rs.getString("price")); %></b>
+		    <b>$<%out.println(rs.getString("price")); %></b>
 		  </div>
 		 </div>
 		 </a>

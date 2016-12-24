@@ -227,21 +227,33 @@ word-break: break-all;
 					<div class="preview col-md-6" style='width: 40%; min-width:40%; margin-right: 3%; padding-left:0;'>
 		<%
 		i=1;
+		if(imgCount>1){
            %>			
            				<div class="preview-pic tab-content" style="float:left">
 						  <div class="tab-pane active" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px" /></div>
-		<% while(i<=imgCount){ %>
+		<%}
+		else {%>
+						<div class="preview-pic tab-content" style="float:left">
+						  <div class="tab-pane active" id="pic-<%=i%>"><img src="./FileServlet/default\\images.jpg" alt="Avatar" style="width:400px;height:400px" /></div>
+		<% }
+		while(i<=imgCount){ %>
 						  <div class="tab-pane" id="pic-<%=i%>"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" alt="Avatar" style="width:400px;height:400px"/></div>
 						  <!--<div class="tab-pane" id="pic-3"><img src="images/duoc-langur.png" alt="Avatar" style="width:400px;height:400px"/></div>
 						  <div class="tab-pane" id="pic-4"><img src="images/snub-nosed.png" alt="Avatar" style="width:400px;height:400px"/></div> -->
 						
 	<%					}
 		i=1;
-		
+		if(imgCount>1){
 		%>				</div>
 						<ul class="preview-thumbnail nav nav-tabs">
 						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
-	<% while(i<=imgCount){ %>				
+	<%}
+		else{%>
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						  <li class="active"><a data-target="#pic-<%=i%>" data-toggle="tab"><img src=src="./FileServlet/default\\images.jpg" /></a></li>
+	    <% }
+		while(i<=imgCount){ %>				
 						  <li><a data-target="#pic-<%=i%>" data-toggle="tab"><img src="./FileServlet/<%=detail%>\\<%=i%>.<%=rs.getString("img_ext"+(i++))%>" /></a></li>
 						  <!--<li><a data-target="#pic-3" data-toggle="tab"><img src="images/duoc-langur.png" /></a></li>
 						  <li><a data-target="#pic-4" data-toggle="tab"><img src="images/snub-nosed.png" /></a></li> -->
