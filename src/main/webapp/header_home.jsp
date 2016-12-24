@@ -2,6 +2,9 @@
 <!-- Template by html.am -->
 <html>
 	<head>
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="144689030320-m8lu3e9mpelb9rogmakmrbctv0tqvpvm.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>HomePage</title>
 		<style type="text/css">
@@ -120,6 +123,73 @@
 </script>
 	<link rel="stylesheet" href="css/auto-complete.css">
 	<body style='overflow-y:auto;'>		
+	
+		<script>
+		 function statusChangeCallback(response) {
+			    console.log('statusChangeCallback');
+			    console.log(response);
+			    // The response object is returned with a status field that lets the
+			    // app know the current login status of the person.
+			    // Full docs on the response object can be found in the documentation
+			    // for FB.getLoginStatus().
+			    if (response.status === 'connected') {
+			      // Logged into your app and Facebook.
+			      testAPI();
+			    } else if (response.status === 'not_authorized') {
+			      // The person is logged into Facebook, but not your app.
+			      document.getElementById('status').innerHTML = 'Please log ' +
+			        'into this app.';
+			    } else {
+			      // The person is not logged into Facebook, so we're not sure if
+			      // they are logged into this app or not.
+			      document.getElementById('status').innerHTML = 'Please log ' +
+			        'into Facebook.';
+			    }
+			  }
+		
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		  
+		  
+		  function checkLoginState() {
+			  FB.getLoginStatus(function(response) {
+			    statusChangeCallback(response);
+			  });
+			}
+		  
+		  window.fbAsyncInit = function() {
+			    FB.init({
+			      appId      : '2166861750205899',
+			      xfbml      : true,
+			      version    : 'v2.6'
+			    });
+			  };
+			  
+			  FB.getLoginStatus(function(response) {
+			      statusChangeCallback(response);
+			  });
+			  
+			  (function(d, s, id) {
+				    var js, fjs = d.getElementsByTagName(s)[0];
+				    if (d.getElementById(id)) return;
+				    js = d.createElement(s); js.id = id;
+				    js.src = "//connect.facebook.net/en_US/sdk.js";
+				    fjs.parentNode.insertBefore(js, fjs);
+				  }(document, 'script', 'facebook-jssdk'));
+			  function testAPI() {
+				    console.log('Welcome!  Fetching your information.... ');
+				    FB.api('/me', function(response) {
+				      console.log('Successful login for: ' + response.name);
+				      document.getElementById('status').innerHTML =
+				        'Thanks for logging in, ' + response.name + '!';
+				    });
+				  }
+		</script>
 		<header id="header">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">

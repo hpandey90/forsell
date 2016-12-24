@@ -28,13 +28,17 @@ public class AddAd extends HttpServlet{
 		        String[] query = new String[5];
 		        String[] prodID = new String[5];
 		        String[] pricee = new String[5];
+		        String[][] imgExt = new String[5][5];
+		        for(int ii=0;ii<5;ii++)
+		        	for(int jj=0;jj<5;jj++)
+		        		imgExt[ii][jj] = null;
 		        String phone = null;
 		        String sstreet = null;
 		        String pin = null;
 		        int flag = 1;
 		        int counter = 1;
 		        int i = 0,tCount = 0,cCount = 0,dCount = 0,pCount = 0,priceCount=0;
-		        
+		        int k=0,l=0;
 		        for (FileItem item : items) {		        	
 		            if (item.isFormField()) {
 		            	fieldName[i] = item.getFieldName();
@@ -59,6 +63,9 @@ public class AddAd extends HttpServlet{
 			        		prodID[pCount++] = UUID.randomUUID().toString();
 			        		flag=0;
 			        		counter = 1;
+			        		k++;
+			        		l=0;
+			        		System.out.println("here");
 		            	}
 		                fieldName[i] = item.getFieldName();		      
 		                String fileName = FilenameUtils.getName(item.getName());
@@ -68,6 +75,7 @@ public class AddAd extends HttpServlet{
 		                if (!path.exists()) {
 		                    boolean status = path.mkdirs();
 		                }
+		                imgExt[k-1][l++] = ext[ext.length-1];
 		                File uploadedFile = new File(path + "/" + (counter++) + "." + ext[ext.length-1]);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
@@ -76,16 +84,11 @@ public class AddAd extends HttpServlet{
 		        }
 		       
 		        for(int j=0;j<tCount;j++){		           
-		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,zip_code,street,phone_number) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+pin+"','"+sstreet+"','"+phone+"');";		       
+		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,zip_code,street,phone_number,img_ext1,img_ext2,img_ext3,img_ext4,img_ext5) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+pin+"','"+sstreet+"','"+phone+"','"+imgExt[j][0]+"','"+imgExt[j][1]+"','"+imgExt[j][2]+"','"+imgExt[j][3]+"','"+imgExt[j][4]+"');";		       
 		           System.out.println (query[j]);
 		        }
-		        String db = "forsale";
-				String user = "ashish";
-				java.sql.Connection con;
-			    Class.forName("com.mysql.jdbc.Driver");
-			    con = DriverManager.getConnection("jdbc:mysql://192.168.0.16/"+db, user, "mypass");
-			    System.out.println (db + " database successfully opened.");
-			    Statement stmt = con.createStatement();
+		        DbConnect db = new DbConnect();
+			    Statement stmt = db.conn();
 			    for(int j=0;j<tCount;j++)
   				    	stmt.executeUpdate(query[j]);			       
 			    System.out.println ("Query Executed");
