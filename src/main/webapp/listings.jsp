@@ -77,6 +77,7 @@ else{
 			%>
 		
 		<div style="float:left; width:100%;">
+		<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
 		<div class="card" style="width:96%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
 		<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="160" height="160">
 		 <div class="card_container" style="float:left; width:70%; word-break:break-all;">
@@ -85,6 +86,7 @@ else{
 		    <b><%out.println(rs.getString("price")); %></b>
 		  </div>
 		 </div>
+		 </a>
 		 </div>	
 		<%
 	}%></div>
