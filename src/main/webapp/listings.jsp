@@ -58,7 +58,34 @@ ResultSet rs = stmt.executeQuery(query);
 %>
 <div>		
 		<div style="float:left; width:21.5%;">
-	    <jsp:include page="side_nav.jsp"/>
+		    <jsp:include page="side_nav.jsp"/>
+		    <div id='filtersDiv'>
+		    	<div>STATE
+		    	<div>a<input type='checkbox'></div>
+		    	<div>b<input type='checkbox'></div>
+		    	<div>c<input type='checkbox'></div>
+		    	<div>d<input type='checkbox'></div>
+		    	<div>e<input type='checkbox'></div>
+		    	<div>f<input type='checkbox'></div>
+		    	<div>g<input type='checkbox'></div>
+		    	<div>h<input type='checkbox'></div>
+		    	<div>i<input type='checkbox'></div>
+		    	<div>j<input type='checkbox'></div>
+		    	<div>k<input type='checkbox'></div>
+		    	<div>l<input type='checkbox'></div>
+		    	<div>m<input type='checkbox'></div>
+		    	<div>n<input type='checkbox'></div>
+		    	<div>o<input type='checkbox'></div>
+		    	<div>p<input type='checkbox'></div>
+		    	<div>q<input type='checkbox'></div>
+		    	<div>r<input type='checkbox'></div>
+		    	<div>s<input type='checkbox'></div>
+		    	<div>t<input type='checkbox'></div>
+		    	<div>u<input type='checkbox'></div>
+		    	
+		    	</div>
+		    	<div></div>
+		    </div>
 	    </div>
 	    
 <%
@@ -79,11 +106,13 @@ else{
 		<div style="float:left; width:100%;">
 		<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
 		<div class="card" style="width:96%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
-		<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="160" height="160">
-		 <div class="card_container" style="float:left; width:70%; word-break:break-all;">
+		<div style='width:30%;'>
+			<img alt="Image" style='float:left;' src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" width="160" height="160">
+		</div>
+		 <div class="card_container" style="float:left; width:65%; word-break:break-all;">
 		    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
 		    <p><%out.println(rs.getString("prod_desc")); %></p> 
-		    <b><%out.println(rs.getString("price")); %></b>
+		    <b>$<%out.println(rs.getString("price")); %></b>
 		  </div>
 		 </div>
 		 </a>

@@ -57,7 +57,7 @@ img {
   
 
 .card {
-  margin-top: 50px;
+  margin-top: 0.3%;
   background: #eee;
   padding: 3em;
   line-height: 1.5em; }
@@ -211,13 +211,14 @@ img {
 	int i,imgCount=0;
 	detail = request.getParameter("id");
 	query = "SELECT * FROM postads WHERE prod_id = '"+ detail + "'";
+	System.out.println(query);
 	try {
 		DbConnect db = new DbConnect();
 		Statement stmt = db.conn();
 		ResultSet rs = stmt.executeQuery(query);
 		rs.next();
 		for(i=1;i<=5;i++)			
-			if(!(rs.getString("img_ext"+i)).equals("null"))
+			if(!(rs.getString("img_ext"+i)).equals(""))
 				imgCount++; 
 		%>
 					<div class="preview col-md-6">
@@ -250,7 +251,7 @@ img {
 					<div class="details col-md-6">
 						<h3 class="product-title"><%=rs.getString("prod_title") %></h3>
 						<p class="product-description"><%=rs.getString("prod_desc") %></p>
-						<h4 class="price">current price: <span><%=rs.getString("price") %></span></h4>
+						<h4 class="price">current price: <span>$<%=rs.getString("price") %></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>
