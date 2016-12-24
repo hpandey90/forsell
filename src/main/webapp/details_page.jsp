@@ -38,6 +38,7 @@ img {
           flex-grow: 1; }
 
 .preview-thumbnail.nav-tabs {
+padding:0;
   border: none;
   margin-top: 15px; }
   .preview-thumbnail.nav-tabs li {
@@ -70,6 +71,7 @@ img {
     display: flex; } }
 
 .details {
+word-break: break-all;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -94,7 +96,8 @@ img {
   color: #ff9f1a; }
 
 .product-title, .rating, .product-description, .price, .vote, .sizes {
-  margin-bottom: 15px; }
+  margin-bottom: 5px;
+  margin-top: 5px; }
 
 .product-title {
   margin-top: 0; }
@@ -221,7 +224,7 @@ img {
 			if(!(rs.getString("img_ext"+i)).equals(""))
 				imgCount++; 
 		%>
-					<div class="preview col-md-6">
+					<div class="preview col-md-6" style='width: 40%; min-width:40%; margin-right: 3%; padding-left:0;'>
 		<%
 		i=1;
            %>			
@@ -248,10 +251,10 @@ img {
 		%>		
 						</ul>
 					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title"><%=rs.getString("prod_title") %></h3>
+					<div class="details col-md-6" style='width:60%;'>
+						<h2 class="product-title"><%=rs.getString("prod_title") %></h2>
 						<p class="product-description"><%=rs.getString("prod_desc") %></p>
-						<h4 class="price">current price: <span><%=rs.getString("price") %></span></h4>
+						<h4 class="price">Price: <span>$<%=rs.getString("price") %></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
 							<span class="size" data-toggle="tooltip" title="small">s</span>

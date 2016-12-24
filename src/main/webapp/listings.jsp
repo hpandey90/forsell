@@ -21,6 +21,10 @@
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+.filtersDiv{
+	max-height:100px;
+	overflow-y: auto;
+}
 
 /* Add some padding inside the card container */
 .card_container {
@@ -59,29 +63,29 @@ ResultSet rs = stmt.executeQuery(query);
 <div>		
 		<div style="float:left; width:21.5%;">
 		    <jsp:include page="side_nav.jsp"/>
-		    <div id='filtersDiv'>
-		    	<div>STATE
-		    	<div>a<input type='checkbox'></div>
-		    	<div>b<input type='checkbox'></div>
-		    	<div>c<input type='checkbox'></div>
-		    	<div>d<input type='checkbox'></div>
-		    	<div>e<input type='checkbox'></div>
-		    	<div>f<input type='checkbox'></div>
-		    	<div>g<input type='checkbox'></div>
-		    	<div>h<input type='checkbox'></div>
-		    	<div>i<input type='checkbox'></div>
-		    	<div>j<input type='checkbox'></div>
-		    	<div>k<input type='checkbox'></div>
-		    	<div>l<input type='checkbox'></div>
-		    	<div>m<input type='checkbox'></div>
-		    	<div>n<input type='checkbox'></div>
-		    	<div>o<input type='checkbox'></div>
-		    	<div>p<input type='checkbox'></div>
-		    	<div>q<input type='checkbox'></div>
-		    	<div>r<input type='checkbox'></div>
-		    	<div>s<input type='checkbox'></div>
-		    	<div>t<input type='checkbox'></div>
-		    	<div>u<input type='checkbox'></div>
+		    <div class='filtersDiv'>
+		    	<div>Filter By BRAND
+		    	<div><input type='checkbox'>Honda</div>
+		    	<div><input type='checkbox'>Hyundai</div>
+		    	<div><input type='checkbox'>Dodge</div>
+		    	<div><input type='checkbox'>Mercedez</div>
+		    	<div><input type='checkbox'>BMW</div>
+		    	<div><input type='checkbox'>Audi</div>
+		    	<div><input type='checkbox'>Chevrolet</div>
+		    	<div><input type='checkbox'>Bentley</div>
+		    	<div><input type='checkbox'>Rolls Royace</div>
+		    	<div><input type='checkbox'>Bugati</div>
+		    	<div><input type='checkbox'>Masaratti</div>
+		    	<div><input type='checkbox'>Lamborgini</div>
+		    	<div><input type='checkbox'>Ferrari</div>
+		    	<div><input type='checkbox'>GMC</div>
+		    	<div><input type='checkbox'>Nissan</div>
+		    	<div><input type='checkbox'>Jaguar</div>
+		    	<div><input type='checkbox'>Ford</div>
+		    	<div><input type='checkbox'>Jeep</div>
+		    	<div><input type='checkbox'>Lincoln</div>
+		    	<div><input type='checkbox'>Porche</div>
+		    	<div><input type='checkbox'>Fiat</div>
 		    	
 		    	</div>
 		    	<div></div>
