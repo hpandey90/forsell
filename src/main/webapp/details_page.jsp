@@ -294,7 +294,7 @@ word-break: break-all;
 								  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
 								  fjs.parentNode.insertBefore(js, fjs);
 								}(document, 'script', 'facebook-jssdk'));</script>
-								<div class="fb-like" data-href="http://localhost:8080/sell/details_page.jsp" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+								<div class="fb-like" data-href="http://localhost:8080/sell/details_page.jsp?id=<%=detail%>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 						</div>
 					</div>
 				</div>
@@ -308,6 +308,6 @@ word-break: break-all;
 		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-		<div class="fb-comments" data-width="550px" data-href="http://localhost:8080/sell/details_page.jsp" data-numposts="4"></div>
+		<div class="fb-comments" data-width="550px" data-href="http://localhost:8080/sell/details_page.jsp?id=<%=detail%>" data-numposts="4"></div>
 	</div>	
 </div>
