@@ -22,7 +22,7 @@
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 80px; 
+			height: 95px; 
 			//overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
 			background: #222233;
 		}
@@ -193,7 +193,7 @@
 		<header id="header">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">
-				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod3.png" alt="Smiley face" width="80px"></a></div>
+				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="80px"></a></div>
 				</div>
 				<div class="searchDiv">
 					<form action='listings.jsp' class='innerTag'>
@@ -202,162 +202,129 @@
 					</form>
 				</div>
 				<div class="advertDiv">
-					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'>Place an AD</a>
-
-<script type="text/javascript" src="scripts/jquery.leanModal.min.js"></script>
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="css/login_style.css" />
-<div class="container">
-	<a id="modal_trigger" href="#modal" class="btn">Click here to Login or register</a>
-	<div id="modal" class="popupContainer" style="display:none;">
-		<header class="popupHeader">
-			<span class="header_title">Login</span>
-			<span class="modal_close"><i class="fa fa-times"></i></span>
-		</header>
-		
-		<section class="popupBody">
-			<!-- Social Login -->
-			<div class="social_login">
-				<div class="">
-					<a href="#" class="social_box fb">
-						 <div id="fb-root">
-						 <fb:login-button 
-						  scope="public_profile,email"
-						  onlogin="checkLoginState();"
-						  data-auto-logout-link="true"
-						  data-max-rows="1" data-size="large">
-						  
-						<span class="icon_title">Connect with Facebook</span>
-						</fb:login-button>
-						 </div>
-							  <script>(function(d, s, id) {
-							    var js, fjs = d.getElementsByTagName(s)[0];
-							    if (d.getElementById(id)) return;
-							    js = d.createElement(s); js.id = id;
-							    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=2166861750205899";
-							    fjs.parentNode.insertBefore(js, fjs);
-							  }(document, 'script', 'facebook-jssdk'));</script>
-					</a>
-
-					<a href="#" class="social_box google">
-					    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
-					    	Connect with Google
-					    </div>
-					    <script>
-					      function onSignIn(googleUser) {
-					        // Useful data for your client-side scripts:
-					        var profile = googleUser.getBasicProfile();
-					        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-					        console.log('Full Name: ' + profile.getName());
-					        console.log('Given Name: ' + profile.getGivenName());
-					        console.log('Family Name: ' + profile.getFamilyName());
-					        console.log("Image URL: " + profile.getImageUrl());
-					        console.log("Email: " + profile.getEmail());
-					
-					        // The ID token you need to pass to your backend:
-					        var id_token = googleUser.getAuthResponse().id_token;
-					        console.log("ID Token: " + id_token);
-					      };
-					    </script>
-					</a>
+					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'>Place an AD</a></div>		
 				</div>
-
-				<div class="centeredText">
-					<span>Or use your Email address</span>
-				</div>
-
-				<div class="action_btns">
-					<div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
-					<div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
-				</div>
-			</div>
-
-			<!-- Username & Password Login form -->
-			<div class="user_login">
-				<form action="./Login">
-					<label>Email / Username</label>
-					<input type="text" name="user"/>
-					<br />
-
-					<label>Password</label>
-					<input type="password" name="password"/>
-					<br />
-
-					<div class="checkbox">
-						<input id="remember" type="checkbox" />
-						<label for="remember">Remember me on this computer</label>
+				<div>
+					<div>
+						<script type="text/javascript" src="scripts/jquery.leanModal.min.js"></script>
+						<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+						<link type="text/css" rel="stylesheet" href="css/login_style.css" />
+						<div class="container">
+							<a id="modal_trigger" href="#modal" class="btn">Click here to Login or register</a>
+							<div id="modal" class="popupContainer" style="display:none;">
+								<header class="popupHeader">
+									<span class="header_title">Login</span>
+									<span class="modal_close"><i class="fa fa-times"></i></span>
+								</header>
+								
+								<section class="popupBody">
+									<!-- Social Login -->
+									<div class="social_login">
+										<div class="">
+											<a href="#" class="social_box fb">
+												<span class="icon"><i class="fa fa-facebook"></i></span>
+												<span class="icon_title">Connect with Facebook</span>
+											</a>
+											<a href="#" class="social_box google">
+												<span class="icon"><i class="fa fa-google-plus"></i></span>
+												<span class="icon_title">Connect with Google</span>
+											</a>
+										</div>
+										<div class="centeredText">
+											<span>Or use your Email address</span>
+										</div>
+						
+										<div class="action_btns">
+											<div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
+											<div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
+										</div>
+									</div>
+						
+									<!-- Username & Password Login form -->
+									<div class="user_login">
+										<form>
+											<label>Email / Username</label>
+											<input type="text" />
+											<br />
+						
+											<label>Password</label>
+											<input type="password" />
+											<br />
+						
+											<div class="checkbox">
+												<input id="remember" type="checkbox" />
+												<label for="remember">Remember me on this computer</label>
+											</div>
+						
+											<div class="action_btns">
+												<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+												<div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+											</div>
+										</form>
+						
+										<a href="#" class="forgot_password">Forgot password?</a>
+									</div>
+						
+									<!-- Register Form -->
+									<div class="user_register">
+										<form>
+											<label>Full Name</label>
+											<input type="text" />
+											<br />
+						
+											<label>Email Address</label>
+											<input type="email" />
+											<br />
+						
+											<label>Password</label>
+											<input type="password" />
+											<br />
+						
+											<div class="checkbox">
+												<input id="send_updates" type="checkbox" />
+												<label for="send_updates">Send me occasional email updates</label>
+											</div>
+						
+											<div class="action_btns">
+												<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+												<div class="one_half last"><a href="#" class="btn btn_red">Register</a></div>
+											</div>
+										</form>
+									</div>
+								</section>
+							</div>
+						</div>
+						<script type="text/javascript">
+							$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+						
+							$(function(){
+								// Calling Login Form
+								$("#login_form").click(function(){
+									$(".social_login").hide();
+									$(".user_login").show();
+									return false;
+								});
+						
+								// Calling Register Form
+								$("#register_form").click(function(){
+									$(".social_login").hide();
+									$(".user_register").show();
+									$(".header_title").text('Register');
+									return false;
+								});
+						
+								// Going back to Social Forms
+								$(".back_btn").click(function(){
+									$(".user_login").hide();
+									$(".user_register").hide();
+									$(".social_login").show();
+									$(".header_title").text('Login');
+									return false;
+								});
+						
+							})
+						</script>
 					</div>
-
-					<div class="action_btns">
-						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-						<div class="one_half last"><a href="#" class="btn btn_red"><input type="submit" />Login</a></div>
-					</div>
-				</form>
-
-				<a href="#" class="forgot_password">Forgot password?</a>
-			</div>
-
-			<!-- Register Form -->
-			<div class="user_register">
-				<form action="./Register">
-					<label>Full Name</label>
-					<input type="text" id="fullname" name="fullname"/>
-					<br />
-
-					<label>Email Address</label>
-					<input type="email" id="email" name="email"/>
-					<br />
-
-					<label>Password</label>
-					<input type="password" id="password" name="password"/>
-					<br />
-
-					<div class="checkbox">
-						<input id="send_updates" type="checkbox" />
-						<label for="send_updates">Send me occasional email updates</label>
-					</div>
-
-					<div class="action_btns">
-						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-						<div class="one_half last"><input type="submit"/>Register</div>
-					</div>
-				</form>
-			</div>
-		</section>
-	</div>
-</div>
-
-<script type="text/javascript">
-	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
-
-	$(function(){
-		// Calling Login Form
-		$("#login_form").click(function(){
-			$(".social_login").hide();
-			$(".user_login").show();
-			return false;
-		});
-
-		// Calling Register Form
-		$("#register_form").click(function(){
-			$(".social_login").hide();
-			$(".user_register").show();
-			$(".header_title").text('Register');
-			return false;
-		});
-
-		// Going back to Social Forms
-		$(".back_btn").click(function(){
-			$(".user_login").hide();
-			$(".user_register").hide();
-			$(".social_login").show();
-			$(".header_title").text('Login');
-			return false;
-		});
-
-	})
-</script>
-			</div>		
 				</div>
 			</div>
 		</header>	

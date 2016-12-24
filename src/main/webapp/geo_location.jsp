@@ -1,154 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDttBuYDVH-vhfQdU0ABmenukvUrnvznQ8&callback=initMap" async defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.min.js"></script>
-	<script type="text/javascript">
-		<!--
-		
-		//-->
-	//	var findMeButton = $('#ge');
-		function findme(){
-		//Check if the browser has support for the Geolocation API
-		if (!navigator.geolocation) {
-			console.log("no");
-		findMeButton.addClass("disabled");
-		$('.no-browser-support').addClass("visible");
-		
-		} else {
-		 //e.preventDefault();
-		
-		 navigator.geolocation.getCurrentPosition(function(position) {
-		
-		   // Get the coordinates of the current possition.
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      #latlng {
+        width: 225px;
+      }
+    </style>
+    <div id="floating-panel">
+      <input id="latlng" type="text" value="129.624,-2.372">
+      <input id="submit" type="button" value="Reverse Geocode">
+    </div>
+    <div id="map"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDttBuYDVH-vhfQdU0ABmenukvUrnvznQ8&callback=initMap" async defer></script>
+    <script>
+	<!-- $(document).ready(function(){initMap();}); -->
+	
+	
+      function initMap() {
+        var geocoder = new google.maps.Geocoder;
+		navigator.geolocation.getCurrentPosition(function(position) {
+		   // Get the coordinates of the current position.
 		   var lat = position.coords.latitude;
 		   var lng = position.coords.longitude;
-		
-		   $('.latitude').text(lat.toFixed(3));
-		   $('.longitude').text(lng.toFixed(3));
-		   $('.coordinates').addClass('visible');
-		
-		   // Create a new map and place a marker at the device location.
-		   var map = new GMaps({
-		     el: '#map',
-		     lat: lat,
-		     lng: lng
-		   });
-		
-		   map.addMarker({
-		     lat: lat,
-		     lng: lng
-		   });
-		   var getJSON = function(url, callback) {
-			    var xhr = new XMLHttpRequest();
-			    xhr.open("get", url, true);
-			    xhr.responseType = "json";
-			    xhr.onload = function() {
-			      var status = xhr.status;
-			      if (status == 200) {
-			        callback(null, xhr.response);
-			        
-			        console.log(xhr.response.results[0].address_components[1].short_name);
-			      } else {
-			    	  console.log("Yes");
-			        callback(status);
-			      }
-			    };
-			    xhr.send();
-			};
-		   var data;
-		   $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=29.624,-82.372&key=AIzaSyDttBuYDVH-vhfQdU0ABmenukvUrnvznQ8",function(err, data) {
-			   if (err != null) {
-				    alert("Something went wrong: " + err);
-				  } else {
-				    alert("Your query count: " + data.query.count);
-				  }
-		   });
-		
-		 });
-		 
-		
-		}
-		}
-</script>
-<style>
-	#geocoding_form {
-		  margin: 40px auto 40px;
-		}
-		
-		.input-group {
-		  margin-left: 4%;
-		}
-		
-		.find-me.btn:focus {
-		  border-color: transparent;
-		  outline: 0;
-		}
-		
-		.coordinates {
-		  font-size: 18px;
-		  opacity: 0;
-		  margin-bottom: 40px;
-		}
-		
-		.no-browser-support {
-		  font-size: 18px;
-		  opacity: 0;
-		}
-		
-		.coordinates b:first-child {
-		  margin-right: 15px;
-		}
-		
-		.visible {
-		  opacity: 1;
-		}
-		
-		.map-overlay {
-		  max-width: 600px;
-		  height: 400px;
-		  margin: 0 auto;
-		  background-color: #fff;
-		  position: relative;
-		  border-radius: 2px;
-		}
-		
-		#map {
-		  max-width: 550px;
-		  height: 400px;
-		  margin: 0 auto;
-		}
-</style>
-<head>
-	<div class="container">
+		   console.log(lat+"===="+lng);
+		  
+          geocodeLatLng(geocoder, lat, lng);
+			});
+      }
 
-						  <h1>Geolocation Demo</h1>
-						
-						  <form id="geocoding_form" class="form-horizontal">
-						    <div class="form-group">
-						      <div class="col-xs-12 col-md-6 col-md-offset-3">
-						        <button type="button" onclick="findme()" id="ge" class="find-me btn btn-info btn-block">Find My Location</button>
-						      </div>
-						    </div>
-						  </form>
-						
-						  <p class="no-browser-support">Sorry, the Geolocation API isn't supported in Your browser.</p>
-						  <p class="coordinates">Latitude: <b class="latitude">42</b> Longitude: <b class="longitude">32</b></p>
-						
-						  <div class="map-overlay">
-						    <div id="map"></div>
-						  </div>
-						
-						</div>
-</head>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+      function geocodeLatLng(geocoder,lat,lng) {
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK'){
+            if (results[0]) {
+              console.log(results[0].formatted_address);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+	  $(document).ready(function(){
+	  initMap();
+	  });
+    </script>
