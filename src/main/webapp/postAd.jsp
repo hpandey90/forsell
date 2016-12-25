@@ -97,9 +97,9 @@
 							  err = request.getParameter("error");
 							  if(err != null){
 								  if(!err.equals("1"))
-									out.println("Your last "+ err +" entries failed to get registered!!");
+									out.println("Your last "+ err +" entries failed to get registered!! Please try again");
 								  else
-									out.println("Your last entry failed to get registered!!");
+									out.println("Your last entry failed to get registered!! Please try again");
 									}%></div>
 						<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
 							<h3 style='text-align:center;'>Item 1</h3>
