@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.util.List;
+import java.io.File;
 
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.*;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class AddAd extends HttpServlet{
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+				int check=0,valid=0;
+				String[] prodID = new String[5];
 		 try {
 			    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			    if (isMultipart) 
@@ -26,7 +29,6 @@ public class AddAd extends HttpServlet{
 		        String[] fCat = new String[5];
 		        String[] fDesc = new String[5];
 		        String[] query = new String[5];
-		        String[] prodID = new String[5];
 		        String[] pricee = new String[5];
 		        String[][] imgExt = new String[5][5];
 		        for(int ii=0;ii<5;ii++)
@@ -79,25 +81,41 @@ public class AddAd extends HttpServlet{
 		                File uploadedFile = new File(path + "/" + (counter++) + "." + ext[ext.length-1]);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
+
 		                }
 		            }
 		            i++;
 		        }
-		       
+		        check = tCount;
 		        for(int j=0;j<tCount;j++){		           
 		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,zip_code,street,phone_number,img_ext1,img_ext2,img_ext3,img_ext4,img_ext5) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+pin+"','"+sstreet+"','"+phone+"','"+imgExt[j][0]+"','"+imgExt[j][1]+"','"+imgExt[j][2]+"','"+imgExt[j][3]+"','"+imgExt[j][4]+"');";		       
 		           System.out.println (query[j]);
 		        }
 		        DbConnect db = new DbConnect();
 			    Statement stmt = db.conn();
-			    for(int j=0;j<tCount;j++)
-  				    	stmt.executeUpdate(query[j]);			       
+			    for(int j=0;j<tCount;j++){
+  				    	stmt.executeUpdate(query[j]);
+  				    	valid++;
+			    }
 			    System.out.println ("Query Executed");
 			    response.sendRedirect("index.jsp");
 	            }
 		 } catch(Exception e) {
-			 
+			 	while(valid<=check){
+			 		File index = new File("\\\\192.168.0.19/uploads/"+prodID[valid]);
+			 		String[]entries = index.list();
+			 		if(index.exists()){
+			 		for(String s: entries){
+			 		    File currentFile = new File(index.getPath(),s);			 		    
+			 		    System.out.println(currentFile.getName());
+			 		    currentFile.delete();			 	
+			 		}
+			 		index.delete();
+			 		}
+			 		valid++;
+			 	}
 			    System.out.println(e.getMessage());
+			    response.sendRedirect("postAd.jsp?error=failedQuery");
 			    //out.println(e.printStackTrace());
 			    
 			  }

@@ -92,30 +92,36 @@
 			<form action="./AddAd" method="post" style = ''onsubmit="return upload();" enctype="multipart/form-data">
 				<div id="itemInputDiv">
 					<div id='itemDiv' class='itemDiv'>
-						<h3 style='text-align:center;'>Item 1</h3>
-						<div class='full'>
-							<div class=' lh half'>Give it a Name: </div>							
-							<div class=' half'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
-						</div>
-						<div class='full'>
-							<div class=' lh half'>Specify it: </div>
-							<div class=' half'><input class="bd" id="adSubCategory" name="adSubCategory" type="text" required></div>
-						</div>
-						<div class='full'>
-							<div class=' lh half'>Describe it: </div>	
-							<div class=' half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:98%;box-shadow: 0 0 3px #e81212;" required></textarea></div>		
-						</div>	
-						<div class='full'>
-							<div class='lh half'>Price:</div>
-							<div class=' half'><input class="bd" id="adPrice" name="productPrice" type="text" required><label hidden style="color:red;" required>price invalid !!!</label></div>
-						</div>
-						<div class='full'>
-							<div class='lh half'>Upload Pictures:</div>
-							<div class=' half'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages"></input></div>
+						<div><%
+							  String err = null;
+							  err = request.getParameter("error");
+							  if(err != null)
+									out.println("You probably did a blunder while filling the form!!");%></div>
+						<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
+							<h3 style='text-align:center;'>Item 1</h3>
+							<div class='full'>
+								<div class=' lh half'>Give it a Name: </div>							
+								<div class=' half'><input class="bd" id="adTitle" name="adTitle" type="text" required></div>
+							</div>
+							<div class='full'>
+								<div class=' lh half'>Specify it: </div>
+								<div class=' half'><input class="bd" id="adSubCategory" name="adSubCategory" type="text" required></div>
+							</div>
+							<div class='full'>
+								<div class=' lh half'>Describe it: </div>	
+								<div class=' half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:98%;box-shadow: 0 0 3px #e81212;" required></textarea></div>		
+							</div>	
+							<div class='full'>
+								<div class='lh half'>Price:</div>
+								<div class=' half'><input class="bd" id="adPrice" name="productPrice" type="text" required><label hidden style="color:red;" required>price invalid !!!</label></div>
+							</div>
+							<div class='full'>
+								<div class='lh half'>Upload Pictures:</div>
+								<div class=' half'><input type="file" accept="image/*" multiple="multiple" id="productImages" name="productImages"></input></div>
+							</div>
 						</div>
 					</div>
 				</div>
-
 				<div id="newItemDiv" class='newItemDiv full' align="center">
 					<div class=' full'><input id="newForm" value="Add Item" type="button"></div>
 					<div class=' full'><input id="removeForm" value="Remove Item" type="button" hidden></div>
