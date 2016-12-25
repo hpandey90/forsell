@@ -22,7 +22,7 @@
 	    $("#newForm").click(function(){
 	    	if(count<6){
 	    		count++;
-		    	var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='full'><div class='lh half'>Price:</div><div class=' half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>Upload Pictures:</div><div class=' half'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div></div>";
+		    	var string = "<div id='itemDiv"+count+"' class='itemDiv'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:98%;box-shadow: 0 0 3px #e81212;' required></textarea></div><div class='full'><div class='lh half'>Price:</div><div class=' half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>Upload Pictures:</div><div class=' half'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div></div>";
 		    	//var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class=' half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class=' half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class=' half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;'></textarea></div><div class=' full'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div>";
 		    	$("#itemInputDiv").append(string);
 		    	current = "#itemDiv"+count;
@@ -73,6 +73,17 @@
 		width:100%;
 		float:left;
 	}
+	.newItemDiv{
+		margin-bottom:1.5%;
+		
+	}
+	.itemDiv{
+		margin: 5px; padding:5px; border-radius:10px; height:265px; background: rgba(178, 174, 174, 0.25);
+	}
+	.userInfoDiv{
+		background: #ecebeb;
+    	border-radius: 10px;
+	}
 	
 	</style>
 	<title>Post your ad here</title>
@@ -80,7 +91,7 @@
 		<div style='position: relative; margin-left:28%; margin-right:28%;'>
 			<form action="./AddAd" method="post" style = ''onsubmit="return upload();" enctype="multipart/form-data">
 				<div id="itemInputDiv">
-					<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
+					<div id='itemDiv' class='itemDiv'>
 						<h3 style='text-align:center;'>Item 1</h3>
 						<div class='full'>
 							<div class=' lh half'>Give it a Name: </div>							
@@ -92,7 +103,7 @@
 						</div>
 						<div class='full'>
 							<div class=' lh half'>Describe it: </div>	
-							<div class=' half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:100%;box-shadow: 0 0 3px #e81212;" required></textarea></div>		
+							<div class=' half'><textarea rows="3" columns="4"id="adDesc" name="adDesc" style="resize:none;width:98%;box-shadow: 0 0 3px #e81212;" required></textarea></div>		
 						</div>	
 						<div class='full'>
 							<div class='lh half'>Price:</div>
@@ -105,32 +116,33 @@
 					</div>
 				</div>
 
-				<div class='full'>
-					<div style='margin: 5px; padding:5px; border-radius:10px;'>
-					<div id="newItemDiv" align="center" class='full'>
+				<div id="newItemDiv" class='newItemDiv full' align="center">
 					<div class=' full'><input id="newForm" value="Add Item" type="button"></div>
 					<div class=' full'><input id="removeForm" value="Remove Item" type="button" hidden></div>
 				</div>
-					<div class=' lh full'>
-						Make yourself known:
+
+				<div class='full userInfoDiv' id='userInfoDiv'>
+					<div style='margin: 5px; padding:5px; border-radius:10px;'>
+						<div class=' lh full'>
+							Make yourself known:
+						</div>
+						<div class='full'>
+							<div class=' lh half'>Name: </div>
+							<div class=' half'><input class="bd" id="adUName" name="adUName" type="text" required></div>
+						</div>
+						<div class='full'>
+							<div class=' lh half'>Phone No: </div>
+							<div class=' half'><input class="bd" id="adUPhone" name="adUPhone" type="text" max ="9999999999" min="1000000000" maxlength="10" required><label hidden style="color:red;" >phone number invalid !!!</label></div>
+						</div>
+						<div class='full'>
+							<div class=' lh half'>Pin: </div>
+							<div class=' half'><input class="bd" id="adUPin" name="adUPin" type="text" max ="99999" min="00000" maxlength="5" required><label hidden style="color:red;" >pin invalid !!!</label></div>
+						</div>
+						<div class='full'>
+							<div class=' lh half'>Street: </div>
+							<div class=' half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div>
+						</div>
 					</div>
-					<div class='full'>
-						<div class=' lh half'>Name: </div>
-						<div class=' half'><input class="bd" id="adUName" name="adUName" type="text" required></div>
-					</div>
-					<div class='full'>
-						<div class=' lh half'>Phone No: </div>
-						<div class=' half'><input class="bd" id="adUPhone" name="adUPhone" type="text" max ="9999999999" min="1000000000" maxlength="10" required><label hidden style="color:red;" >phone number invalid !!!</label></div>
-					</div>
-					<div class='full'>
-						<div class=' lh half'>Pin: </div>
-						<div class=' half'><input class="bd" id="adUPin" name="adUPin" type="text" max ="99999" min="00000" maxlength="5" required><label hidden style="color:red;" >pin invalid !!!</label></div>
-					</div>
-					<div class='full'>
-						<div class=' lh half'>Street: </div>
-						<div class=' half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div>
-					</div>
-				</div>
 				</div>
 				<div id="submissionDiv" align="center" class='full'>
 					<div class=' full'><input id="submit" value="Submit" type="submit"></div>
