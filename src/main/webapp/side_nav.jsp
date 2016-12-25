@@ -1,4 +1,4 @@
-
+<%@ page import="java.io.*,java.util.*,forsell.DbConnect;import java.sql.*" %>
     <link href="css/bootstrap.css" rel="stylesheet">
  
 
@@ -57,7 +57,7 @@
       <script src="js/html5shiv.js"></script>
     <![endif]-->
 
-    <div class="navbar" hidden>
+    <div class="navbar">
         <div class="container">
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -69,146 +69,64 @@
                   be used as you please.
                 -->
                 <ul class="dropdown-menu" role="menu">
-                    <li data-submenu-id="submenu-patas">
-                        <a href="#">Patas</a>
-                        <!--
-                          jQuery-menu-aim: each class="popover" div defines submenu content. There are a million
-                          and one ways to do this, places to structure the HTML, etc. This is just one example.
-                          jQuery-menu-aim is agnostic to your HTML structure, it only fires events to be used
-                          as you please.
-                        -->
-                        <div id="submenu-patas" class="popover">
-                            <h3 class="popover-title">Patas</h3>
-                            <div class="popover-content"><img src="images/patas.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-snub-nosed">
-                        <a href="#">Golden Snub-Nosed</a>
-                        <div id="submenu-snub-nosed" class="popover">
-                            <h3 class="popover-title">Golden Snub-Nosed</h3>
-                            <div class="popover-content"><img src="images/snub-nosed.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-duoc-langur">
-                        <a href="#">Duoc Langur</a>
-                        <div id="submenu-duoc-langur" class="popover">
-                            <h3 class="popover-title">Duoc Langur</h3>
-                            <div class="popover-content"><img src="images/duoc-langur.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-pygmy">
-                        <a href="#">Baby Pygmy Marmoset</a>
-                        <div id="submenu-pygmy" class="popover">
-                            <h3 class="popover-title">Baby Pygmy Marmoset</h3>
-                            <div class="popover-content"><img src="images/pygmy.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-tamarin">
-                        <a href="#">Black Lion Tamarin</a>
-                        <div id="submenu-tamarin" class="popover">
-                            <h3 class="popover-title">Black Lion Tamarin</h3>
-                            <div class="popover-content"><img src="images/tamarin.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-monk">
-                        <a href="#">Monk Saki</a>
-                        <div id="submenu-monk" class="popover">
-                            <h3 class="popover-title">Monk Saki</h3>
-                            <div class="popover-content"><img src="images/monk.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-gabon">
-                        <a href="#">Gabon Talapoin</a>
-                        <div id="submenu-gabon" class="popover">
-                            <h3 class="popover-title">Gabon</h3>
-                            <div class="popover-content"><img src="images/gabon.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-grivet">
-                        <a href="#">Grivet</a>
-                        <div id="submenu-grivet" class="popover">
-                            <h3 class="popover-title">Grivet</h3>
-                            <div class="popover-content"><img src="images/grivet.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-red-leaf">
-                        <a href="#">Red Leaf</a>
-                        <div id="submenu-red-leaf" class="popover">
-                            <h3 class="popover-title">Red Leaf</h3>
-                            <div class="popover-content"><img src="images/red-leaf.png"></div>
-                        </div>
-                    </li>
-                    <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
-                    
-                     <li data-submenu-id="submenu-king-colobus">
-                        <a href="#">King Colobus</a>
-                        <div id="submenu-king-colobus" class="popover">
-                            <h3 class="popover-title">King Colobus</h3>
-                            <div class="popover-content"><img src="images/colobus.png"></div>
-                        </div>
-                    </li>
+       <%          try{
+						DbConnect db = new DbConnect();
+						Statement stmt=db.conn();
+						String query = "select * from cat_subcat_mapping order by prod_cat;;";
+						System.out.println(query);
+						ResultSet rs = stmt.executeQuery(query);
+						int times=0,i=0,imgCount=0;
+						String prev="";
+						if(!rs.isBeforeFirst()){
+							out.println("No Entries");
+						}
+						else
+						{
+							while(rs.next())
+							{
+								if(prev.equals(""))
+								{
+									//out.println(rs.getString("prod_cat"));
+									prev=rs.getString("prod_cat");
+									%>
+									<li data-submenu-id="submenu-<%= rs.getString("prod_cat")%>">
+			                        <a href="#"><%=rs.getString("prod_cat")%></a>
+				                        <div id="submenu-<%=rs.getString("prod_sub_cat")%>" class="popover">
+				                            <h3 class="popover-title"><%=rs.getString("prod_sub_cat")%></h3>
+				                        	<div class="popover-content">one</div>
+				                        </div>
+			                <%       
+								}
+								else if(prev.equals(rs.getString("prod_cat")))
+								{
+									%>
+								
+				                        <div id="submenu-<%=rs.getString("prod_sub_cat")%>" class="popover">
+				                            <h3 class="popover-title"><%=rs.getString("prod_sub_cat")%></h3>
+				                        </div>
+			                        <%
+								}
+								else
+								{
+									prev=rs.getString("prod_cat");
+									%>
+									</li>
+									<li data-submenu-id="submenu-<%= rs.getString("prod_cat")%>">
+			                        <a href="#"><%=rs.getString("prod_cat")%></a>
+									<div id="submenu-<%=rs.getString("prod_sub_cat")%>" class="popover">
+				                            <h3 class="popover-title"><%=rs.getString("prod_sub_cat")%></h3>
+				                        </div>
+								<%
+								}
+							}
+						}
+					}
+                catch(Exception e) {
+      			  System.out.println("SQLException caught: " +e.getMessage());
+      			  //return false;
+      			}
+			                        %>
+					</li>
                 </ul>
               </li>
             </ul>
