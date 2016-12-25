@@ -95,8 +95,10 @@
 						<div><%
 							  String err = null;
 							  err = request.getParameter("error");
-							  if(err != null)
-									out.println("You probably did a blunder while filling the form!!");%></div>
+							  if(err != null){
+									out.println("You probably did a blunder while filling the form!!");
+									err = null;
+									}%></div>
 						<div id='itemDiv'style='margin: 5px; padding:5px; border-radius:10px;'>
 							<h3 style='text-align:center;'>Item 1</h3>
 							<div class='full'>
