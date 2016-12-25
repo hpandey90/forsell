@@ -16,7 +16,7 @@ import java.util.UUID;
 public class AddAd extends HttpServlet{
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
-				int check=0,valid=0;
+				int check=0,valid=0,err=0;
 				String[] prodID = new String[5];
 		 try {
 			    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -101,13 +101,13 @@ public class AddAd extends HttpServlet{
 			    response.sendRedirect("index.jsp");
 	            }
 		 } catch(Exception e) {
+			    err = valid;
 			 	while(valid<=check){
 			 		File index = new File("\\\\192.168.0.19/uploads/"+prodID[valid]);
 			 		String[]entries = index.list();
 			 		if(index.exists()){
 			 		for(String s: entries){
 			 		    File currentFile = new File(index.getPath(),s);			 		    
-			 		    System.out.println(currentFile.getName());
 			 		    currentFile.delete();			 	
 			 		}
 			 		index.delete();
@@ -115,7 +115,7 @@ public class AddAd extends HttpServlet{
 			 		valid++;
 			 	}
 			    System.out.println(e.getMessage());
-			    response.sendRedirect("postAd.jsp?error=failedQuery");
+			    response.sendRedirect("postAd.jsp?error="+(check-err));
 			    //out.println(e.printStackTrace());
 			    
 			  }
