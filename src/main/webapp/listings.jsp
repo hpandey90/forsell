@@ -18,22 +18,14 @@
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .filtersDiv{
-	background: rgba(128, 128, 128, 0.37);
-    margin: 3%;
-}
-.filtersDiv > div{
 	max-height:100px;
 	overflow-y: auto;
-	padding-left:2%;
 }
-
-
 /* Add some padding inside the card container */
 .card_container {
     padding: 2px 16px;
@@ -75,7 +67,6 @@ DbConnect db = new DbConnect();
 Statement stmt = db.conn();
 ResultSet rs = stmt.executeQuery(query);
 //Statement stmtStreet = db.conn();
-
 /* ResultSet streetRS = stmtStreet.executeQuery(streetFilter);
 Statement stmtZip = db.conn();
 ResultSet zipRS = stmtZip.executeQuery(zipFilter);
@@ -95,36 +86,18 @@ noResult = 1;
 }
 else{
 %>
-
-		<div id='sideDiv'style="float:left; width:21.5%;">
-		    <jsp:include page="side_nav.jsp"/>
-		    <div class='filtersDiv' >
-		    	<div>Filter By Street:<div id='streetDiv'>
-		    	<%while (streetRS.next()){ %>
-		    	<div><input type='checkbox'><%=streetRS.getString("street") %></div>
-		    		<% } %>
-		    		</div>
-		    	</div>		    	
-		    </div>
-		    <div class='filtersDiv' >	
-		    	<div>Filter By Zip Code:<div id='zipDiv'>
-		    	<%while (zipRS.next()){ %>
-		    	<div><input type='checkbox'><%=zipRS.getString("zip_code") %></div>
-		    		<% } %>
-		    		</div>
-		    	</div>		    	
-		    </div>
-		    <div class='filtersDiv' >
-		    	<div>Filter By Price:<div id='priceDiv'>
-		    	<%while (priceRS.next()){ %>
-		    	<div><input type='checkbox'><%=priceRS.getString("price") %></div>
-		    		<% } %>
-		    		</div>
-		    	</div>		    	
-		    </div>
-	    </div>
-
-			<div style='float:left; width:50%;'>
+<div style='float:right; width:28.5%;'>
+<form name="sort" action="listings.jsp">
+  <select name="sortBy" onchange="submitForm()">
+  	<option value="Sort By:">Sort By:</option>
+    <option value="Most Recent">Most Recent</option>
+    <option value="Price: Low to High">Price: Low to High</option>
+    <option value="Price: High to Low">Price: High to Low</option>
+  </select>
+  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
+</form>
+</div>
+			<div style='float:right; width:50%;'>
 			<%
 	while(rs.next()){
 				streetFilter.put(rs.getString("street"),1);
@@ -195,19 +168,7 @@ else{
 	    </div>
     </div>
 <% } %></div>
-<%if(noResult == 0){ %>
-<div style='float:left; width:28.5%;'>
-<form name="sort" action="listings.jsp">
-  <select name="sortBy" onchange="submitForm()">
-  	<option value="Sort By:">Sort By:</option>
-    <option value="Most Recent">Most Recent</option>
-    <option value="Price: Low to High">Price: Low to High</option>
-    <option value="Price: High to Low">Price: High to Low</option>
-  </select>
-  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
-</form>
-</div>
-<%
+<%if(noResult == 0){ 
 }
 }
 catch(Exception e) {
@@ -215,5 +176,6 @@ catch(Exception e) {
 }
 %>
 <div></div><div></div>
+
 </body>
 </html>
