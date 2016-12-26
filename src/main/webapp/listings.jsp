@@ -23,8 +23,16 @@
 	    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 	}
 	.filtersDiv{
+		
+		margin: 3%;
+	    padding-left: 2%;
+	    background: rgba(128, 128, 128, 0.4);
+	}
+	
+	.filtersDiv > div{
 		max-height:100px;
 		overflow-y: auto;
+		height: 98%;
 	}
 	/* Add some padding inside the card container */
 	.card_container {
@@ -32,9 +40,12 @@
 	}
 	</style>
 	<script>
-	function submitForm(){
-		document.forms["sort"].submit();
+	function submitForm(arg){
+		document.forms[arg].submit();
 	}
+	$("input[type=checkbox]").on("change",function(){
+		submitForm("filter");
+	});
 	</script>
 	</head>
 <body>
@@ -155,38 +166,46 @@ else{
 	%></div>
 	<div style="float:left; width:21.5%;">
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
-	    <div class='filtersDiv'>
 	     <form method="get" name="filter" action="listings.jsp">
-	    	<div>Filter By Street:
-	    	<%while(it1.hasNext()){
-	    		pair = (Map.Entry)it1.next();			    		
-	    	 %>
-	    	<div>
-	    	<script>
-	    	$("input[type=checkbox]").on("change",function(){
-	    		submitForm("filter");
-	    	});
-	    	</script>
-	    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
-	    		<% } %>
-	    	</div>		
-	    	<div>Filter By Zip Code:
-	    	<%while(it2.hasNext()){
-	    		pair = (Map.Entry)it2.next();			    		
-	    	 %>
-	    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
-	    		<% } %>
+	     <div class='filtersDiv'>
+		     <div>
+		    	<div>Filter By Street:
+		    	<%while(it1.hasNext()){
+		    		pair = (Map.Entry)it1.next();			    		
+		    	 %>
+		    	<div>
+		    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
+		    		<% } %>
+		    	</div>
+	    	</div>
+    	</div>
+	    	
+    	<div class='filtersDiv'>	
+	    	<div>	
+		    	<div>Filter By Zip Code:
+		    	<%while(it2.hasNext()){
+		    		pair = (Map.Entry)it2.next();			    		
+		    	 %>
+		    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
+		    		<% } %>
+		    	</div>
+	    	</div>
+    	</div>
+	    	
+    	<div class='filtersDiv'>
+	    	<div>	
+		    	<div>Filter By Price:
+		    	<%while(it3.hasNext()){
+		    		pair = (Map.Entry)it3.next();			    		
+		    	 %>
+		    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>"><%=pair.getKey().toString() %></div>
+		    		<% } %>
+		    	</div>
 	    	</div>	
-	    	<div>Filter By Price:
-	    	<%while(it3.hasNext()){
-	    		pair = (Map.Entry)it3.next();			    		
-	    	 %>
-	    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>"><%=pair.getKey().toString() %></div>
-	    		<% } %>
-	    	</div>	
-	    	<input type="hidden" name="q" value=<%=request.getParameter("q")%>>
-	    	<%-- <input type="hidden" name="sortBy" value=<%=request.getParameter("sortBy")%>> --%>     	
-	    </div>
+    	</div>
+    	<input type="hidden" name="q" value=<%=request.getParameter("q")%>>
+    	<%-- <input type="hidden" name="sortBy" value=<%=request.getParameter("sortBy")%>> --%>     	
+	    	
     </div>
 <% } %></div>
 <%if(noResult == 0){ %>
