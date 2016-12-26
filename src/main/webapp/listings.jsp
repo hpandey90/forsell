@@ -59,23 +59,28 @@ else if(order.equals("Price: High to Low"))
 else if(order.equals("Most Recent"))
 	order = "entry_date desc";
 }
-String query,streetFilter,zipFilter,priceFilter;
+String query;//,streetFilter,zipFilter,priceFilter;
+int streetCount=1,zipCount=1,priceCount=1;
 query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 if(order != null)
 	query = query + " ORDER BY " + order; 
-streetFilter = "SELECT DISTINCT street FROM postads WHERE prod_sub_cat = '" + listing +"'";
-zipFilter = "SELECT DISTINCT zip_code FROM postads WHERE prod_sub_cat = '" + listing +"'";
-priceFilter = "SELECT DISTINCT price FROM postads WHERE prod_sub_cat = '" + listing +"'";
+//streetFilter = "SELECT DISTINCT street FROM postads WHERE prod_sub_cat = '" + listing +"'";
+//zipFilter = "SELECT DISTINCT zip_code FROM postads WHERE prod_sub_cat = '" + listing +"'";
+//priceFilter = "SELECT DISTINCT price FROM postads WHERE prod_sub_cat = '" + listing +"'";
+HashMap<String,Integer> streetFilter = new HashMap<String,Integer>();
+HashMap<String,Integer> zipFilter = new HashMap<String,Integer>();
+HashMap<String,Integer> priceFilter = new HashMap<String,Integer>();
 try {
 DbConnect db = new DbConnect();
 Statement stmt = db.conn();
 ResultSet rs = stmt.executeQuery(query);
-Statement stmtStreet = db.conn();
-ResultSet streetRS = stmtStreet.executeQuery(streetFilter);
+//Statement stmtStreet = db.conn();
+
+/* ResultSet streetRS = stmtStreet.executeQuery(streetFilter);
 Statement stmtZip = db.conn();
 ResultSet zipRS = stmtZip.executeQuery(zipFilter);
 Statement stmtPrice = db.conn();
-ResultSet priceRS = stmtPrice.executeQuery(priceFilter);
+ResultSet priceRS = stmtPrice.executeQuery(priceFilter); */
 %>
 <div>			    
 <%
@@ -90,6 +95,7 @@ noResult = 1;
 }
 else{
 %>
+
 		<div id='sideDiv'style="float:left; width:21.5%;">
 		    <jsp:include page="side_nav.jsp"/>
 		    <div class='filtersDiv' >
@@ -117,9 +123,13 @@ else{
 		    	</div>		    	
 		    </div>
 	    </div>
+
 			<div style='float:left; width:50%;'>
 			<%
 	while(rs.next()){
+				streetFilter.put(rs.getString("street"),1);
+				zipFilter.put(rs.getString("zip_code"),1);
+				priceFilter.put(rs.getString("price"),1);
 			%>
 		
 		<div style="float:left; width:100%;">
@@ -150,7 +160,40 @@ else{
 		 </a>
 		 </div>	
 		<%
-	}%></div>
+	}
+	Iterator it1 = streetFilter.entrySet().iterator();
+	Iterator it2 = zipFilter.entrySet().iterator();
+	Iterator it3 = priceFilter.entrySet().iterator();
+	Map.Entry pair;
+	%></div>
+	<div style="float:left; width:21.5%;">
+	   <%--  <jsp:include page="side_nav.jsp"/> --%>
+	    <div class='filtersDiv'>
+	     <form method="post" name="form1" action="listings.jsp">
+	    	<div>Filter By Street:
+	    	<%while(it1.hasNext()){
+	    		pair = (Map.Entry)it1.next();			    		
+	    	 %>
+	    	<div><input type='checkbox' name="street-"<%=streetCount++ %>><%=pair.getKey().toString() %></div>
+	    		<% } %>
+	    	</div>		
+	    	<div>Filter By Zip Code:
+	    	<%while(it2.hasNext()){
+	    		pair = (Map.Entry)it2.next();			    		
+	    	 %>
+	    	<div><input type='checkbox' name="zip-"<%=zipCount++ %>><%=pair.getKey().toString() %></div>
+	    		<% } %>
+	    	</div>	
+	    	<div>Filter By Price:
+	    	<%while(it3.hasNext()){
+	    		pair = (Map.Entry)it3.next();			    		
+	    	 %>
+	    	<div><input type='checkbox' name="price-"<%=priceCount++%>><%=pair.getKey().toString() %></div>
+	    		<% } %>
+	    	</div>	
+	    	</form>	     	
+	    </div>
+    </div>
 <% } %></div>
 <%if(noResult == 0){ %>
 <div style='float:left; width:28.5%;'>
