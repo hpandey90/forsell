@@ -40,7 +40,7 @@
 <body>
 <% 
 String listing,order=null;
-int noResult=0; 
+int noResult=0,i=0; 
 listing = request.getParameter("q");
 order = request.getParameter("sortBy");
 if(order!=null){
@@ -52,13 +52,33 @@ else if(order.equals("Most Recent"))
 	order = "entry_date desc";
 }
 String query;//,streetFilter,zipFilter,priceFilter;
-int streetCount=1,zipCount=1,priceCount=1;
+String[] streetValues = request.getParameterValues("street");
+String[] zipValues = request.getParameterValues("zip");
+String[] priceValues = request.getParameterValues("price");
 query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
+if(streetValues != null){
+	query += " and street in ('";
+	for(i=0; i< (streetValues.length - 1); i++)
+		query += streetValues[i] + "','";
+	query += streetValues[i] + "')";
+	System.out.println(query);
+}
+if(zipValues != null){
+	query += " and zip_code in ('";
+	for(i=0; i< (zipValues.length - 1); i++)
+		query += zipValues[i] + "','";
+	query += zipValues[i] + "')";
+	System.out.println(query);
+}
+if(priceValues != null){
+	query += " and price in ('";
+	for(i=0; i< (priceValues.length - 1); i++)
+		query += priceValues[i] + "','";
+	query += priceValues[i] + "')";
+	System.out.println(query);
+}
 if(order != null)
 	query = query + " ORDER BY " + order; 
-//streetFilter = "SELECT DISTINCT street FROM postads WHERE prod_sub_cat = '" + listing +"'";
-//zipFilter = "SELECT DISTINCT zip_code FROM postads WHERE prod_sub_cat = '" + listing +"'";
-//priceFilter = "SELECT DISTINCT price FROM postads WHERE prod_sub_cat = '" + listing +"'";
 HashMap<String,Integer> streetFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> zipFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> priceFilter = new HashMap<String,Integer>();
@@ -66,12 +86,6 @@ try {
 DbConnect db = new DbConnect();
 Statement stmt = db.conn();
 ResultSet rs = stmt.executeQuery(query);
-//Statement stmtStreet = db.conn();
-/* ResultSet streetRS = stmtStreet.executeQuery(streetFilter);
-Statement stmtZip = db.conn();
-ResultSet zipRS = stmtZip.executeQuery(zipFilter);
-Statement stmtPrice = db.conn();
-ResultSet priceRS = stmtPrice.executeQuery(priceFilter); */
 %>
 <div>			    
 <%
@@ -142,33 +156,55 @@ else{
 	<div style="float:left; width:21.5%;">
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
 	    <div class='filtersDiv'>
-	     <form method="post" name="form1" action="listings.jsp">
+	     <form method="get" name="filter" action="listings.jsp">
 	    	<div>Filter By Street:
 	    	<%while(it1.hasNext()){
 	    		pair = (Map.Entry)it1.next();			    		
 	    	 %>
-	    	<div><input type='checkbox' name="street-"<%=streetCount++ %>><%=pair.getKey().toString() %></div>
+	    	<div>
+	    	<script>
+	    	$("input[type=checkbox]").on("change",function(){
+	    		submitForm("filter");
+	    	});
+	    	</script>
+	    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
 	    		<% } %>
 	    	</div>		
 	    	<div>Filter By Zip Code:
 	    	<%while(it2.hasNext()){
 	    		pair = (Map.Entry)it2.next();			    		
 	    	 %>
-	    	<div><input type='checkbox' name="zip-"<%=zipCount++ %>><%=pair.getKey().toString() %></div>
+	    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
 	    		<% } %>
 	    	</div>	
 	    	<div>Filter By Price:
 	    	<%while(it3.hasNext()){
 	    		pair = (Map.Entry)it3.next();			    		
 	    	 %>
-	    	<div><input type='checkbox' name="price-"<%=priceCount++%>><%=pair.getKey().toString() %></div>
+	    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>"><%=pair.getKey().toString() %></div>
 	    		<% } %>
 	    	</div>	
-	    	</form>	     	
+	    	<input type="hidden" name="q" value=<%=request.getParameter("q")%>>
+	    	<%-- <input type="hidden" name="sortBy" value=<%=request.getParameter("sortBy")%>> --%>     	
 	    </div>
     </div>
 <% } %></div>
-<%if(noResult == 0){ 
+<%if(noResult == 0){ %>
+<div style='float:left; width:28.5%;'>
+<!-- <form name="sort" action="listings.jsp"> -->
+  <select name="sortBy" onchange="submitForm('filter')">
+  	<!-- <option value="Sort By:">Sort By:</option> -->
+    <option value="Most Recent">Most Recent</option>
+    <option value="Price: Low to High">Price: Low to High</option>
+    <option value="Price: High to Low">Price: High to Low</option>
+  </select>
+ <%--  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
+  <input type="hidden" name="street" value=<%=request.getParameterValues("street")%>>
+  <input type="hidden" name="zip" value=<%=request.getParameterValues("zip")%>>
+  <input type="hidden" name="price" value=<%=request.getParameterValues("price")%>> --%>
+</form>
+</div>
+<%
 }
 }
 catch(Exception e) {
