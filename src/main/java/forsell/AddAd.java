@@ -13,6 +13,23 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.output.*;
 import java.util.UUID;
 
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+
 public class AddAd extends HttpServlet{
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
@@ -78,10 +95,54 @@ public class AddAd extends HttpServlet{
 		                    boolean status = path.mkdirs();
 		                }
 		                imgExt[k-1][l++] = ext[ext.length-1];
-		                File uploadedFile = new File(path + "/" + (counter++) + "." + ext[ext.length-1]);
+		                if(ext[ext.length-1].toLowerCase().contains("jpg") || ext[ext.length-1].toLowerCase().contains("jpeg")){
+		                File uploadedFile = new File(path + "/temp-" + (counter) + "." + ext[ext.length-1]);
 		                System.out.println(uploadedFile.getAbsolutePath());
 		                item.write(uploadedFile);
+		                
+		                //image compression starts
+		                System.out.println("compression starts");
+		                File imageFile = new File(root + "/temp-" + (counter) + "." + ext[ext.length-1]);
+		        		File compressedImageFile = new File(root + "/" + (counter++) + "." + ext[ext.length-1]);
+		        		//System.out.println("new file = "+root + "/" + (counter++) + "." + ext[ext.length-1])
+		        		InputStream inputStream = new FileInputStream(imageFile);
+		        		OutputStream outputStream = new FileOutputStream(compressedImageFile);
 
+		        		float imageQuality = 0.3f; //specify value between 0-1 for image quality
+
+		        		//Create the buffered image
+		        		BufferedImage bufferedImage = ImageIO.read(inputStream);
+
+		        		//Get image writers
+		        		Iterator<ImageWriter> imageWriters = ImageIO.getImageWritersByFormatName(ext[ext.length-1]);
+
+		        		if (!imageWriters.hasNext())
+		        			throw new IllegalStateException("Writers Not Found!!");
+
+		        		ImageWriter imageWriter = (ImageWriter) imageWriters.next();
+		        		ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(outputStream);
+		        		imageWriter.setOutput(imageOutputStream);
+
+		        		ImageWriteParam imageWriteParam = imageWriter.getDefaultWriteParam();
+
+		        		//Set the compress quality metrics
+		        		imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+		        		imageWriteParam.setCompressionQuality(imageQuality);
+
+		        		//Created image
+		        		imageWriter.write(null, new IIOImage(bufferedImage, null, null), imageWriteParam);
+
+		        		// close all streams
+		        		inputStream.close();
+		        		outputStream.close();
+		        		imageOutputStream.close();
+		        		imageWriter.dispose();
+		        		uploadedFile.delete();
+		                }else{
+		                	File uploadedFile = new File(path + "/" + (counter) + "." + ext[ext.length-1]);
+			                System.out.println(uploadedFile.getAbsolutePath());
+			                item.write(uploadedFile);
+		                }
 		                }
 		            }
 		            i++;
