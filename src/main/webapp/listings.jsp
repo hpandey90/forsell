@@ -9,34 +9,34 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<style>
-.card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.filtersDiv{
-	max-height:100px;
-	overflow-y: auto;
-}
-/* Add some padding inside the card container */
-.card_container {
-    padding: 2px 16px;
-}
-</style>
-<script>
-function submitForm(arg){
-	document.forms[arg].submit();
-}
-</script>
-</head>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Insert title here</title>
+	<style>
+	.card {
+	    /* Add shadows to create the "card" effect */
+	    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
+	    transition: 0.3s;
+	}
+	/* On mouse-over, add a deeper shadow */
+	.card:hover {
+	    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+	.filtersDiv{
+		max-height:100px;
+		overflow-y: auto;
+	}
+	/* Add some padding inside the card container */
+	.card_container {
+	    padding: 2px 16px;
+	}
+	</style>
+	<script>
+	function submitForm(){
+		document.forms["sort"].submit();
+	}
+	</script>
+	</head>
 <body>
 <% 
 String listing,order=null;

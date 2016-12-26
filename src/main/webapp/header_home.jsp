@@ -207,11 +207,11 @@
 				<div class="searchDiv">
 					<form action='listings.jsp' class='innerTag'>
 						<input id="hero-demo" autofocus type="search" name="q" placeholder="What can I find for you...?" style="width:65%; outline:0; border-radius: 4px;border: none; height: 25px;">
-			  			<input type="submit" style>
+			  			<input type="submit" value='SUBMIT'>
 					</form>
 				</div>
 				<div class="advertDiv">
-					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'><img src="images/post-ad.png" alt="POST AD" width="130px"></a></div>		
+					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp"><img src="images/placead.png" alt="POST AD" width="130px"></a></div>		
 				</div>
 				<div class='loginDiv'>
 					<div class='innerTag'>
