@@ -131,14 +131,20 @@ else{
 		<%} %>	
 		</div>
 		 <div class="card_container" style="float:left; width:68%; word-break:break-all;">
-		  <div style='width:70%; float:left; '>  <b ><h3 style='margin-top:3%; margin-bottom:3%;'><%out.println(rs.getString("prod_title")); %></h3></b> </div>
-		    <div style='width:30%; float:right; font-size:x-small;'><p>Posted on: <%
+		  <div style='width:68%; float:left; '>  <b ><h3 style='margin-top:3%; margin-bottom:3%;'><%out.println(rs.getString("prod_title")); %></h3></b> </div>
+		    <div style='width:32%; float:right; font-size:x-small;'><p>Posted on: <%
 		    String[] post = (rs.getString("entry_date")).split("\\.");
 		    String dateStr = post[0];
 		    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		    Date result = formater.parse(dateStr);
 		    SimpleDateFormat AppDateFormat = new SimpleDateFormat("MMM-dd-yyyy");
 		    out.println(AppDateFormat.format(result));
+		    out.println(" ");
+		    Date date = new Date();
+		    Timestamp timestamp = rs.getTimestamp("entry_date");
+		    date = new java.util.Date(timestamp.getTime());
+		    SimpleDateFormat AppDateFormat2 = new SimpleDateFormat("hh:mm a");
+		    out.println(AppDateFormat2.format(date));
 		    %></p> </div>
 		    <div style='width:100%; float:left'><p style='margin-top:0%'><%out.println(rs.getString("prod_desc")); %></p> </div>
 		    <div style='width:100%; float:left'><b>$<%out.println(rs.getString("price")); %></b></div>
