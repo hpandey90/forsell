@@ -176,7 +176,8 @@ public class AddAd extends HttpServlet{
 			 		valid++;
 			 	}
 			    System.out.println(e.getMessage());
-			    response.sendRedirect("postAd.jsp?error="+(check-err));
+			    if(err < check)
+			      response.sendRedirect("postAd.jsp?error="+(check-err));
 			    //out.println(e.printStackTrace());
 			    
 			  }
