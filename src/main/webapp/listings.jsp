@@ -18,7 +18,6 @@
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -27,7 +26,6 @@
 	max-height:100px;
 	overflow-y: auto;
 }
-
 /* Add some padding inside the card container */
 .card_container {
     padding: 2px 16px;
@@ -102,7 +100,18 @@ noResult = 1;
 }
 else{
 %>
-			<div style='float:left; width:50%;'>
+<div style='float:right; width:28.5%;'>
+<form name="sort" action="listings.jsp">
+  <select name="sortBy" onchange="submitForm()">
+  	<option value="Sort By:">Sort By:</option>
+    <option value="Most Recent">Most Recent</option>
+    <option value="Price: Low to High">Price: Low to High</option>
+    <option value="Price: High to Low">Price: High to Low</option>
+  </select>
+  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
+</form>
+</div>
+			<div style='float:right; width:50%;'>
 			<%
 	while(rs.next()){
 				streetFilter.put(rs.getString("street"),1);
@@ -203,8 +212,6 @@ catch(Exception e) {
 }
 %>
 <div></div><div></div>
-
-
 
 </body>
 </html>

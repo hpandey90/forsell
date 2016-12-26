@@ -57,7 +57,7 @@
       <script src="js/html5shiv.js"></script>
     <![endif]-->
 
-    <div class="navbar">
+    <div class="navbar" hidden>
         <div class="container">
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -72,7 +72,7 @@
        <%          try{
 						DbConnect db = new DbConnect();
 						Statement stmt=db.conn();
-						String query = "select * from cat_subcat_mapping order by prod_cat;;";
+						String query = "select * from cat_subcat_mapping order by prod_cat;";
 						System.out.println(query);
 						ResultSet rs = stmt.executeQuery(query);
 						int times=0,i=0,imgCount=0;

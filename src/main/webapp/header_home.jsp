@@ -72,7 +72,7 @@
     		margin-right:2%;
 		}
 		.searchDiv{
-			width:65%;
+			width:60%;
 			height: inherit;
 			float: left;
 			display: table;
