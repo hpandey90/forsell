@@ -276,6 +276,12 @@ word-break: break-all;
 		    Date result = formater.parse(dateStr);
 		    SimpleDateFormat AppDateFormat = new SimpleDateFormat("MMM-dd-yyyy");
 		    out.println(AppDateFormat.format(result));
+		    out.println(" ");
+		    Date date = new Date();
+		    Timestamp timestamp = rs.getTimestamp("entry_date");
+		    date = new java.util.Date(timestamp.getTime());
+		    SimpleDateFormat AppDateFormat2 = new SimpleDateFormat("hh:mm a");
+		    out.println(AppDateFormat2.format(date));
 		    %></p>
 						
 <%  }
