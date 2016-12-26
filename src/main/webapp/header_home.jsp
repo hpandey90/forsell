@@ -206,7 +206,7 @@
 				</div>
 				<div class="searchDiv">
 					<form action='listings.jsp' class='innerTag'>
-						<input id="hero-demo" autofocus type="search" name="q" placeholder="Programming languages ..." style="width:65%; outline:0; border-radius: 4px;border: none; height: 25px;">
+						<input id="hero-demo" autofocus type="search" name="q" placeholder="What can I find for you...?" style="width:65%; outline:0; border-radius: 4px;border: none; height: 25px;">
 			  			<input type="submit" style>
 					</form>
 				</div>
