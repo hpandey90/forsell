@@ -24,9 +24,15 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .filtersDiv{
+	background: rgba(128, 128, 128, 0.37);
+    margin: 3%;
+}
+.filtersDiv > div{
 	max-height:100px;
 	overflow-y: auto;
+	padding-left:2%;
 }
+
 
 /* Add some padding inside the card container */
 .card_container {
@@ -84,23 +90,30 @@ noResult = 1;
 }
 else{
 %>
-		<div style="float:left; width:21.5%;">
+		<div id='sideDiv'style="float:left; width:21.5%;">
 		    <jsp:include page="side_nav.jsp"/>
-		    <div class='filtersDiv'>
-		    	<div>Filter By Street:
+		    <div class='filtersDiv' >
+		    	<div>Filter By Street:<div id='streetDiv'>
 		    	<%while (streetRS.next()){ %>
 		    	<div><input type='checkbox'><%=streetRS.getString("street") %></div>
 		    		<% } %>
-		    	</div>		
-		    	<div>Filter By Zip Code:
+		    		</div>
+		    	</div>		    	
+		    </div>
+		    <div class='filtersDiv' >	
+		    	<div>Filter By Zip Code:<div id='zipDiv'>
 		    	<%while (zipRS.next()){ %>
 		    	<div><input type='checkbox'><%=zipRS.getString("zip_code") %></div>
 		    		<% } %>
-		    	</div>	
-		    	<div>Filter By Price:
+		    		</div>
+		    	</div>		    	
+		    </div>
+		    <div class='filtersDiv' >
+		    	<div>Filter By Price:<div id='priceDiv'>
 		    	<%while (priceRS.next()){ %>
 		    	<div><input type='checkbox'><%=priceRS.getString("price") %></div>
 		    		<% } %>
+		    		</div>
 		    	</div>		    	
 		    </div>
 	    </div>
@@ -159,8 +172,5 @@ catch(Exception e) {
 }
 %>
 <div></div><div></div>
-
-
-
 </body>
 </html>
