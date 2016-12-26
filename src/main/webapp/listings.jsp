@@ -53,47 +53,25 @@ else if(order.equals("Price: High to Low"))
 else if(order.equals("Most Recent"))
 	order = "entry_date desc";
 }
-String query;
+String query,streetFilter,zipFilter,priceFilter;
 query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 if(order != null)
 	query = query + " ORDER BY " + order; 
+streetFilter = "SELECT DISTINCT street FROM postads WHERE prod_sub_cat = '" + listing +"'";
+zipFilter = "SELECT DISTINCT zip_code FROM postads WHERE prod_sub_cat = '" + listing +"'";
+priceFilter = "SELECT DISTINCT price FROM postads WHERE prod_sub_cat = '" + listing +"'";
 try {
 DbConnect db = new DbConnect();
 Statement stmt = db.conn();
 ResultSet rs = stmt.executeQuery(query);
+Statement stmtStreet = db.conn();
+ResultSet streetRS = stmtStreet.executeQuery(streetFilter);
+Statement stmtZip = db.conn();
+ResultSet zipRS = stmtZip.executeQuery(zipFilter);
+Statement stmtPrice = db.conn();
+ResultSet priceRS = stmtPrice.executeQuery(priceFilter);
 %>
-<div>		
-		<div style="float:left; width:21.5%;">
-		    <jsp:include page="side_nav.jsp"/>
-		    <div class='filtersDiv'>
-		    	<div>Filter By BRAND
-		    	<div><input type='checkbox'>Honda</div>
-		    	<div><input type='checkbox'>Hyundai</div>
-		    	<div><input type='checkbox'>Dodge</div>
-		    	<div><input type='checkbox'>Mercedez</div>
-		    	<div><input type='checkbox'>BMW</div>
-		    	<div><input type='checkbox'>Audi</div>
-		    	<div><input type='checkbox'>Chevrolet</div>
-		    	<div><input type='checkbox'>Bentley</div>
-		    	<div><input type='checkbox'>Rolls Royace</div>
-		    	<div><input type='checkbox'>Bugati</div>
-		    	<div><input type='checkbox'>Masaratti</div>
-		    	<div><input type='checkbox'>Lamborgini</div>
-		    	<div><input type='checkbox'>Ferrari</div>
-		    	<div><input type='checkbox'>GMC</div>
-		    	<div><input type='checkbox'>Nissan</div>
-		    	<div><input type='checkbox'>Jaguar</div>
-		    	<div><input type='checkbox'>Ford</div>
-		    	<div><input type='checkbox'>Jeep</div>
-		    	<div><input type='checkbox'>Lincoln</div>
-		    	<div><input type='checkbox'>Porche</div>
-		    	<div><input type='checkbox'>Fiat</div>
-		    	
-		    	</div>
-		    	<div></div>
-		    </div>
-	    </div>
-	    
+<div>			    
 <%
 if(!rs.isBeforeFirst()){%>
 <div style='float:left; width:50%;'>
@@ -105,7 +83,29 @@ noResult = 1;
 <%
 }
 else{
-%><div style='float:left; width:50%;'><%
+%>
+		<div style="float:left; width:21.5%;">
+		    <jsp:include page="side_nav.jsp"/>
+		    <div class='filtersDiv'>
+		    	<div>Filter By Street:
+		    	<%while (streetRS.next()){ %>
+		    	<div><input type='checkbox'><%=streetRS.getString("street") %></div>
+		    		<% } %>
+		    	</div>		
+		    	<div>Filter By Zip Code:
+		    	<%while (zipRS.next()){ %>
+		    	<div><input type='checkbox'><%=zipRS.getString("zip_code") %></div>
+		    		<% } %>
+		    	</div>	
+		    	<div>Filter By Price:
+		    	<%while (priceRS.next()){ %>
+		    	<div><input type='checkbox'><%=priceRS.getString("price") %></div>
+		    		<% } %>
+		    	</div>		    	
+		    </div>
+	    </div>
+			<div style='float:left; width:50%;'>
+			<%
 	while(rs.next()){
 			%>
 		

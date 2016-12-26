@@ -211,7 +211,7 @@
 					</form>
 				</div>
 				<div class="advertDiv">
-					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'>Place an AD</a></div>		
+					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp" style='background: orange;'><img src="images/post-ad.png" alt="POST AD" width="130px"></a></div>		
 				</div>
 				<div class='loginDiv'>
 					<div class='innerTag'>
