@@ -174,8 +174,8 @@ else{
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
 	     <form method="get" name="filter" action="listings.jsp">
 	     <div class='filtersDiv'>
-		     <div>
-		    	<div>Filter By Street:
+		     <div>Filter By Street:
+		    	<div>
 		    	<%while(it1.hasNext()){
 		    		pair = (Map.Entry)it1.next();			    		
 		    	 %>
@@ -187,8 +187,8 @@ else{
     	</div>
 	    	
     	<div class='filtersDiv'>	
-	    	<div>	
-		    	<div>Filter By Zip Code:
+	    	<div>	Filter By Zip Code:
+		    	<div>
 		    	<%while(it2.hasNext()){
 		    		pair = (Map.Entry)it2.next();			    		
 		    	 %>
@@ -199,8 +199,8 @@ else{
     	</div>
 	    	
     	<div class='filtersDiv'>
-	    	<div>	
-		    	<div>Filter By Price:
+	    	<div>	Filter By Price:
+		    	<div>
 		    	<%while(it3.hasNext()){
 		    		pair = (Map.Entry)it3.next();			    		
 		    	 %>
