@@ -115,21 +115,7 @@
 				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
 			}
 		</script>	
-		<script src="scripts/auto-complete.js"></script>
- <script>
-        var demo1 = new autoComplete({
-            selector: '#goodssearch',
-            minChars: 1,
-            source: function(term, suggest){
-                term = term.toLowerCase();
-                var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
-                var suggestions = [];
-                for (i=0;i<choices.length;i++)
-                    if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-                suggest(suggestions);
-            }
-        });
-</script>
+	<script src="scripts/auto-complete.js"></script>
 	<link rel="stylesheet" href="css/auto-complete.css">
 	<body style='overflow-y:auto;'>		
 	
@@ -393,6 +379,27 @@
 							
 							})
 						</script>
+<script>
+$("#hero-demo").on("keyup",function(){
+	data = 'q='+ $("#hero-demo").val();
+    $.ajax({url: "auto_suggestion.jsp",
+    	data:data,
+    	success: function(result){
+        var demo1 = new autoComplete({
+            selector: '#hero-demo',
+            minChars: 1,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = result.split(",");
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            }
+        });
+    }});
+});
+</script>
 					</div>
 				</div>
 			</div>
