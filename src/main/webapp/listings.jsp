@@ -149,7 +149,7 @@ Sort By :-
 			%>
 		
 		<div style="float:left; width:100%;">
-		<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>"></a>
+		<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
 		<div class="card" style="width:96%;float:left;margin-left:15px; margin-right:15px; margin-top:5px; margin-bottom:5px;">
 		<div style='width:30%;'>
 		<%if(!(rs.getString("img_ext1")).equals("")){%>
