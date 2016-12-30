@@ -21,6 +21,7 @@
                 suggest(suggestions);
             }
         });
+        
 </script>
 <style>
 .card {
