@@ -115,7 +115,7 @@ noResult = 1;
 else{
 %>
 <div style='float:right; width:28.5%;'>
-<p>Sort By :-<p>
+Sort By :-
   <select name="sortBy" onchange="submitForm()">
  <% if(order != null){
   	if(order.equals("entry_date desc")){ %>
