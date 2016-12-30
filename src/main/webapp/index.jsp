@@ -6,7 +6,6 @@
 <form action="search.jsp" method="get">
 <!-- <input id="hero-demo" autofocus type="text" name="q" placeholder="Programming languages ..." style="width:60%;max-width:600px;outline:0"> -->
 </form>
-
 <style>
 .card {
     /* Add shadows to create the "card" effect */

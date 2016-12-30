@@ -40,33 +40,32 @@
 	}
 	</style>
 	<script>
-	function submitForm(arg){
-		document.forms[arg].submit();
+	function submitForm(){
+		document.forms["filter"].submit();
 	}
-	$("input[type=checkbox]").on("change",function(){
-		submitForm("filter");
-	});
 	</script>
 	</head>
 <body>
 <% 
 String listing,order=null;
 int noResult=0,i=0; 
+int flagS = 0;
 listing = request.getParameter("q");
 order = request.getParameter("sortBy");
 if(order!=null){
 if(order.equals("Price: Low to High"))
 	order = "price";
 else if(order.equals("Price: High to Low"))
-	order = "price  desc";
+	order = "price desc";
 else if(order.equals("Most Recent"))
 	order = "entry_date desc";
 }
-String query;//,streetFilter,zipFilter,priceFilter;
+String query,filter;//,streetFilter,zipFilter,priceFilter;
 String[] streetValues = request.getParameterValues("street");
 String[] zipValues = request.getParameterValues("zip");
 String[] priceValues = request.getParameterValues("price");
 query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
+filter = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 if(streetValues != null){
 	query += " and street in ('";
 	for(i=0; i< (streetValues.length - 1); i++)
@@ -88,8 +87,10 @@ if(priceValues != null){
 	query += priceValues[i] + "')";
 	System.out.println(query);
 }
-if(order != null)
-	query = query + " ORDER BY " + order; 
+if(order != null && !(order.equals("Sort By:")))
+	query = query + " ORDER BY " + order;
+else if(order == null)
+	query = query + " ORDER BY entry_date desc";
 HashMap<String,Integer> streetFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> zipFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> priceFilter = new HashMap<String,Integer>();
@@ -97,7 +98,9 @@ try {
 DbConnect db = new DbConnect();
 Statement stmt = db.conn();
 ResultSet rs = stmt.executeQuery(query);
-%>
+Statement stm = db.conn();
+ResultSet fl = stm.executeQuery(filter);
+%><form name="filter" action="listings.jsp">
 <div>			    
 <%
 if(!rs.isBeforeFirst()){%>
@@ -112,22 +115,37 @@ noResult = 1;
 else{
 %>
 <div style='float:right; width:28.5%;'>
-<form name="sort" action="listings.jsp">
+Sort By :-
   <select name="sortBy" onchange="submitForm()">
-  	<option value="Sort By:">Sort By:</option>
+ <% if(order != null){
+  	if(order.equals("entry_date desc")){ %>
+    <option value="Most Recent" selected>Most Recent</option>
+   <% }else{  %>
     <option value="Most Recent">Most Recent</option>
-    <option value="Price: Low to High">Price: Low to High</option>
+  <% }
+    if(order.equals("price")){   %>
+    <option value="Price: Low to High" selected>Price: Low to High</option>
+  <%  }else{   %>
+    <option value="Price: Low to High" >Price: Low to High</option>
+  <%  }
+    if(order.equals("price desc")){  %>
+    <option value="Price: High to Low" selected>Price: High to Low</option>
+  <%  }else{  %>
     <option value="Price: High to Low">Price: High to Low</option>
+  <%    }
+    }else{  %>
+    <option value="Most Recent" selected>Most Recent</option>
+    <option value="Price: Low to High" >Price: Low to High</option>
+    <option value="Price: High to Low">Price: High to Low</option>
+  <% } %> 
   </select>
-  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
-</form>
+  <input type="hidden" name="q" value='<%=request.getParameter("q")%>'/>
+  
 </div>
 			<div style='float:right; width:50%;'>
 			<%
 	while(rs.next()){
-				streetFilter.put(rs.getString("street"),1);
-				zipFilter.put(rs.getString("zip_code"),1);
-				priceFilter.put(rs.getString("price"),1);
+				
 			%>
 		
 		<div style="float:left; width:100%;">
@@ -142,7 +160,11 @@ else{
 		<%} %>	
 		</div>
 		 <div class="card_container" style="float:left; width:68%; word-break:break-all;">
-		  <div style='width:68%; float:left; '>  <b ><h3 style='margin-top:3%; margin-bottom:3%;'><%out.println(rs.getString("prod_title")); %></h3></b> </div>
+		  <div style='width:68%; float:left; '>  
+		  	<b>
+		  		<h3 style='margin-top:3%; margin-bottom:3%;'><%out.println(rs.getString("prod_title")); %></h3>
+		  	</b>
+		  </div>
 		    <div style='width:32%; float:right; font-size:x-small;'><p>Posted on: <%
 		    String[] post = (rs.getString("entry_date")).split("\\.");
 		    String dateStr = post[0];
@@ -165,6 +187,11 @@ else{
 		 </div>	
 		<%
 	}
+	while(fl.next()){
+		streetFilter.put(fl.getString("street"),1);
+		zipFilter.put(fl.getString("zip_code"),1);
+		priceFilter.put(fl.getString("price"),1);
+	}
 	Iterator it1 = streetFilter.entrySet().iterator();
 	Iterator it2 = zipFilter.entrySet().iterator();
 	Iterator it3 = priceFilter.entrySet().iterator();
@@ -172,16 +199,29 @@ else{
 	%></div>
 	<div style="float:left; width:21.5%;">
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
-	     <form method="get" name="filter" action="listings.jsp">
+	    <!--  <form method="get" name="filter" action="listings.jsp"> -->
 	     <div class='filtersDiv'>
 		     <div>
+
 		    	<div>Filter By Street:
 		    	<%while(it1.hasNext()){
-		    		pair = (Map.Entry)it1.next();			    		
-		    	 %>
+		    		flagS = 0;
+		    		pair = (Map.Entry)it1.next();	
+		    	if(streetValues != null){	
+		    	 for(int j=0;j<streetValues.length;j++){
+		    		 if((pair.getKey().toString()).equals(streetValues[j]))
+		    			 flagS = 1; 
+		    	 }
+		    	}
+		    	 if(flagS == 1){%>
+		    	<div>
+		    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>" checked><%=pair.getKey().toString() %></div>
+		    		<% } 
+		    		else {%>
 		    	<div>
 		    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
-		    		<% } %>
+		    	<%}
+		    	 }%>	
 		    	</div>
 	    	</div>
     	</div>
@@ -190,10 +230,22 @@ else{
 	    	<div>	
 		    	<div>Filter By Zip Code:
 		    	<%while(it2.hasNext()){
-		    		pair = (Map.Entry)it2.next();			    		
-		    	 %>
-		    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
-		    		<% } %>
+		    		flagS = 0;
+		    		pair = (Map.Entry)it2.next();	
+		    		if(zipValues != null){
+		    		for(int j=0;j<zipValues.length;j++){
+			    		 if((pair.getKey().toString()).equals(zipValues[j]))
+			    			 flagS = 1; 
+			    	 }
+		    		}
+		    	 if(flagS == 1){%>
+		    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>" checked><%=pair.getKey().toString() %></div>
+		    		<% } 
+		    		else {%>
+		    		<div>
+		    	<input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
+		    	<%}
+		    	 }%>
 		    	</div>
 	    	</div>
     	</div>
@@ -202,33 +254,30 @@ else{
 	    	<div>	
 		    	<div>Filter By Price:
 		    	<%while(it3.hasNext()){
-		    		pair = (Map.Entry)it3.next();			    		
-		    	 %>
-		    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>"><%=pair.getKey().toString() %></div>
-		    		<% } %>
+		    		flagS = 0;
+		    		pair = (Map.Entry)it3.next();	
+		    		if(priceValues != null){
+		    		for(int j=0;j<priceValues.length;j++){
+			    		 if((pair.getKey().toString()).equals(priceValues[j]))
+			    			 flagS = 1; 
+			    	 }
+		    		}
+		    	  if(flagS == 1){%>
+		    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>" checked><%=pair.getKey().toString() %></div>
+		    		<% } 
+		    	  else {%>
+		    		<div>
+		    	<input type='checkbox' name="price" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
+		    	<%}
+		    	 }%>
 		    	</div>
 	    	</div>	
-    	</div>
-    	<input type="hidden" name="q" value=<%=request.getParameter("q")%>>
-    	<%-- <input type="hidden" name="sortBy" value=<%=request.getParameter("sortBy")%>> --%>     	
-	    	
+    	</div>    		    	
     </div>
-<% } %></div>
-<%if(noResult == 0){ %>
-<div style='float:left; width:28.5%;'>
-<!-- <form name="sort" action="listings.jsp"> -->
-  <select name="sortBy" onchange="submitForm('filter')">
-  	<!-- <option value="Sort By:">Sort By:</option> -->
-    <option value="Most Recent">Most Recent</option>
-    <option value="Price: Low to High">Price: Low to High</option>
-    <option value="Price: High to Low">Price: High to Low</option>
-  </select>
- <%--  <input type="hidden" name="q" value=<%=request.getParameter("q")%>>
-  <input type="hidden" name="street" value=<%=request.getParameterValues("street")%>>
-  <input type="hidden" name="zip" value=<%=request.getParameterValues("zip")%>>
-  <input type="hidden" name="price" value=<%=request.getParameterValues("price")%>> --%>
-</form>
 </div>
+<div style='float:left; width:28.5%;'>
+</div>
+</form>
 <%
 }
 }
@@ -237,6 +286,8 @@ catch(Exception e) {
 }
 %>
 <div></div><div></div>
-
+		     <script>$("input[type=checkbox]").on("change",function(){
+				submitForm();
+			});</script>
 </body>
 </html>
