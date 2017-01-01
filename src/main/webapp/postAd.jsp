@@ -266,12 +266,12 @@
 	country====United States
 	postal_code====32608 -->
 	<table id="address" style="display:none">
-			  <input type="hidden" class="field" id="street_number" disabled="true"></input>
-              <input type="hidden" class="field" id="route" disabled="true"></input>
-              <input type="hidden" class="field" id="locality" disabled="true"></input>
-              <input type="hidden" class="field" id="administrative_area_level_1" disabled="true"></input>
-              <input type="hidden" class="field" id="postal_code" disabled="true"></input>
-              <input type="hidden" class="field" id="country" disabled="true"></input>
+			  <input type="hidden" class="field" name="street_number" id="street_number" disabled="true"></input>
+              <input type="hidden" class="field" name="route" id="route" disabled="true"></input>
+              <input type="hidden" class="field" name="locality" id="locality" disabled="true"></input>
+              <input type="hidden" class="field" name="administrative_area_level_1" id="administrative_area_level_1" disabled="true"></input>
+              <input type="hidden" class="field" name="postal_code" id="postal_code" disabled="true"></input>
+              <input type="hidden" class="field" name="country" id="country" disabled="true"></input>
     </table>
     <!--End Start Address field from users - do not set to block until necessary -->
 		
@@ -296,7 +296,7 @@
         street_number: 'short_name',
         route: 'long_name',
         locality: 'long_name',
-        administrative_area_level_1: 'short_name',
+        administrative_area_level_1: 'long_name',
         country: 'long_name',
         postal_code: 'short_name'
       };
@@ -326,6 +326,7 @@
         // and fill the corresponding field on the form.
         for (var i = 0; i < place.address_components.length; i++) {
           var addressType = place.address_components[i].types[0];
+          console.log("address types=="+place.address_components[i].types);
           if (componentForm[addressType]) {
             var val = place.address_components[i][componentForm[addressType]];
             document.getElementById(addressType).value = val;
