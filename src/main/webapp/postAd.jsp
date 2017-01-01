@@ -173,7 +173,7 @@
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_2" name="productImages1_2"></input>
 									</div>
 									<div class='imgDiv'>
@@ -212,15 +212,15 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Add Item <b style="
 					    font-size: xx-large;
 					    vertical-align: middle;
-					    cursor:pointer;
 						">+</b></p></div>
 						
 					<div id="removeForm" class="halfAssedButtons"><p style="
 					    font-family: sans-serif;
-					    font-size: 20px;
+					    font-size: 20px; 
 					    width: 141px;
 					    color: #f9f8f8;
 						background: #d42c2c;
@@ -231,10 +231,10 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Remove Item <b style="
 					    font-size: xx-large;
 					    vertical-align: text-top;
-					    cursor:pointer;
 						">-</b></p></div>
 				</div>
 
@@ -266,12 +266,12 @@
 	country====United States
 	postal_code====32608 -->
 	<table id="address" style="display:none">
-			  <input type="hidden" class="field" id="street_number" disabled="true"></input>
-              <input type="hidden" class="field" id="route" disabled="true"></input>
-              <input type="hidden" class="field" id="locality" disabled="true"></input>
-              <input type="hidden" class="field" id="administrative_area_level_1" disabled="true"></input>
-              <input type="hidden" class="field" id="postal_code" disabled="true"></input>
-              <input type="hidden" class="field" id="country" disabled="true"></input>
+			  <input type="hidden" class="field" name="street_number" id="street_number" disabled="true"></input>
+              <input type="hidden" class="field" name="route" id="route" disabled="true"></input>
+              <input type="hidden" class="field" name="locality" id="locality" disabled="true"></input>
+              <input type="hidden" class="field" name="administrative_area_level_1" id="administrative_area_level_1" disabled="true"></input>
+              <input type="hidden" class="field" name="postal_code" id="postal_code" disabled="true"></input>
+              <input type="hidden" class="field" name="country" id="country" disabled="true"></input>
     </table>
     <!--End Start Address field from users - do not set to block until necessary -->
 		
