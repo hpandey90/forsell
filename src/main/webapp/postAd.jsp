@@ -12,13 +12,20 @@
 		    	$("#removeForm").hide();
 		    }
 		}
+		function addImageSelectors(){
+			for(var i=1;i<6;i++){
+				var str = "<div class='imgDiv'><img src='images/unnamed.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+i+"' name='productImages"+count+"_"+i+"'></input></div>";
+				isec="#imageSection"+count;
+				$(isec).append(str);
+			}
+		};
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	if(count<6){
 	    		count++;
-		    	var string = "<div id='itemDiv"+count+"' class='itemDiv'><div class='abc'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>ITEM NAME</div>	<div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>SPECIFICATIONS </div><div class='rh half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>DESCRIPTION </div><div class='rh half'><textarea class='tarea bd' id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div></div><div class='full'><div class='lh half'>PRICE</div><div class='rh half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>PICTURES</div><div class='rh half'><input class='bdss' type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div></div>";
-		    	//var string = "<div id='itemDiv"+count+"'style='margin: 5px; padding:5px; border-radius:10px;'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>Give it a Name: </div><div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Specify it: </div><div class='rh half'><input class='bd' id='adCategory"+count+"' name='adCategory"+count+"' type='text'></div></div><div class='full'><div class=' lh half'>Describe it: </div><div class='rh half'><textarea rows='3' columns='4'id='adDesc"+count+"' name='adDesc"+count+"' style='resize:none;width:100%;box-shadow: 0 0 3px #e81212;'></textarea></div><div class=' full'><input type='file' accept='image/*' multiple='multiple' id='productImages"+count+"' name='productImages"+count+"'></input></div></div></div>";
+	    		var string = "<div id='itemDiv"+count+"' class='itemDiv'><div class='abc'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>ITEM NAME</div>	<div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>SPECIFICATIONS </div><div class='rh half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>DESCRIPTION </div><div class='rh half'><textarea class='tarea bd' id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div></div><div class='full'><div class='lh half'>PRICE</div><div class='rh half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>PICTURES</div><div class='rh half' id='imageSection"+count+"'></div></div></div></div>";
 		    	$("#itemInputDiv").append(string);
+		    	addImageSelectors();
 		    	current = "#itemDiv"+count;
 		    	enableRemove();
 	    	}
@@ -160,7 +167,7 @@
 							</div>
 							<div class='full'>
 								<div class='lh half'>PICTURES</div>
-								<div class='rh half'>
+								<div class='rh half' id='imageSection'>
 									<div class='imgDiv'>
 										<img src='images/unnamed.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1"></input>
@@ -208,6 +215,7 @@
 						" class="">Add Item <b style="
 					    font-size: xx-large;
 					    vertical-align: middle;
+					    cursor:pointer;
 						">+</b></p></div>
 						
 					<div id="removeForm" class="halfAssedButtons"><p style="
@@ -226,6 +234,7 @@
 						" class="">Remove Item <b style="
 					    font-size: xx-large;
 					    vertical-align: text-top;
+					    cursor:pointer;
 						">-</b></p></div>
 				</div>
 
@@ -287,7 +296,7 @@
         street_number: 'short_name',
         route: 'long_name',
         locality: 'long_name',
-        administrative_area_level_1: 'short_name',
+        administrative_area_level_1: 'long_name',
         country: 'long_name',
         postal_code: 'short_name'
       };
@@ -317,6 +326,7 @@
         // and fill the corresponding field on the form.
         for (var i = 0; i < place.address_components.length; i++) {
           var addressType = place.address_components[i].types[0];
+          console.log("address types=="+place.address_components[i].types);
           if (componentForm[addressType]) {
             var val = place.address_components[i][componentForm[addressType]];
             document.getElementById(addressType).value = val;
