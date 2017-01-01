@@ -257,12 +257,12 @@
 	country====United States
 	postal_code====32608 -->
 	<table id="address" style="display:none">
-			  <input type="hidden" class="field" id="street_number" disabled="true"></input>
-              <input type="hidden" class="field" id="route" disabled="true"></input>
-              <input type="hidden" class="field" id="locality" disabled="true"></input>
-              <input type="hidden" class="field" id="administrative_area_level_1" disabled="true"></input>
-              <input type="hidden" class="field" id="postal_code" disabled="true"></input>
-              <input type="hidden" class="field" id="country" disabled="true"></input>
+			  <input type="hidden" class="field" name="street_number" id="street_number" disabled="true"></input>
+              <input type="hidden" class="field" name="route" id="route" disabled="true"></input>
+              <input type="hidden" class="field" name="locality" id="locality" disabled="true"></input>
+              <input type="hidden" class="field" name="administrative_area_level_1" id="administrative_area_level_1" disabled="true"></input>
+              <input type="hidden" class="field" name="postal_code" id="postal_code" disabled="true"></input>
+              <input type="hidden" class="field" name="country" id="country" disabled="true"></input>
     </table>
     <!--End Start Address field from users - do not set to block until necessary -->
 		
