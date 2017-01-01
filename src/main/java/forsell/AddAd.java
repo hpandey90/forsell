@@ -53,6 +53,10 @@ public class AddAd extends HttpServlet{
 		        		imgExt[ii][jj] = "";
 		        String phone = "";
 		        String sstreet = "";
+		        String rroute = "";
+		        String city = "";
+		        String sstate = "";
+		        String ccountry = "";
 		        String pin = "";
 		        int flag = 1;
 		        int counter = 1;
@@ -74,8 +78,18 @@ public class AddAd extends HttpServlet{
 		                	phone = fieldValue[i];
 		                else if (fieldName[i].contains("adUPin"))
 		                	pin = fieldValue[i];
-		                else if (fieldName[i].contains("adUAddress"))
+		                else if (fieldName[i].contains("street_number"))
 		                	sstreet = fieldValue[i]; 
+		                else if (fieldName[i].contains("route"))
+		                	rroute = fieldValue[i]; 
+		                else if (fieldName[i].contains("locality"))	
+		                	city = fieldValue[i];
+		                else if (fieldName[i].contains("administrative_area_level_1"))
+		                	sstate = fieldValue[i];
+		                else if (fieldName[i].contains("postal_code"))
+		                	pin = fieldValue[i];
+		                else if (fieldName[i].contains("country"))
+		                	ccountry = fieldValue[i];
 		                flag = 1;
 		            } else {
 		            	if((tCount == cCount) && (cCount == dCount) && (dCount == priceCount) && flag == 1){	
@@ -149,7 +163,7 @@ public class AddAd extends HttpServlet{
 		        }
 		        check = tCount;
 		        for(int j=0;j<tCount;j++){		           
-		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,zip_code,street,phone_number,img_ext1,img_ext2,img_ext3,img_ext4,img_ext5) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+pin+"','"+sstreet+"','"+phone+"','"+imgExt[j][0]+"','"+imgExt[j][1]+"','"+imgExt[j][2]+"','"+imgExt[j][3]+"','"+imgExt[j][4]+"');";		       
+		           query[j] = "INSERT INTO postads (prod_id,prod_title,prod_sub_cat,prod_desc,price,street_number,route,locality,state,postal_code,country,phone_number,img_ext1,img_ext2,img_ext3,img_ext4,img_ext5) values ('"+prodID[j]+"','"+fTitle[j]+"','"+fCat[j]+"','"+fDesc[j]+"','"+pricee[j]+"','"+sstreet+"','"+rroute+"','"+city+"','"+sstate+"','"+pin+"','"+ccountry+"','"+phone+"','"+imgExt[j][0]+"','"+imgExt[j][1]+"','"+imgExt[j][2]+"','"+imgExt[j][3]+"','"+imgExt[j][4]+"');";		       
 		           System.out.println (query[j]);
 		        }
 		        DbConnect db = new DbConnect();
