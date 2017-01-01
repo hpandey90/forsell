@@ -61,14 +61,20 @@
 						  %>
 						  <div class="card_container">
 						    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
-						    <p>Posted on: <%
+						    <p>Posted on: <b><%
 							    String[] post = (rs.getString("entry_date")).split("\\.");
 							    String dateStr = post[0];
 							    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 							    Date result = formater.parse(dateStr);
 							    SimpleDateFormat AppDateFormat = new SimpleDateFormat("MMM-dd-yyyy");
 							    out.println(AppDateFormat.format(result));
-							    %></p> 
+							    out.println(" ");
+							    Date date = new Date();
+							    Timestamp timestamp = rs.getTimestamp("entry_date");
+							    date = new java.util.Date(timestamp.getTime());
+							    SimpleDateFormat AppDateFormat2 = new SimpleDateFormat("hh:mm a");
+							    out.println(AppDateFormat2.format(date));
+							    %></b></p> 
 							    <p><%out.println(rs.getString("prod_desc")); %></p> 
 							    <b>$<%out.println(rs.getString("price")); %></b> 
 						  </div>

@@ -269,7 +269,7 @@ word-break: break-all;
 						<h2 class="product-title"><%=rs.getString("prod_title") %></h2>
 						<p class="product-description"><%=rs.getString("prod_desc") %></p>
 						<h4 class="price">Price: <span>$<%=rs.getString("price") %></span></h4>
-						<p class="vote">Posted on: <%
+						<p class="vote">Posted on: <b><%
 		    String[] post = (rs.getString("entry_date")).split("\\.");
 		    String dateStr = post[0];
 		    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
@@ -282,7 +282,7 @@ word-break: break-all;
 		    date = new java.util.Date(timestamp.getTime());
 		    SimpleDateFormat AppDateFormat2 = new SimpleDateFormat("hh:mm a");
 		    out.println(AppDateFormat2.format(date));
-		    %></p>
+		    %></b></p>
 						
 <%  }
 	catch(Exception e){
