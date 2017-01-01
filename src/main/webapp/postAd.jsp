@@ -173,7 +173,7 @@
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_2" name="productImages1_2"></input>
 									</div>
 									<div class='imgDiv'>
@@ -212,15 +212,15 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Add Item <b style="
 					    font-size: xx-large;
 					    vertical-align: middle;
-					    cursor:pointer;
 						">+</b></p></div>
 						
 					<div id="removeForm" class="halfAssedButtons"><p style="
 					    font-family: sans-serif;
-					    font-size: 20px;
+					    font-size: 20px; 
 					    width: 141px;
 					    color: #f9f8f8;
 						background: #d42c2c;
@@ -231,10 +231,10 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Remove Item <b style="
 					    font-size: xx-large;
 					    vertical-align: text-top;
-					    cursor:pointer;
 						">-</b></p></div>
 				</div>
 
