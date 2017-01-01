@@ -252,13 +252,30 @@
 							<div class='rh half'><input class="bd" id="adUPhone" name="adUPhone" type="text" max ="9999999999" min="1000000000" maxlength="10" required><label hidden style="color:red;" >phone number invalid !!!</label></div>
 						</div>
 						<div class='full'>
-							<div class=' lh half'>PIN </div>
+							<div class=' lh half'>ADDRESS</div>
 							<div class='rh half'><input class="bd" id="autocomplete" name="adUPin" type="text" required><label hidden style="color:red;" >pin invalid !!!</label></div>
 						</div>
-						<div class='full'>
+						<!-- <div class='full'>
 							<div class=' lh half'>STREET </div>
-							<div class='rh half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div>
-						</div>
+							<div class='rh half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div> -->
+	<!--Start Address field from users - do not set to block until necessary - format of address given below -->
+	<!-- street_number====3410
+	route====Southwest Archer Road
+	locality====Gainesville
+	administrative_area_level_1====FL
+	country====United States
+	postal_code====32608 -->
+	<table id="address" style="display:none">
+			  <input type="hidden" class="field" id="street_number" disabled="true"></input>
+              <input type="hidden" class="field" id="route" disabled="true"></input>
+              <input type="hidden" class="field" id="locality" disabled="true"></input>
+              <input type="hidden" class="field" id="administrative_area_level_1" disabled="true"></input>
+              <input type="hidden" class="field" id="postal_code" disabled="true"></input>
+              <input type="hidden" class="field" id="country" disabled="true"></input>
+    </table>
+    <!--End Start Address field from users - do not set to block until necessary -->
+		
+						<!-- </div> -->
 					</div>
 				</div>
 				<div id="submissionDiv" align="center" class='full' style='margin-botton:5%;'>
@@ -312,6 +329,7 @@
           if (componentForm[addressType]) {
             var val = place.address_components[i][componentForm[addressType]];
             document.getElementById(addressType).value = val;
+            console.log(document.getElementById(addressType).id+"===="+val);
           }
         }
       }
