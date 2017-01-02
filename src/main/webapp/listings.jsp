@@ -160,12 +160,12 @@ Sort By :-
 		<%} %>	
 		</div>
 		 <div class="card_container" style="float:left; width:68%; word-break:break-all;">
-		  <div style='width:68%; float:left; '>  
+		  <div style='width:67%; float:left; '>  
 		  	<b>
 		  		<h3 style='margin-top:3%; margin-bottom:3%;'><%out.println(rs.getString("prod_title")); %></h3>
 		  	</b>
 		  </div>
-		    <div style='width:32%; float:right; font-size:x-small;'><p>Posted on: <%
+		    <div style='width:33%; float:right; font-size:x-small;'><p>Posted on: <b><%
 		    String[] post = (rs.getString("entry_date")).split("\\.");
 		    String dateStr = post[0];
 		    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
@@ -178,7 +178,7 @@ Sort By :-
 		    date = new java.util.Date(timestamp.getTime());
 		    SimpleDateFormat AppDateFormat2 = new SimpleDateFormat("hh:mm a");
 		    out.println(AppDateFormat2.format(date));
-		    %></p> </div>
+		    %></b></p> </div>
 		    <div style='width:100%; float:left'><p style='margin-top:0%'><%out.println(rs.getString("prod_desc")); %></p> </div>
 		    <div style='width:100%; float:left'><b>$<%out.println(rs.getString("price")); %></b></div>
 		  </div>
