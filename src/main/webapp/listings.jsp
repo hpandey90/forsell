@@ -62,19 +62,27 @@ else if(order.equals("Most Recent"))
 }
 String query,filter;//,streetFilter,zipFilter,priceFilter;
 String[] streetValues = request.getParameterValues("street");
+String[] routeValues = request.getParameterValues("route");
 String[] zipValues = request.getParameterValues("zip");
 String[] priceValues = request.getParameterValues("price");
 query = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 filter = "SELECT * FROM postads WHERE prod_sub_cat = '"+listing+"'";
 if(streetValues != null){
-	query += " and street in ('";
+	query += " and street_number in ('";
 	for(i=0; i< (streetValues.length - 1); i++)
 		query += streetValues[i] + "','";
 	query += streetValues[i] + "')";
 	System.out.println(query);
 }
+if(routeValues != null){
+	query += " and route in ('";
+	for(i=0; i< (routeValues.length - 1); i++)
+		query += routeValues[i] + "','";
+	query += routeValues[i] + "')";
+	System.out.println(query);
+}
 if(zipValues != null){
-	query += " and zip_code in ('";
+	query += " and postal_code in ('";
 	for(i=0; i< (zipValues.length - 1); i++)
 		query += zipValues[i] + "','";
 	query += zipValues[i] + "')";
@@ -92,6 +100,7 @@ if(order != null && !(order.equals("Sort By:")))
 else if(order == null)
 	query = query + " ORDER BY entry_date desc";
 HashMap<String,Integer> streetFilter = new HashMap<String,Integer>();
+HashMap<String,Integer> routeFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> zipFilter = new HashMap<String,Integer>();
 HashMap<String,Integer> priceFilter = new HashMap<String,Integer>();
 try {
@@ -188,11 +197,17 @@ Sort By :-
 		<%
 	}
 	while(fl.next()){
-		streetFilter.put(fl.getString("street"),1);
-		zipFilter.put(fl.getString("zip_code"),1);
-		priceFilter.put(fl.getString("price"),1);
+		if(fl.getString("street_number") != "")
+			streetFilter.put(fl.getString("street_number"),1);
+		if(fl.getString("route") != "")
+			routeFilter.put(fl.getString("route"),1);
+		if(fl.getString("postal_code") != "")
+			zipFilter.put(fl.getString("postal_code"),1);
+		if(fl.getString("price") != "")
+			priceFilter.put(fl.getString("price"),1);
 	}
 	Iterator it1 = streetFilter.entrySet().iterator();
+	Iterator it4 = routeFilter.entrySet().iterator();
 	Iterator it2 = zipFilter.entrySet().iterator();
 	Iterator it3 = priceFilter.entrySet().iterator();
 	Map.Entry pair;
@@ -200,6 +215,7 @@ Sort By :-
 	<div style="float:left; width:21.5%;">
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
 	    <!--  <form method="get" name="filter" action="listings.jsp"> -->
+	    <%if(it1.hasNext()){ %>
 	     <div class='filtersDiv'>
 		     <div>Filter By Street:
 		    	<div>
@@ -212,6 +228,7 @@ Sort By :-
 		    			 flagS = 1; 
 		    	 }
 		    	}
+		    	if(!(pair.getKey().toString()).equals("")){
 		    	 if(flagS == 1){%>
 		    	<div>
 		    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>" checked><%=pair.getKey().toString() %></div>
@@ -220,11 +237,43 @@ Sort By :-
 		    	<div>
 		    	<input type='checkbox' name="street" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
 		    	<%}
+		    	 }
 		    	 }%>	
 		    	</div>
 	    	</div>
     	</div>
-	    	
+	    <%} %>
+	    
+	     <%if(it1.hasNext()){ %>
+	     <div class='filtersDiv'>
+		     <div>Filter By Road:
+		    	<div>
+		    	<%while(it4.hasNext()){
+		    		flagS = 0;
+		    		pair = (Map.Entry)it4.next();	
+		    	if(routeValues != null){	
+		    	 for(int j=0;j<routeValues.length;j++){
+		    		 if((pair.getKey().toString()).equals(routeValues[j]))
+		    			 flagS = 1; 
+		    	 }
+		    	}
+		    	if(!(pair.getKey().toString()).equals("")){
+		    	 if(flagS == 1){%>
+		    	<div>
+		    	<input type='checkbox' name="route" value="<%=pair.getKey().toString() %>" checked><%=pair.getKey().toString() %></div>
+		    		<% } 
+		    		else {%>
+		    	<div>
+		    	<input type='checkbox' name="route" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
+		    	<%}
+		    	  }
+		    	 }%>	
+		    	</div>
+	    	</div>
+    	</div>
+    	<%} %>
+    	
+    <%if(it1.hasNext()){ %>	
     	<div class='filtersDiv'>	
 	    	<div>	Filter By Zip Code:
 		    	<div>
@@ -237,6 +286,7 @@ Sort By :-
 			    			 flagS = 1; 
 			    	 }
 		    		}
+		        if(!(pair.getKey().toString()).equals("")){	
 		    	 if(flagS == 1){%>
 		    	<div><input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>" checked><%=pair.getKey().toString() %></div>
 		    		<% } 
@@ -244,11 +294,14 @@ Sort By :-
 		    		<div>
 		    	<input type='checkbox' name="zip" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
 		    	<%}
+		    	  }
 		    	 }%>
 		    	</div>
 	    	</div>
     	</div>
-	    	
+	    <%} %>
+	    
+	  <%if(it1.hasNext()){ %>	
     	<div class='filtersDiv'>
 	    	<div>	Filter By Price:
 		    	<div>
@@ -261,6 +314,7 @@ Sort By :-
 			    			 flagS = 1; 
 			    	 }
 		    		}
+		        if(!(pair.getKey().toString()).equals("")){	
 		    	  if(flagS == 1){%>
 		    	<div><input type='checkbox' name="price" value="<%=pair.getKey().toString()%>" checked><%=pair.getKey().toString() %></div>
 		    		<% } 
@@ -268,10 +322,13 @@ Sort By :-
 		    		<div>
 		    	<input type='checkbox' name="price" value="<%=pair.getKey().toString() %>"><%=pair.getKey().toString() %></div>
 		    	<%}
+		    	 }
 		    	 }%>
 		    	</div>
 	    	</div>	
-    	</div>    		    	
+    	</div>    
+    	<%} %>
+    			    	
     </div>
 </div>
 <div style='float:left; width:28.5%;'>
