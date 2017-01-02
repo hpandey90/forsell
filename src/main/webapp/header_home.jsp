@@ -380,24 +380,39 @@
 							})
 						</script>
 <script>
-$("#hero-demo").on("keyup",function(){
-	data = 'q='+ $("#hero-demo").val();
-    $.ajax({url: "auto_suggestion.jsp",
-    	data:data,
-    	success: function(result){
-        var demo1 = new autoComplete({
+
+$("#hero-demo").on("keyup",function(event){
+	if(event.keyCode!=8){
+		data = 'q='+ $("#hero-demo").val();
+	var xhr;
+	new autoComplete({
+	    selector: 'input[name="q"]',
+	    source: function(term, response){
+	        try { xhr.abort(); } catch(e){}
+	        xhr = $.ajax({url: "auto_suggestion.jsp",
+            	data:data,
+            	success: function(data){ data =data.split(",");response(data); }
+            }); 
+	    }
+	});
+/*         var demo1 = new autoComplete({
             selector: '#hero-demo',
             minChars: 1,
             source: function(term, suggest){
                 term = term.toLowerCase();
-                var choices = result.split(",");
+                var choices ;
+                $.ajax({url: "auto_suggestion.jsp",
+                	data:data,
+                	success: function(result){
+                	choices = result.split(",");
+                    }});
                 var suggestions = [];
                 for (i=0;i<choices.length;i++)
                     if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
                 suggest(suggestions);
             }
-        });
-    }});
+        }); */
+	}
 });
 </script>
 					</div>
