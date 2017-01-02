@@ -197,13 +197,13 @@ Sort By :-
 		<%
 	}
 	while(fl.next()){
-		if(fl.getString("street_number") != "")
+		if(fl.getString("street_number") != "" && fl.getString("street_number") != null) 
 			streetFilter.put(fl.getString("street_number"),1);
-		if(fl.getString("route") != "")
+		if(fl.getString("route") != "" && fl.getString("route") != null)
 			routeFilter.put(fl.getString("route"),1);
-		if(fl.getString("postal_code") != "")
+		if(fl.getString("postal_code") != "" && fl.getString("postal_code") != null)
 			zipFilter.put(fl.getString("postal_code"),1);
-		if(fl.getString("price") != "")
+		if(fl.getString("price") != "" && fl.getString("price") != null)
 			priceFilter.put(fl.getString("price"),1);
 	}
 	Iterator it1 = streetFilter.entrySet().iterator();
@@ -244,7 +244,7 @@ Sort By :-
     	</div>
 	    <%} %>
 	    
-	     <%if(it1.hasNext()){ %>
+	     <%if(it4.hasNext()){ %>
 	     <div class='filtersDiv'>
 		     <div>Filter By Road:
 		    	<div>
@@ -273,7 +273,7 @@ Sort By :-
     	</div>
     	<%} %>
     	
-    <%if(it1.hasNext()){ %>	
+    <%if(it2.hasNext()){ %>	
     	<div class='filtersDiv'>	
 	    	<div>	Filter By Zip Code:
 		    	<div>
@@ -301,7 +301,7 @@ Sort By :-
     	</div>
 	    <%} %>
 	    
-	  <%if(it1.hasNext()){ %>	
+	  <%if(it3.hasNext()){ %>	
     	<div class='filtersDiv'>
 	    	<div>	Filter By Price:
 		    	<div>
