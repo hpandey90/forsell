@@ -110,7 +110,7 @@ ResultSet rs = stmt.executeQuery(query);
 Statement stm = db.conn();
 ResultSet fl = stm.executeQuery(filter);
 %><form name="filter" action="listings.jsp">
-<div>			    
+<div style='margin-top:100px;'>			    
 <%
 if(!rs.isBeforeFirst()){%>
 <div style='float:left; width:50%;'>
