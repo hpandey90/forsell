@@ -14,7 +14,7 @@
 		}
 		function addImageSelectors(){
 			for(var i=1;i<6;i++){
-				var str = "<div class='imgDiv'><img src='images/unnamed.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+i+"' name='productImages"+count+"_"+i+"'></input></div>";
+				var str = "<div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+i+"' name='productImages"+count+"_"+i+"'></input></div>";
 				isec="#imageSection"+count;
 				$(isec).append(str);
 			}
@@ -169,23 +169,23 @@
 								<div class='lh half'>PICTURES</div>
 								<div class='rh half' id='imageSection'>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_2" name="productImages1_2"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_3" name="productImages1_3"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_4" name="productImages1_4"></input>
 									</div>
 									<div class='imgDiv'>
-										<img src='images/unnamed.png' width='50px' height='50px'/>
+										<img src='images/addImage.png' width='50px' height='50px'/>
 										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_5" name="productImages1_5"></input>
 									</div>
 								</div>
@@ -212,15 +212,15 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Add Item <b style="
 					    font-size: xx-large;
 					    vertical-align: middle;
-					    cursor:pointer;
 						">+</b></p></div>
 						
 					<div id="removeForm" class="halfAssedButtons"><p style="
 					    font-family: sans-serif;
-					    font-size: 20px;
+					    font-size: 20px; 
 					    width: 141px;
 					    color: #f9f8f8;
 						background: #d42c2c;
@@ -231,10 +231,10 @@
 					    border: none;
 					    border-radius: 8px;
 					    padding: 7px;
+					    cursor:pointer;
 						" class="">Remove Item <b style="
 					    font-size: xx-large;
 					    vertical-align: text-top;
-					    cursor:pointer;
 						">-</b></p></div>
 				</div>
 
@@ -316,7 +316,7 @@
       function fillInAddress() {
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
-
+        console.log("address types=="+place);
         for (var component in componentForm) {
           document.getElementById(component).value = '';
           document.getElementById(component).disabled = false;
