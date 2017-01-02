@@ -185,7 +185,7 @@
 				    });
 				  }
 		</script>
-		<header id="header">
+		<header id="header" style="position:fixed;z-index:999">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">
 				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="115px"></a></div>
