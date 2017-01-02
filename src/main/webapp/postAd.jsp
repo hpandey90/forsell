@@ -243,12 +243,12 @@
 							<div class='rh half'><input class="bd" id="adUPhone" name="adUPhone" type="text" max ="9999999999" min="1000000000" maxlength="10" required><label hidden style="color:red;" >phone number invalid !!!</label></div>
 						</div>
 						<div class='full'>
-							<div class=' lh half'>PIN </div>
+							<div class=' lh half'>ADDRESS</div>
 							<div class='rh half'><input class="bd" id="autocomplete" name="adUPin" type="text" required><label hidden style="color:red;" >pin invalid !!!</label></div>
 						</div>
-						<div class='full'>
+						<!-- <div class='full'>
 							<div class=' lh half'>STREET </div>
-							<div class='rh half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div>
+							<div class='rh half'><input class="bd" id="adUAddress" name="adUAddress" type="text" maxlength="15" required></div> -->
 	<!--Start Address field from users - do not set to block until necessary - format of address given below -->
 	<!-- street_number====3410
 	route====Southwest Archer Road
@@ -266,7 +266,7 @@
     </table>
     <!--End Start Address field from users - do not set to block until necessary -->
 		
-						</div>
+						<!-- </div> -->
 					</div>
 				</div>
 				<div id="submissionDiv" align="center" class='full' style='margin-botton:5%;'>
