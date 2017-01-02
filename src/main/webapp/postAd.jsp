@@ -12,11 +12,12 @@
 		    	$("#removeForm").hide();
 		    }
 		}
-		function addImageSelectors(){
-			for(var i=1;i<6;i++){
-				var str = "<div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+i+"' name='productImages"+count+"_"+i+"'></input></div>";
-				isec="#imageSection"+count;
-				$(isec).append(str);
+		function addImageSelectors(element,pos){
+			if(pos<5){
+				pos++;
+				var str = "<div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+pos+"' name='productImages"+count+"_"+pos+"'></input></div>";
+				isec=element.parent.parent;
+				$(isec).append(str);	
 			}
 		};
 		enableRemove();
@@ -50,6 +51,8 @@
 	    
 	    $(".imageClass").change(function(){
 	    	var $this = $(this);
+	    	var pos = parseInt($this.attr('pos'));
+	    	alert($this.id);
 	        if (this.files && this.files[0]) {
 	            var reader = new FileReader();
 	            
@@ -57,6 +60,10 @@
 	                $this.parent().find('img').attr('src', e.target.result);
 	            }
 	            reader.readAsDataURL(this.files[0]);
+	        }
+	        var id="#productImages"+count+"_"+(pos+1);
+	        if($(id)[0] !== "undefined"){
+	        	addImageSelectors($this,pos);
 	        }
 	    });
 	});
@@ -170,23 +177,7 @@
 								<div class='rh half' id='imageSection'>
 									<div class='imgDiv'>
 										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1"></input>
-									</div>
-									<div class='imgDiv'>
-										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_2" name="productImages1_2"></input>
-									</div>
-									<div class='imgDiv'>
-										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_3" name="productImages1_3"></input>
-									</div>
-									<div class='imgDiv'>
-										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_4" name="productImages1_4"></input>
-									</div>
-									<div class='imgDiv'>
-										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_5" name="productImages1_5"></input>
+										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1" pos='1' count='1'></input>
 									</div>
 								</div>
 							</div>
