@@ -20,7 +20,7 @@
 			}
 		};
 		enableRemove();
-	    $("#newForm").click(function(){
+	    $("#newForm p").click(function(){
 	    	if(count<6){
 	    		count++;
 	    		var string = "<div id='itemDiv"+count+"' class='itemDiv'><div class='abc'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>ITEM NAME</div>	<div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>SPECIFICATIONS </div><div class='rh half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>DESCRIPTION </div><div class='rh half'><textarea class='tarea bd' id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div></div><div class='full'><div class='lh half'>PRICE</div><div class='rh half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>PICTURES</div><div class='rh half' id='imageSection"+count+"'><div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_1' name='productImages"+count+"_1' pos='1'></input></div></div></div></div></div>";
@@ -30,7 +30,7 @@
 		    	enableRemove();
 	    	}
 	    });
-	    $("#removeForm").click(function(){
+	    $("#removeForm p").click(function(){
 	    	if(count > 1){
 	    		$(current).remove();
 	    		count--;
@@ -62,6 +62,10 @@
 	        if($(id)[0] === undefined){
 	        	addImageSelectors($this,pos);
 	        }
+	    });
+	    
+	    $('#submit p').click(function(){
+	    	$('#adForm').submit();
 	    });
 	});
 	</script>
@@ -108,10 +112,10 @@
 		
 	}
 	.itemDiv{
-		margin: 5px; padding:5px; border-radius:10px; height:320px; background: rgba(157, 157, 157, 0.06);
+		margin: 5px; padding:5px; border-radius:10px; height:340px; background: rgba(157, 157, 157, 0.06);
 	}
 	.userInfoDiv{
-		background: #ecebeb;
+		background: rgba(157, 157, 157, 0.06);
     	border-radius: 10px;
    	    margin-left: 1%;
     	width: 98%;
@@ -135,11 +139,19 @@
 		float:left;	
 	}
 	
+	/* input:focus, textarea:focus{
+		box-shadow: none;
+	    outline: 0;
+	    border: solid;
+	    border-color: #f0680c;
+	    border-width: thin;
+	} */
+	
 	</style>
 	<title>Post your ad here</title>
 	</head>
 		<div style='position: relative; margin-left:22%; margin-right:22%; margin-top:100px;'>
-			<form action="./AddAd" method="post" style = ''onsubmit="return upload();" enctype="multipart/form-data">
+			<form id='adForm' action="./AddAd" method="post" enctype="multipart/form-data">
 				<div id="itemInputDiv">
 					<div id='itemDiv' class='itemDiv'>
 						<div><%
@@ -169,7 +181,7 @@
 								<div class='lh half'>PRICE</div>
 								<div class='rh half'><input class="bd" id="adPrice" name="productPrice" type="text" required><label hidden style="color:red;" required>price invalid !!!</label></div>
 							</div>
-							<div class='full'>
+							<div class='full' style='margin-top:10px;'>
 								<div class='lh half'>PICTURES</div>
 								<div class='rh half' id='imageSection'>
 									<div class='imgDiv'>
@@ -206,7 +218,7 @@
 					    vertical-align: middle;
 						">+</b></p></div>
 						
-					<div id="removeForm" class="halfAssedButtons"><p style="
+					<div id="removeForm" class="halfAssedButtons" style='display:none;'><p style="
 					    font-family: sans-serif;
 					    font-size: 20px; 
 					    width: 141px;
@@ -228,9 +240,6 @@
 
 				<div class='full userInfoDiv' id='userInfoDiv'>
 					<div style='margin: 5px; padding:5px; border-radius:10px;'>
-						<div class='lh full'>
-							ABOUT YOU:
-						</div>
 						<div class='full'>
 							<div class=' lh half'>NAME </div>
 							<div class='rh half'><input class="bd" id="adUName" name="adUName" type="text" required></div>
@@ -241,7 +250,7 @@
 						</div>
 						<div class='full'>
 							<div class=' lh half'>ADDRESS</div>
-							<div class='rh half'><input class="bd" id="autocomplete" name="adUPin" type="text" required><label hidden style="color:red;" >pin invalid !!!</label></div>
+							<div class='rh half'><input class="bd" id="autocomplete" name="adUPin" type="text" style='margin-bottom: 7%;' required><label hidden style="color:red;" >pin invalid !!!</label></div>
 						</div>
 						<!-- <div class='full'>
 							<div class=' lh half'>STREET </div>
@@ -266,8 +275,23 @@
 						<!-- </div> -->
 					</div>
 				</div>
-				<div id="submissionDiv" align="center" class='full' style='margin-botton:5%;'>
-					<div class=' full'><input id="submit" value="Submit" type="submit"></div>
+				<div id="submissionDiv" align="center" class='full' style='margin:1%;'>
+					<div id="submit"><p style="
+					    font-family: sans-serif;
+					    font-size: 20px; 
+					    width: 90px;
+					    color: #f9f8f8;
+						background: #2196f3;
+					    /* height: 45px; */
+					    padding: 0px;
+					    text-align: center;
+					    font-weight: bolder;
+					    border: none;
+					    border-radius: 8px;
+					    padding: 7px;
+					    cursor:pointer;
+						" class="">SUBMIT </p></div>
+					<!--  <input id="submit" value="Submit" type="submit"></input>-->
 				</div>
 			</form>
 		</div>
