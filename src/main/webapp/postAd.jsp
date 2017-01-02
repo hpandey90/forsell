@@ -15,16 +15,15 @@
 		function addImageSelectors(element,pos){
 			if(pos<5){
 				pos++;
-				var str = "<div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+pos+"' name='productImages"+count+"_"+pos+"'></input></div>";
-				isec=element.parent.parent;
-				$(isec).append(str);	
+				var str = "<div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_"+pos+"' name='productImages"+count+"_"+pos+"' pos='"+pos+"'></input></div>";
+				element.parent().parent().append(str);
 			}
 		};
 		enableRemove();
 	    $("#newForm").click(function(){
 	    	if(count<6){
 	    		count++;
-	    		var string = "<div id='itemDiv"+count+"' class='itemDiv'><div class='abc'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>ITEM NAME</div>	<div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>SPECIFICATIONS </div><div class='rh half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>DESCRIPTION </div><div class='rh half'><textarea class='tarea bd' id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div></div><div class='full'><div class='lh half'>PRICE</div><div class='rh half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>PICTURES</div><div class='rh half' id='imageSection"+count+"'></div></div></div></div>";
+	    		var string = "<div id='itemDiv"+count+"' class='itemDiv'><div class='abc'><h3 style='text-align:center;'>Item "+count+"</h3><div class='full'><div class=' lh half'>ITEM NAME</div>	<div class='rh half'><input class='bd' id='adTitle"+count+"' name='adTitle"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>SPECIFICATIONS </div><div class='rh half'><input class='bd' id='adSubCategory"+count+"' name='adSubCategory"+count+"' type='text' required></div></div><div class='full'><div class=' lh half'>DESCRIPTION </div><div class='rh half'><textarea class='tarea bd' id='adDesc"+count+"' name='adDesc"+count+"' required></textarea></div></div><div class='full'><div class='lh half'>PRICE</div><div class='rh half'><input class='bd' id='adPrice"+count+"' name='productPrice' type='text' required><label hidden style='color:red;' required>price invalid !!!</label></div></div><div class='full'><div class='lh half'>PICTURES</div><div class='rh half' id='imageSection"+count+"'><div class='imgDiv'><img src='images/addImage.png' width='50px' height='50px'/><input class='bd imageClass' type='file' accept='image/*' id='productImages"+count+"_1' name='productImages"+count+"_1' pos='1'></input></div></div></div></div></div>";
 		    	$("#itemInputDiv").append(string);
 		    	addImageSelectors();
 		    	current = "#itemDiv"+count;
@@ -48,12 +47,10 @@
 	    		$("label").attr("hidden", "hidden");
 	    	}
 	    });
-	    
-	    $(".imageClass").change(function(){
+	    $(document).on('change', '.imageClass', function(){
 	    	var $this = $(this);
 	    	var pos = parseInt($this.attr('pos'));
-	    	alert($this.id);
-	        if (this.files && this.files[0]) {
+	    	if (this.files && this.files[0]) {
 	            var reader = new FileReader();
 	            
 	            reader.onload = function (e) {
@@ -62,7 +59,7 @@
 	            reader.readAsDataURL(this.files[0]);
 	        }
 	        var id="#productImages"+count+"_"+(pos+1);
-	        if($(id)[0] !== "undefined"){
+	        if($(id)[0] === undefined){
 	        	addImageSelectors($this,pos);
 	        }
 	    });
@@ -141,7 +138,7 @@
 	</style>
 	<title>Post your ad here</title>
 	</head>
-		<div style='position: relative; margin-left:22%; margin-right:22%;'>
+		<div style='position: relative; margin-left:22%; margin-right:22%; margin-top:100px;'>
 			<form action="./AddAd" method="post" style = ''onsubmit="return upload();" enctype="multipart/form-data">
 				<div id="itemInputDiv">
 					<div id='itemDiv' class='itemDiv'>
@@ -177,7 +174,7 @@
 								<div class='rh half' id='imageSection'>
 									<div class='imgDiv'>
 										<img src='images/addImage.png' width='50px' height='50px'/>
-										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1" pos='1' count='1'></input>
+										<input class='bd imageClass' type="file" accept="image/*" id="productImages1_1" name="productImages1_1" pos='1'></input>
 									</div>
 								</div>
 							</div>
