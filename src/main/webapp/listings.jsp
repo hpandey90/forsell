@@ -201,9 +201,8 @@ Sort By :-
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
 	    <!--  <form method="get" name="filter" action="listings.jsp"> -->
 	     <div class='filtersDiv'>
-		     <div>
-
-		    	<div>Filter By Street:
+		     <div>Filter By Street:
+		    	<div>
 		    	<%while(it1.hasNext()){
 		    		flagS = 0;
 		    		pair = (Map.Entry)it1.next();	
@@ -227,8 +226,8 @@ Sort By :-
     	</div>
 	    	
     	<div class='filtersDiv'>	
-	    	<div>	
-		    	<div>Filter By Zip Code:
+	    	<div>	Filter By Zip Code:
+		    	<div>
 		    	<%while(it2.hasNext()){
 		    		flagS = 0;
 		    		pair = (Map.Entry)it2.next();	
@@ -251,8 +250,8 @@ Sort By :-
     	</div>
 	    	
     	<div class='filtersDiv'>
-	    	<div>	
-		    	<div>Filter By Price:
+	    	<div>	Filter By Price:
+		    	<div>
 		    	<%while(it3.hasNext()){
 		    		flagS = 0;
 		    		pair = (Map.Entry)it3.next();	
