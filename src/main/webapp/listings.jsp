@@ -124,7 +124,7 @@ noResult = 1;
 else{
 %>
 <div style='float:right; width:28.5%;'>
-Sort By :-
+Sort By :-  
   <select name="sortBy" onchange="submitForm()">
  <% if(order != null){
   	if(order.equals("entry_date desc")){ %>
@@ -197,15 +197,16 @@ Sort By :-
 		<%
 	}
 	while(fl.next()){
-		if(fl.getString("street_number") != "" && fl.getString("street_number") != null) 
+		if(fl.getString("street_number") != null && !fl.getString("street_number").equals("")) 	
 			streetFilter.put(fl.getString("street_number"),1);
-		if(fl.getString("route") != "" && fl.getString("route") != null)
+		if(fl.getString("route") != null && !fl.getString("route").equals(""))
 			routeFilter.put(fl.getString("route"),1);
-		if(fl.getString("postal_code") != "" && fl.getString("postal_code") != null)
+		if(fl.getString("postal_code") != null && !fl.getString("postal_code").equals(""))
 			zipFilter.put(fl.getString("postal_code"),1);
-		if(fl.getString("price") != "" && fl.getString("price") != null)
+		if(fl.getString("price") != null && !fl.getString("price").equals(""))
 			priceFilter.put(fl.getString("price"),1);
 	}
+
 	Iterator it1 = streetFilter.entrySet().iterator();
 	Iterator it4 = routeFilter.entrySet().iterator();
 	Iterator it2 = zipFilter.entrySet().iterator();
@@ -215,6 +216,7 @@ Sort By :-
 	<div style="float:left; width:21.5%;">
 	   <%--  <jsp:include page="side_nav.jsp"/> --%>
 	    <!--  <form method="get" name="filter" action="listings.jsp"> -->
+	   
 	    <%if(it1.hasNext()){ %>
 	     <div class='filtersDiv'>
 		     <div>Filter By Street:
@@ -273,7 +275,7 @@ Sort By :-
     	</div>
     	<%} %>
     	
-    <%if(it2.hasNext()){ %>	
+     <%if(it2.hasNext()){ %>	
     	<div class='filtersDiv'>	
 	    	<div>	Filter By Zip Code:
 		    	<div>
@@ -299,7 +301,7 @@ Sort By :-
 		    	</div>
 	    	</div>
     	</div>
-	    <%} %>
+	    <%} %> 
 	    
 	  <%if(it3.hasNext()){ %>	
     	<div class='filtersDiv'>
