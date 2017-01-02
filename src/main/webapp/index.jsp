@@ -25,7 +25,7 @@
 </style>
 <!-- <input type="submit" value="GO"> -->
 
-<div>
+<div style='margin-top:8%;'>
 	<div style="float:left">
 	<jsp:include page="side_nav.jsp"/>
 	</div>
