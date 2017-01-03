@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<jsp:include page="header_home.jsp"/>
+<%@ page import="java.io.*, java.net.*" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Chat - Customer Module</title>
@@ -61,16 +63,64 @@ a {
 </style>
 </head>
  
-<div id="wrapper">
+<div id="wrapper" style="margin-top:100px">
     <div id="menu">
         <p class="welcome">Welcome, <b></b></p>
         <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>
      
-    <div id="chatbox"></div>
-     
-    <form name="message" action="">
+    <div id="chatbox" >
+     <% 
+        try{
+            int character;
+            String str = null;
+            String usr = null;
+            str = request.getParameter("usermsg");            
+            usr = request.getParameter("username");     
+            System.out.println("0");
+            Socket socket = new Socket("192.168.0.5", 8000);
+            //Socket isocket = new Socket("192.168.0.5", 8766);
+            OutputStream outSocket = socket.getOutputStream();   
+            outSocket.flush();
+            InputStream inSocket = socket.getInputStream();
+            InputStream inOb=inSocket;
+            session.setAttribute("ino",inSocket);
+            ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
+            ObjectInputStream buffin=new ObjectInputStream(inSocket);
+            session.setAttribute("ibu",buffin);
+            if(str!="")
+            {
+            	buffout.writeObject(str);
+           	    buffout.flush();
+            }
+            if(str != null && !str.equals(""))
+            {
+             	str += "\n";
+            System.out.println("1");
+            System.out.println("2");
+            //byte buffer[] = str.getBytes();
+            //outSocket.write(buffer);
+            System.out.println("3");
+            while ((character = inSocket.read()) != -1) {
+            	System.out.print((char) character);
+                out.print((char) character);
+            }
+
+            
+            System.out.println("4");
+           }
+        }
+        catch(java.net.ConnectException e){
+        %>  
+            You must first start the server application 
+            (YourServer.java) at the command prompt.
+        <%
+        }
+        %>
+       </div>
+    <form name="message" action="" method="post">
+        <input name="username" type="text" id="username">
         <input name="usermsg" type="text" id="usermsg" size="63" />
         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
     </form>
