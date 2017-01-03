@@ -11,6 +11,9 @@
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    width:30%;float:left;margin-left:15px;
+    margin-bottom: 15px;
+    height: auto;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -20,8 +23,20 @@
 
 /* Add some padding inside the card container */
 .card_container {
-    padding: 2px 16px;
+    padding: 2px 16px;height: auto;
 }
+
+.card_container h4{
+		margin-top: 0px;
+    	font-size: x-large;
+    	margin-bottom: 0px;
+}
+
+.card_container p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 </style>
 <!-- <input type="submit" value="GO"> -->
 
@@ -29,7 +44,7 @@
 	<div style="float:left">
 	<jsp:include page="side_nav.jsp"/>
 	</div>
-		<div style="float:right">
+		<div style="width: 56%; margin-left: 24%; margin-right: 24%;">
 	<%
 		try{
 			DbConnect db = new DbConnect();
@@ -49,13 +64,13 @@
 							imgCount++;
 					%>
 					<a href="/sell/details_page.jsp?id=<%=rs.getString("prod_id")%>">
-						<div class="card" style="width:25%;float:left;margin-left:15px;">
+						<div class="card">
 						<%if(imgCount==0)
 						{
-							%><img src="images/Logo_BW.png" alt="Avatar" style="width:100%;height:300px;" /><%
+							%><img src="images/Logo_BW.png" alt="Avatar" style="width:100%;height:50%;" /><%
 							}
 							else{%>
-						  <img alt="Avatar" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" style="width:100%;height:300px;">
+						  <img alt="Avatar" src="./FileServlet/<%=rs.getString("prod_id")%>\\1.<%=rs.getString("img_ext1") %>" style="width:100%;height:50%;">
 						  <%} 
 						  imgCount=0;
 						  %>

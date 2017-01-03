@@ -102,6 +102,18 @@
 			width:100%; display:table-cell; vertical-align: middle;
 		}
 		
+		.herodemo{
+			width: 65%;
+		    outline: 0;
+		    border-top-left-radius: 4px;
+		    border-bottom-left-radius: 4px;
+		    border: none;
+		    height: 36px;
+		    margin-left: 19%;
+		    float: left;
+		    margin-top: 0px;
+		}
+		
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script type="text/javascript">
@@ -191,9 +203,17 @@
 				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="115px"></a></div>
 				</div>
 				<div class="searchDiv">
-					<form action='listings.jsp' class='innerTag'>
-						<input id="hero-demo" autofocus type="search" name="q" placeholder="What can I find for you...?" style="width:65%; outline:0; border-radius: 4px;border: none; height: 25px;">
-			  			<input type="submit" value='SUBMIT'>
+					<form id='searchForm' action='listings.jsp' class='innerTag'>
+					<input id="hero-demo" class='herodemo' autofocus type="search" name="q" placeholder="What can I find for you...?" style="">
+					<span id='searchSpan' style='width: 5%;
+				    float: left;
+				    margin: 0px;
+				    height: 36px;
+				    text-align: center;
+				    background: #dc7013;
+				    border-top-right-radius: 4px;
+				    border-bottom-right-radius: 4px;
+				    color: white;'><img src='images/search-icon-light-grey-th.png' width='20px' height='20px' style='padding-top:8px'></span>
 					</form>
 				</div>
 				<div class="advertDiv">
@@ -414,6 +434,12 @@ $("#hero-demo").on("keyup",function(event){
         }); */
 	}
 });
+ $('#searchSpan').click(function(){
+	if($('.herodemo').val().length !== 0){
+		alert();
+		$('#searchForm').submit();
+	}
+}); 
 </script>
 					</div>
 				</div>
