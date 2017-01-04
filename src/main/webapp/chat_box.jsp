@@ -72,6 +72,7 @@ a {
      
     <div id="chatbox" >
      <% 
+
         try{    
             System.out.println("0");
             Socket socket = new Socket("localhost", 8000);
@@ -82,7 +83,20 @@ a {
             ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
             session.setAttribute("obuff",buffout);
             ObjectInputStream buffin=new ObjectInputStream(inSocket);
+            String user = null;
+			if(session.getAttribute("user") == null){
+				response.sendRedirect("index.jsp");
+			}else user = (String) session.getAttribute("user");
+			String userName = null;
+			Cookie[] cookies = request.getCookies();
+			if(cookies !=null){
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("user")) userName = cookie.getValue();
+			}
+			}
             session.setAttribute("ibuff",buffin);
+            buffout.writeObject(user);
+            buffout.flush();
         }
         catch(java.net.ConnectException e){
         %>  
