@@ -1,4 +1,3 @@
-<jsp:include page="header_home.jsp"/>
 <%@ page import="java.io.*, java.net.*" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,4 +19,3 @@
 		%>
 </body>
 </html>
-</jsp:root>
