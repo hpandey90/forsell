@@ -74,7 +74,7 @@ a {
      <% 
         try{    
             System.out.println("0");
-            Socket socket = new Socket("192.168.0.5", 8000);
+            Socket socket = new Socket("localhost", 8000);
             //Socket isocket = new Socket("192.168.0.5", 8766);
             OutputStream outSocket = socket.getOutputStream();
             outSocket.flush();
@@ -92,11 +92,7 @@ a {
         }
         %>
        </div>
-    <form name="message" action="" method="post">
-        <input name="username" type="text" id="username">
-        <input name="usermsg" type="text" id="usermsg" size="63" />
-        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
-    </form>
+    
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <script type="text/javascript">
