@@ -24,7 +24,7 @@
 			width: 100%;
 			height: 95px; 
 			//overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
-			background: #222233;
+			background: #d8d8d8;
 		}
 		
 		#logo {
@@ -112,6 +112,28 @@
 		    margin-left: 19%;
 		    float: left;
 		    margin-top: 0px;
+		    padding-left: 5px;  
+		}
+		
+		.searchSpan{
+			width: 5%;
+		    float: left;
+		    margin: 0px;
+		    height: 36px;
+		    text-align: center;
+		    background: #ff9900;/*#dc7013;*/
+		    border-top-right-radius: 4px;
+		    border-bottom-right-radius: 4px;
+		    cursor: pointer;
+		    color: white;
+		    
+		    :hover{
+		    
+		    }
+		}
+		
+		.searchSpan:hover{
+			background: #e08c0f;
 		}
 		
 		</style>
@@ -205,15 +227,7 @@
 				<div class="searchDiv">
 					<form id='searchForm' action='listings.jsp' class='innerTag'>
 					<input id="hero-demo" class='herodemo' autofocus type="search" name="q" placeholder="What can I find for you...?" style="">
-					<span id='searchSpan' style='width: 5%;
-				    float: left;
-				    margin: 0px;
-				    height: 36px;
-				    text-align: center;
-				    background: #dc7013;
-				    border-top-right-radius: 4px;
-				    border-bottom-right-radius: 4px;
-				    color: white;'><img src='images/search-icon-light-grey-th.png' width='20px' height='20px' style='padding-top:8px'></span>
+					<span id='searchSpan' class='searchSpan'style=''><img src='images/search-icon-light-grey-th.png' width='20px' height='20px' style='padding-top:8px'></span>
 					</form>
 				</div>
 				<div class="advertDiv">
