@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<jsp:include page="header_home.jsp"/>
+<%@ page import="java.io.*, java.net.*" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Chat - Customer Module</title>
@@ -61,19 +63,36 @@ a {
 </style>
 </head>
  
-<div id="wrapper">
+<div id="wrapper" style="margin-top:100px">
     <div id="menu">
         <p class="welcome">Welcome, <b></b></p>
         <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>
      
-    <div id="chatbox"></div>
-     
-    <form name="message" action="">
-        <input name="usermsg" type="text" id="usermsg" size="63" />
-        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
-    </form>
+    <div id="chatbox" >
+     <% 
+        try{    
+            System.out.println("0");
+            Socket socket = new Socket("localhost", 8000);
+            //Socket isocket = new Socket("192.168.0.5", 8766);
+            OutputStream outSocket = socket.getOutputStream();
+            outSocket.flush();
+            InputStream inSocket = socket.getInputStream();
+            ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
+            session.setAttribute("obuff",buffout);
+            ObjectInputStream buffin=new ObjectInputStream(inSocket);
+            session.setAttribute("ibuff",buffin);
+        }
+        catch(java.net.ConnectException e){
+        %>  
+            You must first start the server application 
+            (YourServer.java) at the command prompt.
+        <%
+        }
+        %>
+       </div>
+    
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <script type="text/javascript">
