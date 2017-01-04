@@ -16,7 +16,7 @@
             ObjectInputStream inbus=(ObjectInputStream) session.getAttribute("ibuff");
             if(str != null && !str.equals(""))
             {
-            	str += "\n";
+            	str =usr+"\r\n"+ str + "\r\n";
             	outbus.writeObject(str);
             	outbus.flush();
             }
