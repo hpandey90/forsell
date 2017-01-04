@@ -391,7 +391,7 @@ $("#hero-demo").on("keyup",function(event){
 	        try { xhr.abort(); } catch(e){}
 	        xhr = $.ajax({url: "auto_suggestion.jsp",
             	data:data,
-            	success: function(data){ data =data.split(",");response(data); }
+            	success: function(data){ data=data.split(",");response(data); }
             }); 
 	    }
 	});
