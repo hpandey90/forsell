@@ -6,24 +6,32 @@
 <body>
 		<% 
 		try{
-    		DbConnect db = new DbConnect();
-    		Statement stmt = db.conn();  
-    		String query = "select msg_pool from user limit 1";
-    		ResultSet rs = stmt.executeQuery(query);
-    		rs.next();
-    		int msg_pool_flag = Integer.parseInt(rs.getString("msg_pool"));
-    		System.out.println("message flag ="+ msg_pool_flag);
-    		if(msg_pool_flag==1){
-    			stmt.executeUpdate("update user set msg_pool=0");
+    		//DbConnect db = new DbConnect();
+    		//Statement stmt = db.conn();  
+    		//String query = "select msg_pool from user limit 1";
+    	//	ResultSet rs = stmt.executeQuery(query);
+    	//	rs.next();
+    	//	int msg_pool_flag = Integer.parseInt(rs.getString("msg_pool"));
+    	//	System.out.println("message flag ="+ msg_pool_flag);
+//    		if(msg_pool_flag==1){
+  //  			stmt.executeUpdate("update user set msg_pool=0");
 			int character;
 		    ObjectInputStream inbus=(ObjectInputStream) session.getAttribute("ibuff");
-		    //System.out.println("ajsgduas===>"+inbus.readObject());
-		    String op=inbus.readObject().toString();
-		    while(inbus.readObject().toString()!=""){
-		    	op+=inbus.readObject().toString();
-		    }
-		    out.print(op);
-    		}
+		    System.out.println("avlbl===>"+inbus.available());
+		    //if(inbus.available()>0){
+		    	//System.out.println("ajsgduas===>"+inbus.readObject());
+		    	try{
+			    String op=inbus.readObject().toString();
+			     //while(inbus.readObject().toString()!=""){
+			    	//op+=inbus.readObject().toString();
+			    //} 
+			    out.print(op);
+		    	}
+		    	catch(Exception e){
+		    		System.out.println("exception ajsdbaius");
+		    	}
+		    //}
+    	//	}
 		}
 		catch(java.net.ConnectException e){
 		%>

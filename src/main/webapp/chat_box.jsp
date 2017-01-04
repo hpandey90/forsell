@@ -77,8 +77,18 @@ function push(){
 	    console.log( "Data Saved: " + str );
 	  }); */
 }
+function pull(){
+	console.log("pulling message from server");
+	$.ajax({
+		  url: "chat_pull.jsp",
+		  cache: false,
+		  success: function(data){   
+		    $( "#chatbox" ).append( data+"<br/>" ); 
+		    },
+	})
+}
 $(document).ready(function(){
-	setInterval(pull, 10000);
+	//setInterval(pull, 10000);
 	function pull(){
 		console.log("pulling message from server");
 		$.ajax({

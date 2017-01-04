@@ -11,9 +11,9 @@
             ObjectInputStream inbus=(ObjectInputStream) session.getAttribute("ibuff");
             if(str != null && !str.equals(""))
             {
-        		DbConnect db = new DbConnect();
-        		Statement stmt = db.conn();
-            	stmt.executeUpdate("update user set msg_pool=1");
+        		//DbConnect db = new DbConnect();
+        		//Statement stmt = db.conn();
+            //	stmt.executeUpdate("update user set msg_pool=1");
             	str += "\n";
             	outbus.writeObject(str);
             	outbus.flush();
