@@ -72,44 +72,17 @@ a {
      
     <div id="chatbox" >
      <% 
-        try{
-            int character;
-            String str = null;
-            String usr = null;
-            str = request.getParameter("usermsg");            
-            usr = request.getParameter("username");     
+        try{    
             System.out.println("0");
             Socket socket = new Socket("192.168.0.5", 8000);
             //Socket isocket = new Socket("192.168.0.5", 8766);
-            OutputStream outSocket = socket.getOutputStream();   
+            OutputStream outSocket = socket.getOutputStream();
             outSocket.flush();
             InputStream inSocket = socket.getInputStream();
-            InputStream inOb=inSocket;
-            session.setAttribute("ino",inSocket);
             ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
+            session.setAttribute("obuff",buffout);
             ObjectInputStream buffin=new ObjectInputStream(inSocket);
-            session.setAttribute("ibu",buffin);
-            if(str!="")
-            {
-            	buffout.writeObject(str);
-           	    buffout.flush();
-            }
-            if(str != null && !str.equals(""))
-            {
-             	str += "\n";
-            System.out.println("1");
-            System.out.println("2");
-            //byte buffer[] = str.getBytes();
-            //outSocket.write(buffer);
-            System.out.println("3");
-            while ((character = inSocket.read()) != -1) {
-            	System.out.print((char) character);
-                out.print((char) character);
-            }
-
-            
-            System.out.println("4");
-           }
+            session.setAttribute("ibuff",buffin);
         }
         catch(java.net.ConnectException e){
         %>  
