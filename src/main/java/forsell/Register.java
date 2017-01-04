@@ -21,7 +21,7 @@ public class Register extends HttpServlet{
 		try{
 				DbConnect db = new DbConnect();
 				Statement stmt=db.conn();
-				String query = "INSERT INTO user (full_user_name,user_name,pass,registration_date) VALUES ('"+name+"','"+email+"','md5("+pass+")',now());";
+				String query = "INSERT INTO user (full_user_name,user_name,pass,registration_date) VALUES ('"+name+"','"+email+"',md5('"+pass+"'),now());";
 				System.out.println(query);
 				stmt.executeUpdate(query);
 		}
