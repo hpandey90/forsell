@@ -13,7 +13,7 @@
     transition: 0.3s;
     width:30%;float:left;margin-left:15px;
     margin-bottom: 15px;
-    height: auto;
+    height: 300px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -76,7 +76,7 @@
 						  %>
 						  <div class="card_container">
 						    <h4><b><%out.println(rs.getString("prod_title")); %></b></h4> 
-						    <p>Posted on: <b><%
+						    <p>Posted: <b><%
 							    String[] post = (rs.getString("entry_date")).split("\\.");
 							    String dateStr = post[0];
 							    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");

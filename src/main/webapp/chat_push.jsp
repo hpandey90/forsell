@@ -28,6 +28,12 @@
         <%
         }
         %>
+        <div style="margin:100px">
+		        <form name="message" action="#" method="post">
+		        <input name="username" type="text" id="username">
+		        <input name="usermsg" type="text" id="usermsg" size="63" />
+		        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+    	</div>
+    </form>
 </body>
 </html>
-</jsp:root>
