@@ -61,6 +61,37 @@ a {
   
 .msgln { margin:0 0 2px 0; }
 </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script>
+function push(){
+	console.log("pushing message to server");
+	str = document.getElementById('usermsg').value;
+	q = "str="+str;
+	$.ajax({
+		  method: "POST",
+		  url: "chat_push.jsp",
+		  //data: { name: "John", location: "Boston" }
+		  data:q,
+	})
+/* 	  .done(function( msg ) {
+	    console.log( "Data Saved: " + str );
+	  }); */
+}
+$(document).ready(function(){
+	//setInterval(pull, 3000);
+	function pull(){
+		console.log("pulling message from server");
+		$.ajax({
+			  url: "chat_pull.jsp",
+			  cache: false,
+			  success: function(data){   
+				console.log(data);
+			    $( "#chatbox" ).append( data ); 
+			    },
+		})
+	}
+});
+</script>
 </head>
  
 <div id="wrapper" style="margin-top:100px">
@@ -74,7 +105,7 @@ a {
      <% 
         try{    
             System.out.println("0");
-            Socket socket = new Socket("192.168.0.5", 8000);
+            Socket socket = new Socket("localhost", 8000);
             //Socket isocket = new Socket("192.168.0.5", 8766);
             OutputStream outSocket = socket.getOutputStream();
             outSocket.flush();
@@ -92,18 +123,11 @@ a {
         }
         %>
        </div>
-    <form name="message" action="" method="post">
+   	<form name="message" action="" method="post">
         <input name="username" type="text" id="username">
         <input name="usermsg" type="text" id="usermsg" size="63" />
-        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+        <input name="submitmsg" type="button" id="submitmsg" value="Send" onclick="push()"/>
     </form>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-<script type="text/javascript">
-// jQuery Document
-$(document).ready(function(){
- 
-});
-</script>
 </body>
 </html>
