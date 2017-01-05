@@ -78,15 +78,14 @@ function push(){
 	  }); */
 }
 $(document).ready(function(){
-	//setInterval(pull, 3000);
+	setInterval(pull, 10000);
 	function pull(){
 		console.log("pulling message from server");
 		$.ajax({
 			  url: "chat_pull.jsp",
 			  cache: false,
 			  success: function(data){   
-				console.log(data);
-			    $( "#chatbox" ).append( data ); 
+			    $( "#chatbox" ).append( data+"<br/>" ); 
 			    },
 		})
 	}
@@ -127,6 +126,7 @@ $(document).ready(function(){
         <input name="username" type="text" id="username">
         <input name="usermsg" type="text" id="usermsg" size="63" />
         <input name="submitmsg" type="button" id="submitmsg" value="Send" onclick="push()"/>
+        <input type="button"  onclick="pull()"/>
     </form>
 </div>
 </body>
