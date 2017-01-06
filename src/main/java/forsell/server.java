@@ -4,6 +4,7 @@ import java.io.*;
 //this store the client data
 import java.net.*;
 import java.util.*;
+
 class client_data
 {
 	//this is all the client elements needed by the server
@@ -133,47 +134,55 @@ class server{
             				{//calls the class sendMessgae
             					sendMessage("Your Client number is "+client_no_,client_class[client_no_].baseOutputStream);
             				}*/
-            				//to get the numbers of active clients
-					/*if(message.toUpperCase().equals("ACTIVEUSER"))
-            				{
-            					sendMessage("Active Users are:",client_class[client_no_].baseOutputStream);
-            					sendMessage("Client No. Client Name:",client_class[client_no_].baseOutputStream);
-            					for (int i=0;i<=client_no;i++) 
-            					{
-            						if(client_class[i].clientSocket!=null)
-            						sendMessage(i+" "+client_class[i].clientSocket.getInetAddress().getHostName(),client_class[client_no_].baseOutputStream);
-            					}	
-            				} */
-					//to send the message recieved from the client to the desired client
-            				/*if(message.toUpperCase().startsWith("UNICAST"))
-            				{*/
-            					/*while(message.toUpperCase().startsWith("UNICAST"))
-            					{
-            						message=(String)client_class[client_no_].baseInputStream.readObject();
-            					}*/
 								while(true)
 								{
 									
 									message = (String)client_class[client_no_].baseInputStream.readObject();
 									String[] lines = message.split(System.getProperty("line.separator"));
-									//System.out.println(lines[0].equals);
-									int i = hmap.get(lines[0]);//Integer.parseInt(lines[0]);//lines[0].toString;//Integer.parseInt(message);//to get the client number
-									System.out.println("Client"+i);
-									if(i>client_no || client_class[i].clientSocket==null || hmap.get(lines[0])==null)
+									if(lines[0].toUpperCase().equals("COMMAND"))
 									{
-										System.out.println(client_no_);
-										sendMessage("INCORRECT CLIENT",client_class[client_no_].baseOutputStream);
+										
+										//this is to exit the client from the network
+										//sendMessage("PERFECT",client_class[client_no_].baseOutputStream);
+										if(lines[1].toUpperCase().equals("EXIT"))
+										{
+											client_class[client_no_].delete_client();
+											hmap.remove(lines[2]);
+										}
+										if(lines[1].toUpperCase().equals("ACTIVEUSER"))
+										{
+											sendMessage("Active Users are:",client_class[client_no_].baseOutputStream);
+											sendMessage("Client No. Client Name:",client_class[client_no_].baseOutputStream);
+											for (int i=0;i<=client_no;i++) 
+											{
+												if(client_class[i].clientSocket!=null)
+												sendMessage(i+" "+client_class[i].clientSocket.getInetAddress().getHostName(),client_class[client_no_].baseOutputStream);
+											}	
+										}
+										
 									}
 									else
 									{
-										//sendMessage("CORRECT",client_class[client_no_].baseOutputStream);
-										//while(message=="")
-										//{
-											//message = (String)client_class[client_no_].baseInputStream.readObject();
-										//}
-										System.out.println(lines[1]);
-										sendMessage("Client "+client_no_+" sent:"+lines[1],client_class[i].baseOutputStream);
-										//message="";
+										
+										//System.out.println(lines[0].equals);
+										int i = hmap.get(lines[0]);//Integer.parseInt(lines[0]);//lines[0].toString;//Integer.parseInt(message);//to get the client number
+										System.out.println("Client"+i);
+										if(i>client_no || client_class[i].clientSocket==null || hmap.get(lines[0])==null)
+										{
+											System.out.println(client_no_);
+											sendMessage("INCORRECT CLIENT",client_class[client_no_].baseOutputStream);
+										}
+										else
+										{
+											//sendMessage("CORRECT",client_class[client_no_].baseOutputStream);
+											//while(message=="")
+											//{
+												//message = (String)client_class[client_no_].baseInputStream.readObject();
+											//}
+											System.out.println(lines[1]);
+											sendMessage("Client "+client_no_+" sent:"+lines[1],client_class[i].baseOutputStream);
+											//message="";
+										}
 									}
 								}
             				//}
@@ -194,32 +203,6 @@ class server{
                     					sendMessage("Client "+client_no_+" sent:"+message,client_class[i].baseOutputStream);
                                 }
             				}
-					//to send a file to a particular client
-            				if(message.toUpperCase().startsWith("SENDTO"))
-            				{
-            					while(message.toUpperCase().startsWith("SENDTO"))
-            						message = (String)client_class[client_no_].baseInputStream.readObject();
-            					int i=Integer.parseInt(message);
-            					//check for correct i and then get things started this will also check if the client is trying to send over to itself
-            					if(i>client_no || client_class[i].clientSocket==null || i==client_no_)
-            					{
-            						sendMessage("INCORRECT CLIENT",client_class[client_no_].baseOutputStream);
-            					}
-            					else
-            					{
-            						sendMessage("CORRECT",client_class[client_no_].baseOutputStream);
-            						sendMessage("FILE",client_class[i].baseOutputStream);
-            						message=(String)client_class[client_no_].baseInputStream.readObject();//this is to get client name from our initial client and send it 
-            						sendMessage(message,client_class[i].baseOutputStream);
-            						message=(String)client_class[client_no_].baseInputStream.readObject();//this is the length of the bytes to be sent
-            						sendMessage(message,client_class[i].baseOutputStream);
-            						byte[] mybytearray=(byte[])client_class[client_no_].baseInputStream.readObject();//this is to get data
-            						sendMessage(mybytearray,client_class[i].baseOutputStream); 
-            						//version 4 editing some of the minor components 
-            						sendMessage("client "+client_no_+" sent a file",client_class[i].baseOutputStream);
-            					}
-            				}
-            				//Version 2.0 edit
 					//to send the message to all clients except one client
             				if(message.toUpperCase().startsWith("BLOCKCAST"))
             				{
@@ -247,35 +230,6 @@ class server{
             					//need to check it version 3.0
             					
             				}
-            				//this is used to file broadcasted 
-            				if(message.toUpperCase().startsWith("FILE BROADCAST"))
-            				{
-            					String name,length;
-            					name=(String)client_class[client_no_].baseInputStream.readObject();//this is the length of the bytes to be sent
-            					length=(String)client_class[client_no_].baseInputStream.readObject();
-            					byte[] mybytearray=(byte[])client_class[client_no_].baseInputStream.readObject();//this is to get data
-        						//version 4 editing some of the minor components 
-            					for (int i=0;i<=client_no;i++) 
-                                {
-                    				//version 2.0 edit added to keep the information going in NULL clients
-                    				if(client_class[i].clientSocket!=null && i!=client_no_)
-                    				{
-                    					sendMessage("FILE",client_class[i].baseOutputStream);
-                    					sendMessage(name,client_class[i].baseOutputStream);
-                    					sendMessage(length,client_class[i].baseOutputStream);
-                    					sendMessage(mybytearray,client_class[i].baseOutputStream);
-                    					sendMessage("client "+client_no_+" sent a file",client_class[i].baseOutputStream);
-                						
-                    				}
-                                }
-            				}
-            				if(message.toUpperCase().startsWith("EXIT"))
-            				{
-            					//this is to exit the client from the network
-            					sendMessage("PERFECT",client_class[client_no_].baseOutputStream);
-            					client_class[client_no_].delete_client();
-            					
-            				}
             				System.out.println("Receive message: " + message + " from client " + no);*/
             				//}
             		}
@@ -299,18 +253,6 @@ class server{
             	}
             }
         	public void sendMessage(String msg,ObjectOutputStream out)
-        	{
-        		try{
-        			out.writeObject(msg);
-        			out.flush();
-        			System.out.println("Send message: " + msg + " to Client " + no);
-        		}
-        		catch(IOException ioException){
-        			ioException.printStackTrace();
-        		}
-        	}
-		//this class will send message to the clients
-        	public void sendMessage(byte[] msg,ObjectOutputStream out)
         	{
         		try{
         			out.writeObject(msg);
