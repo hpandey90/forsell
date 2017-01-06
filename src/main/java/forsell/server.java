@@ -1,17 +1,9 @@
-//****************************************************************//
-//This project/Code is original contribution by                   //
-//Student Team                                                    //
-//Pooja Shah - 1593-1401 (poojakshah@ufl.edu)                     //
-//Karan Goel - 8116-0185 (karangoel16@ufl.edu)                    //
-//for the master degree progam in University of Florida           //
-//Contributions:                                                  //
-//Pooja Shah - Testing and Threading                              //
-//Karan Goel - File Transfer and File Broadcast and error handling//
-//****************************************************************//
 package forsell;
+
 import java.io.*;
 //this store the client data
 import java.net.*;
+import java.util.*;
 class client_data
 {
 	//this is all the client elements needed by the server
@@ -54,6 +46,7 @@ class server{
 	private ServerSocket listener;
 	private int port=8000;
 	public client_data client_class[];
+	public HashMap<String, Integer> hmap = new HashMap<String, Integer>();
 	String message;
 	ObjectOutputStream out;//stream write to the socket
 	ObjectInputStream in;//stream read from the socket
@@ -100,8 +93,9 @@ class server{
         			//System.out.println(client_class[new ObjectOutputStream(client_class[client_no].clientSocket.getOutputStream()).toString());
         			client_class[client_no].baseInputStream=new ObjectInputStream(client_class[client_no].clientSocket.getInputStream());
         			client_class[client_no].baseOutputStream=new ObjectOutputStream(client_class[client_no].clientSocket.getOutputStream());
-        			
-        			System.out.println("*");
+        			message = (String)client_class[client_no].baseInputStream.readObject();
+					hmap.put(message, client_no);
+        			System.out.println(message);
         			new Handler(client_no).start();
         		}
         	}
@@ -157,24 +151,31 @@ class server{
             					{
             						message=(String)client_class[client_no_].baseInputStream.readObject();
             					}*/
-            					int i = 0;//Integer.parseInt(message);//to get the client number
-            					System.out.println("Client"+i);
-            					if(i>client_no || client_class[i].clientSocket==null)
-            					{
-            						System.out.println(client_no_);
-            						sendMessage("INCORRECT CLIENT",client_class[client_no_].baseOutputStream);
-            					}
-            					else
-            					{
-            						//sendMessage("CORRECT",client_class[client_no_].baseOutputStream);
-            						//while(message=="")
-            						//{
-            							message = (String)client_class[client_no_].baseInputStream.readObject();
-            						//}
-            						System.out.println(message);
-            						sendMessage("Client "+client_no_+" sent:"+message,client_class[i].baseOutputStream);
-            						//message="";
-            					}
+								while(true)
+								{
+									
+									message = (String)client_class[client_no_].baseInputStream.readObject();
+									String[] lines = message.split(System.getProperty("line.separator"));
+									//System.out.println(lines[0].equals);
+									int i = hmap.get(lines[0]);//Integer.parseInt(lines[0]);//lines[0].toString;//Integer.parseInt(message);//to get the client number
+									System.out.println("Client"+i);
+									if(i>client_no || client_class[i].clientSocket==null || hmap.get(lines[0])==null)
+									{
+										System.out.println(client_no_);
+										sendMessage("INCORRECT CLIENT",client_class[client_no_].baseOutputStream);
+									}
+									else
+									{
+										//sendMessage("CORRECT",client_class[client_no_].baseOutputStream);
+										//while(message=="")
+										//{
+											//message = (String)client_class[client_no_].baseInputStream.readObject();
+										//}
+										System.out.println(lines[1]);
+										sendMessage("Client "+client_no_+" sent:"+lines[1],client_class[i].baseOutputStream);
+										//message="";
+									}
+								}
             				//}
 					//to send the message to all clients
             				/*if(message.toUpperCase().startsWith("BROADCAST"))
