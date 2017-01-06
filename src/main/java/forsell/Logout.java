@@ -34,14 +34,14 @@ public class Logout extends HttpServlet{
     	//invalidate the session if exists
     	//Socket sock =(Socket) session.getAttribute(socky);
     	HttpSession session = request.getSession(false);
-    	String str;
+    	/*String str;
     	Socket sock =(Socket) session.getAttribute("socky");
     	ObjectOutputStream outbus=(ObjectOutputStream) session.getAttribute("obuff");
         ObjectInputStream inbus=(ObjectInputStream) session.getAttribute("ibuff");
         str ="COMMAND"+"\r\n"+"EXIT"+"\r\n"+user_name+"\r\n";
     	outbus.writeObject(str);
     	outbus.flush();
-    	sock.close();
+    	sock.close();*/
     	//session.invalidate();
     //	request.getSession(false);
     	//session.invalidate();
