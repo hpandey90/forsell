@@ -66,7 +66,9 @@ a {
 function push(){
 	console.log("pushing message to server");
 	str = document.getElementById('usermsg').value;
-	q = "str="+str;
+	user = document.getElementById('username').value;
+	
+	q = "str="+str+"&username="+user;
 	$.ajax({
 		  method: "POST",
 		  url: "chat_push.jsp",
@@ -111,13 +113,12 @@ $(document).ready(function(){
     </div>
      
     <div id="chatbox" >
-     <% 
 
-        try{    
+      <%--   try{    
             System.out.println("0");
-            Socket socket = new Socket("localhost", 8000);
+            //Socket socket = new Socket("localhost", 8000);
             //Socket isocket = new Socket("192.168.0.5", 8766);
-            OutputStream outSocket = socket.getOutputStream();
+            /* OutputStream outSocket = socket.getOutputStream();
             outSocket.flush();
             InputStream inSocket = socket.getInputStream();
             ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
@@ -136,15 +137,14 @@ $(document).ready(function(){
 			}
             session.setAttribute("ibuff",buffin);
             buffout.writeObject(user);
-            buffout.flush();
+            buffout.flush(); */
         }
         catch(java.net.ConnectException e){
         %>  
             You must first start the server application 
             (YourServer.java) at the command prompt.
         <%
-        }
-        %>
+        } --%>
        </div>
    	<form name="message" action="" method="post">
         <input name="username" type="text" id="username">
