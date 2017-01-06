@@ -65,8 +65,12 @@ a {
 <script>
 function push(){
 	console.log("pushing message to server");
+	
 	str = document.getElementById('usermsg').value;
-	user = document.getElementById('username').value;
+	<%String a = request.getParameter("username");%>;
+	var user = "<%=a%>";
+	console.log("--->"+user);
+	//document.getElementById('username').value;
 	
 	q = "str="+str+"&username="+user;
 	$.ajax({
@@ -79,6 +83,7 @@ function push(){
 	    console.log( "Data Saved: " + str );
 	  }); */
 }
+	
 function pull(){
 	console.log("pulling message from server");
 	$.ajax({
