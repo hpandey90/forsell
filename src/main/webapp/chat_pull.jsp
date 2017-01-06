@@ -21,11 +21,14 @@
 		    //if(inbus.available()>0){
 		    	//System.out.println("ajsgduas===>"+inbus.readObject());
 		    	try{
-			    String op=inbus.readObject().toString();
+		    		String op;
+		    		if((op=inbus.readObject().toString()) != null){
+			    //String 
 			     //while(inbus.readObject().toString()!=""){
 			    	//op+=inbus.readObject().toString();
 			    //} 
 			    out.print(op);
+		    	}
 		    	}
 		    	catch(Exception e){
 		    		System.out.println("exception ajsdbaius");
