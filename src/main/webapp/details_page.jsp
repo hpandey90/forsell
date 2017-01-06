@@ -217,10 +217,11 @@ word-break: break-all;
 	detail = request.getParameter("id");
 	query = "SELECT * FROM postads WHERE prod_id = '"+ detail + "'";
 	System.out.println(query);
+	ResultSet rs=null;
 	try {
 		DbConnect db = new DbConnect();
 		Statement stmt = db.conn();
-		ResultSet rs = stmt.executeQuery(query);
+		rs = stmt.executeQuery(query);
 		rs.next();
 		for(i=1;i<=5;i++)			
 			if(!(rs.getString("img_ext"+i)).equals(""))
@@ -290,7 +291,7 @@ word-break: break-all;
 	}
 	%>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<button class="add-to-cart btn btn-default" type="button" onclick="location.href='http://localhost:8080/sell/chat_box.jsp?username=<%=rs.getString("user_name")%>';">Message Seller</button>
 							<div id="fb-root"></div>
 								<script>(function(d, s, id) {
 								  var js, fjs = d.getElementsByTagName(s)[0];
