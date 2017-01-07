@@ -1,7 +1,6 @@
 package forsell;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
+
+import java.net.*;
 
 
 
@@ -66,7 +67,21 @@ public class Login extends HttpServlet{
 							Cookie userName = new Cookie("user", user);
 							userName.setMaxAge(30*60);
 							response.addCookie(userName);
-							response.sendRedirect(request.getHeader("referer"));
+							//Chat Setup
+							Socket socket = new Socket("localhost", 8000);
+							session.setAttribute("socky",socket);
+				            //Socket isocket = new Socket("192.168.0.5", 8766);
+				            OutputStream outSocket = socket.getOutputStream();
+				            outSocket.flush();
+				            InputStream inSocket = socket.getInputStream();
+				            ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
+				            session.setAttribute("obuff",buffout);
+				            ObjectInputStream buffin=new ObjectInputStream(inSocket);
+				            session.setAttribute("ibuff",buffin);
+				            buffout.writeObject(user);
+				            buffout.flush();
+				            //Redirect
+				            response.sendRedirect(request.getHeader("referer"));
 						}
 						else{
 							RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");

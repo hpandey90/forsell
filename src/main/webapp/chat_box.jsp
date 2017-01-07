@@ -61,6 +61,53 @@ a {
   
 .msgln { margin:0 0 2px 0; }
 </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script>
+function push(){
+	console.log("pushing message to server");
+	
+	str = document.getElementById('usermsg').value;
+	<%String a = request.getParameter("username");%>;
+	var user = "<%=a%>";
+	console.log("--->"+user);
+	//document.getElementById('username').value;
+	
+	q = "str="+str+"&username="+user;
+	$.ajax({
+		  method: "POST",
+		  url: "chat_push.jsp",
+		  //data: { name: "John", location: "Boston" }
+		  data:q,
+	})
+/* 	  .done(function( msg ) {
+	    console.log( "Data Saved: " + str );
+	  }); */
+}
+	
+function pull(){
+	console.log("pulling message from server");
+	$.ajax({
+		  url: "chat_pull.jsp",
+		  cache: false,
+		  success: function(data){   
+		    $( "#chatbox" ).append( data+"<br/>" ); 
+		    },
+	})
+}
+$(document).ready(function(){
+	//setInterval(pull, 10000);
+	function pull(){
+		console.log("pulling message from server");
+		$.ajax({
+			  url: "chat_pull.jsp",
+			  cache: false,
+			  success: function(data){   
+			    $( "#chatbox" ).append( data+"<br/>" ); 
+			    },
+		})
+	}
+});
+</script>
 </head>
  
 <div id="wrapper" style="margin-top:100px">
@@ -71,35 +118,45 @@ a {
     </div>
      
     <div id="chatbox" >
-     <% 
-        try{    
+
+      <%--   try{    
             System.out.println("0");
-            Socket socket = new Socket("localhost", 8000);
+            //Socket socket = new Socket("localhost", 8000);
             //Socket isocket = new Socket("192.168.0.5", 8766);
-            OutputStream outSocket = socket.getOutputStream();
+            /* OutputStream outSocket = socket.getOutputStream();
             outSocket.flush();
             InputStream inSocket = socket.getInputStream();
             ObjectOutputStream buffout=new ObjectOutputStream(outSocket);
             session.setAttribute("obuff",buffout);
             ObjectInputStream buffin=new ObjectInputStream(inSocket);
+            String user = null;
+			if(session.getAttribute("user") == null){
+				response.sendRedirect("index.jsp");
+			}else user = (String) session.getAttribute("user");
+			String userName = null;
+			Cookie[] cookies = request.getCookies();
+			if(cookies !=null){
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("user")) userName = cookie.getValue();
+			}
+			}
             session.setAttribute("ibuff",buffin);
+            buffout.writeObject(user);
+            buffout.flush(); */
         }
         catch(java.net.ConnectException e){
         %>  
             You must first start the server application 
             (YourServer.java) at the command prompt.
         <%
-        }
-        %>
+        } --%>
        </div>
-    
+   	<form name="message" action="" method="post">
+        <input name="username" type="text" id="username">
+        <input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="submitmsg" type="button" id="submitmsg" value="Send" onclick="push()"/>
+        <input type="button"  onclick="pull()"/>
+    </form>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-<script type="text/javascript">
-// jQuery Document
-$(document).ready(function(){
- 
-});
-</script>
 </body>
 </html>

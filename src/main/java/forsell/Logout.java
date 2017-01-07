@@ -1,6 +1,7 @@
 package forsell;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,22 +17,36 @@ public class Logout extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	response.setContentType("text/html");
     	Cookie[] cookies = request.getCookies();
+    	String user_name="NoOne";
     	if(cookies != null){
 	    	for(Cookie cookie : cookies){
 	    		if(cookie.getName().equals("JSESSIONID")){
 	    			System.out.println("JSESSIONID="+cookie.getValue());
+	    			//user_name=cookie.getValue();
 	    			break;
+	    		}
+	    		else if(cookie.getName().equals("user")){
+	    			user_name=cookie.getValue();
 	    		}
 	    	}
     	}
     	
     	//invalidate the session if exists
+    	//Socket sock =(Socket) session.getAttribute(socky);
     	HttpSession session = request.getSession(false);
-    //	request.getSession().invalidate();
+    	/*String str;
+    	Socket sock =(Socket) session.getAttribute("socky");
+    	ObjectOutputStream outbus=(ObjectOutputStream) session.getAttribute("obuff");
+        ObjectInputStream inbus=(ObjectInputStream) session.getAttribute("ibuff");
+        str ="COMMAND"+"\r\n"+"EXIT"+"\r\n"+user_name+"\r\n";
+    	outbus.writeObject(str);
+    	outbus.flush();
+    	sock.close();*/
+    	//session.invalidate();
     //	request.getSession(false);
     	//session.invalidate();
-    	System.out.println("User="+session.getAttribute("user"));
-    	System.out.println("JID="+session.getAttribute("JSESSIONID"));
+    	//System.out.println("User="+session.getAttribute("user"));
+    	//System.out.println("JID="+session.getAttribute("JSESSIONID"));
     	if(session != null){
     		session.invalidate();
     	}
