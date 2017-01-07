@@ -22,9 +22,9 @@
 			top: 0;
 			left: 0;
 			width: 100%;
-			height: 95px; 
+			height: 58px; 
 			//overflow: hidden; /* Disables scrollbars on the header frame. To enable scrollbars, change "hidden" to "scroll" */
-			background: #d8d8d8;
+			background: #4f4d7d;
 		}
 		
 		#logo {
@@ -63,16 +63,21 @@
     		width: 100%;
     		height: inherit;
 		}
+		
+		.headDiv > div{
+			margin-right:60px;
+		}
+		
 		.commonDiv{
 			height: inherit;
 			float: left;
 			display: table;
-    		width: auto;
-    		margin-left:2%;
-    		margin-right:2%;
+    		width: 4%;
+    		/* margin-left:2%;
+    		margin-right:2%; */
 		}
 		.searchDiv{
-			width:60%;
+			width:50%;
 			height: inherit;
 			float: left;
 			display: table;
@@ -86,42 +91,44 @@
 		    display: table;
 		    float: left;
 		    font-size:larger;
-       		margin-left:2%;
-    		margin-right:2%;
+       		/* margin-left:2%;
+    		margin-right:2%; */
 		}
 		
 		.loginDiv{
 			width: auto;
 		    height: inherit;
-		    float: right;
+		    float: left;
 		    font-size:larger;
-       		margin-left:2%;
-    		margin-right:.5%;
+       		/* margin-left:2%;
+    		margin-right:.5%; */
+    		display: table;
+    		
 		}
 		.innerTag{
 			width:100%; display:table-cell; vertical-align: middle;
 		}
 		
 		.herodemo{
-			width: 65%;
+			width: 93%;
 		    outline: 0;
 		    border-top-left-radius: 4px;
 		    border-bottom-left-radius: 4px;
 		    border: none;
 		    height: 36px;
-		    margin-left: 19%;
+		   /* margin-left: 19%;*/
 		    float: left;
 		    margin-top: 0px;
 		    padding-left: 5px;  
 		}
 		
 		.searchSpan{
-			width: 5%;
+			width: 7%;
 		    float: left;
 		    margin: 0px;
 		    height: 36px;
 		    text-align: center;
-		    background: #ff9900;/*#dc7013;*/
+		    background: #f2161e;/*#dc7013;*/
 		    border-top-right-radius: 4px;
 		    border-bottom-right-radius: 4px;
 		    cursor: pointer;
@@ -222,7 +229,7 @@
 		<header id="header" style="position:fixed;z-index:999">
 			<div class="headDiv">
 				<div class="commonDiv" id="logo" style="width:auto; padding-top:0%; display:table-cell;">
-				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="115px"></a></div>
+				<div class='innerTag' style='height:inherit'><a href="index.jsp"><img src="images/Logo_mod4.png" alt="Smiley face" width="68"></a></div>
 				</div>
 				<div class="searchDiv">
 					<form id='searchForm' action='listings.jsp' class='innerTag'>
@@ -231,7 +238,23 @@
 					</form>
 				</div>
 				<div class="advertDiv">
-					<div  id="placeAD" class='innerTag' ><a href = "postAd.jsp"><img src="images/placead.png" alt="POST AD" width="130px"></a></div>		
+					<div  id="placeAD" class='innerTag' >
+					<p style='
+					    font-family: sans-serif;
+					    font-size: 20px;
+					    width: 135px;
+					    color: white;
+					    /* height: 45px; */
+					    padding: 0px;
+					    text-align: center;
+					    font-weight: bolder;
+					    background: #f2161e;
+					    border: none;
+					    border-radius: 8px;
+					    padding: 7px;
+					    cursor:pointer;
+					    display: table-cell;
+						'><!-- <a href = "postAd.jsp">Post Ad</a> -->Post Ad</p></div>		
 				</div>
 				<div class='loginDiv'>
 					<div class='innerTag'>
@@ -243,7 +266,23 @@
 								%>
 
 						<div class="container">
-							<a id="modal_trigger" href="#modal" class="btn">Login/register</a>
+							<p style='
+					    font-family: sans-serif;
+					    font-size: 20px;
+					    width: 135px;
+					    color: #4f4d7d;
+					    /* height: 45px; */
+					    padding: 0px;
+					    text-align: center;
+					    font-weight: bolder;
+					    background: white;
+					    border: none;
+					    border-radius: 8px;
+					    padding: 7px;
+					    cursor:pointer;
+					    display: table-cell;
+						'><!-- <a id="modal_trigger" href="#modal" > Login</a>-->Login</p>
+							
 							<div id="modal" class="popupContainer" style="display:none;">
 								<header class="popupHeader">
 									<span class="header_title">Login</span>
