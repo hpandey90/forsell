@@ -57,7 +57,7 @@
       <script src="js/html5shiv.js"></script>
     <![endif]-->
 
-    <div class="navbar" hidden>
+    <div class="navbar" >
         <div class="container">
           <div class="nav-collapse collapse">
             <ul class="nav">
